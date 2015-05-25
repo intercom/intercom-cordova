@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="io.intercom.cordova" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Intercom</name>
+    <author>Intercom</author>
+    <license>MIT License</license>
+    <description>A cordova plugin for Intercom for mobile</description>
+
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module name="Intercom" src="www/intercom.js">
+        <clobbers target="intercom" />
+    </js-module>
+
+    <preference name="APP_ID"/>
+
+    <platform name="ios">
+      <preference name="IOS_API_KEY"/>
+
+      <header-file src="src/ios/IntercomBridge.h" />
+      <source-file src="src/ios/IntercomBridge.m" />
+
+      <config-file target="config.xml" parent="*/">
+        <feature name="Intercom">
+          <param name="ios-package" value="IntercomBridge" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+
+      <framework src="src/ios/Intercom.framework" custom="true" />
+      <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
+
+      <framework src="Foundation.framework" />
+      <framework src="UIKit.framework" />
+      <framework src="Security.framework" />
+      <framework src="SystemConfiguration.framework" />
+      <framework src="MobileCoreServices.framework" />
+      <framework src="ImageIO.framework" />
+      <framework src="QuartzCore.framework" />
+      <framework src="AudioToolbox.framework" />
+      <framework src="CoreGraphics.framework" />
+      <framework src="CFNetwork.framework" />
+      <framework src="libicucore.dylib" />
+
+      <config-file target="*-Info.plist" parent="IntercomApiKey">
+        <string>$IOS_API_KEY</string>
+      </config-file>
+
+      <config-file target="*-Info.plist" parent="IntercomAppId">
+        <string>$APP_ID</string>
+      </config-file>
+    </platform>
+
+    <platform name="android">
+      <preference name="ANDROID_API_KEY"/>
+
+      <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/libs/intercom-sdk-1.0.1.aar" target-dir="libs" />
+      <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
+
+      <config-file target="config.xml" parent="*/">
+        <feature name="Intercom">
+          <param name="android-package" value="io.intercom.android.sdk.IntercomBridge" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="application">
+          <meta-data android:name="intercom_app_id" android:value="$APP_ID"/>
+          <meta-data android:name="intercom_api_key" android:value="$ANDROID_API_KEY"/>
+      </config-file>
+    </platform>
+
+</plugin>
