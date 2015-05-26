@@ -3,7 +3,9 @@
     <name>Intercom</name>
     <author>Intercom</author>
     <license>MIT License</license>
-    <description>A cordova plugin for Intercom for mobile</description>
+    <description>Cordova plugin for Intercom for mobile</description>
+    <repo>https://github.com/intercom/intercom-cordova.git</repo>
+    <keywords>intercom,intercom-cordova</keywords>
 
     <engines>
       <engine name="cordova" version=">=3.0.0" />
