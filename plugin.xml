@@ -7,6 +7,8 @@
 
     <engines>
       <engine name="cordova" version=">=3.0.0" />
+      <engine name="cordova-android" version=">=4.0.0" />
+      <engine name="cordova-ios" version=">=3.0.0" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">
@@ -28,7 +30,8 @@
         </feature>
       </config-file>
 
-      <framework src="src/ios/Intercom.framework" custom="true" />
+      <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
+      <source-file src="src/ios/Intercom.framework/Versions/A/Intercom" framework="true" />
       <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
 
       <framework src="Foundation.framework" />
