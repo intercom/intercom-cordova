@@ -142,8 +142,10 @@ If there is an area of your app where you do not wish your users to receive Inte
 Attributes such as the user email or a user's name can be updated by calling:
 
     intercom.updateUser({ email: "joe@example.com", name: @"Joe" });
+    
+Details of the attributes that can be updated are available [here](https://doc.intercom.io/api/#user-model).
 
-Custom user attributes can be created and modified by passing a custom_attributes dictionary You do not have to create attributes in Intercom beforehand. If one hasn't been seen before, it will be created for you automatically.
+Custom user attributes can be created and modified by passing a custom_attributes dictionary You do not have to create attributes in Intercom beforehand.
 
     intercom.updateUser({
         custom_attributes: {
@@ -152,8 +154,6 @@ Custom user attributes can be created and modified by passing a custom_attribute
             team_mates: 3
         }
     });
-
-More information is available [here](http://docs.intercom.io/Install-on-your-mobile-product/configuring-intercom-for-ios).
 
 ##Events
 
