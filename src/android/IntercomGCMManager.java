@@ -22,7 +22,7 @@ import android.util.Log;
 
 
 public class IntercomGCMManager {
-	private static final String PROPERTY_REG_ID = "registration_id";
+    private static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "app_version";
 
     private static long retryTime = 0;
@@ -107,11 +107,11 @@ public class IntercomGCMManager {
                 } catch (IOException ex) {
                     Log.d("GCM_ISSUE", "Error :" + ex.getMessage());
 
-					retryCount++;
+                    retryCount++;
 
-					long minBackoffSeconds = (long)Math.pow(2.0, (double)retryCount);
-					long backOffJitter = (long)(Math.random() * (minBackoffSeconds + 1));
-					retryTime = minBackoffSeconds + backOffJitter;
+                    long minBackoffSeconds = (long)Math.pow(2.0, (double)retryCount);
+                    long backOffJitter = (long)(Math.random() * (minBackoffSeconds + 1));
+                    retryTime = minBackoffSeconds + backOffJitter;
 
                     //retry the registration after delay
                     gcmHandler.postDelayed(new Runnable() {
