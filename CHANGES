@@ -1,0 +1,8 @@
+= 1.0.1 (2015-06-05)
+
+* Improved push notification handling by introducing much simpler `intercom.registerForPush(senderId)`.
+* Updated Intercom for iOS to 2.2.4 and updated Intercom for Android to 1.0.3.
+
+= 1.0.0 (2015-05-25)
+
+* Initial release of the Intercom plugin for Cordova and PhoneGap.

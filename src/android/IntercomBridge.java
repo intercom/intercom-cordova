@@ -6,6 +6,7 @@ import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+import android.content.Intent;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -16,6 +17,7 @@ import android.os.Build;
 
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.preview.IntercomPreviewPosition;
+import io.intercom.android.sdk.api.HeaderInterceptor;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -32,6 +34,14 @@ public class IntercomBridge extends CordovaPlugin {
     @Override public void onStart() {
         //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
         this.setUpIntercom();
+
+        if (Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData())) {
+            cordova.getActivity().getIntent().setData(null);
+        }
+    }
+
+    @Override public void onNewIntent(Intent intent) {
+        cordova.getActivity().setIntent(intent);
     }
 
     private void setUpIntercom() {
@@ -39,6 +49,9 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 try {
                     Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
+
+                    HeaderInterceptor.setCordovaVersion(context, "1.0.1");
+
                     ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
                     Bundle bundle = app.metaData;
 
@@ -156,6 +169,17 @@ public class IntercomBridge extends CordovaPlugin {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData());
                 callbackContext.success();
+            }
+        },
+        registerForPush {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String senderId = args.optString(0);
+                if (senderId == null) {
+                    callbackContext.error("[Intercom-Cordova] ERROR: Tried to setup GCM with no sender Id.");
+                } else {
+                    IntercomGCMManager.setUpPush(senderId, cordova.getActivity().getApplicationContext());
+                    callbackContext.success();
+                }
             }
         },
         setupAPN {

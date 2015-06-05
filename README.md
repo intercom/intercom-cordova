@@ -175,11 +175,21 @@ Events can optionally include meta data:
 
 Intercom for mobile supports Push Notifications on iOS and Google Cloud Messaging (GCM). To get started, you can read our GCM docs [here](http://docs.intercom.io/Install-on-your-mobile-product/using-google-cloud-messaging-gcm-with-intercom-for-android) and our iOS push notification docs [here](http://docs.intercom.io/Install-on-your-mobile-product/enabling-push-notifications-with-intercom-for-ios).
 
-On iOS, you should call `intercom.setupAPN(deviceToken);` instead of `[Intercom setDeviceToken:deviceToken];`.
+To enable iOS push notifications, simply call `intercom.registerForPush()`.
 
-For Android, call `intercom.setupGCM(registrationId);` instead of `Intercom.getClient().setupGCM(regId, icon);` and call `intercom.openGCMMessage();` instead of `Intercom.getClient().openGCMMessage(...);`.
+To enable Android push notifications, call `intercom.registerForPush('sender_id')` and add these permissions just before the existing `<application>` element in your `platforms/android/AndroidManifest.xml` file:
 
-**Note:** _Unlike the native Android interface, `Intercom.getClient().openGCMMessage(...);` has no return value indicating if the message was handled by Intercom. It is up to you to decide to pass the message or not._
+```
+<!-- GCM REQUIRED PERMISSIONS -->
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<!-- GCM Optional PERMISSIONS -->
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+```
+
+**Note:** _If you use PushPlugin to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/PushPlugin). We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin_
 
 ## More information
 
