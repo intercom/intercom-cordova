@@ -22,7 +22,7 @@ If your app doesn't support iOS or Android, you can omit that API key.
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <gap:plugin name="io.intercom.cordova" version="1.0.0" source="plugins.cordova.io" >
+    <gap:plugin name="io.intercom.cordova" version="1.0.1" source="plugins.cordova.io" >
         <param name="APP_ID" value="your_app_id" />
         <param name="IOS_API_KEY" value="ios_sdk-..." />
         <param name="ANDROID_API_KEY" value="android_sdk-..." />
@@ -189,7 +189,7 @@ To enable Android push notifications, call `intercom.registerForPush('sender_id'
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 
-**Note:** _If you use PushPlugin to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/PushPlugin). We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin_
+**Note:** _If you use PushPlugin to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/PushPlugin). Install it with: `cordova plugin add https://github.com/intercom/PushPlugin.git`. We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin._
 
 ## More information
 
