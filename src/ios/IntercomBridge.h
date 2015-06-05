@@ -20,4 +20,6 @@
 - (void)setupGCM:(CDVInvokedUrlCommand*)command;
 - (void)openGCMMessage:(CDVInvokedUrlCommand*)command;
 
+- (void)registerForPush:(CDVInvokedUrlCommand*)command;
+
 @end

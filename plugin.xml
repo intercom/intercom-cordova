@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="io.intercom.cordova" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="io.intercom.cordova" version="1.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intercom</name>
     <author>Intercom</author>
     <license>MIT License</license>
@@ -61,7 +61,8 @@
       <preference name="ANDROID_API_KEY"/>
 
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
-      <source-file src="src/android/libs/intercom-sdk-1.0.1.aar" target-dir="libs" />
+      <source-file src="src/android/IntercomGCMManager.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/libs/intercom-sdk-1.0.3.aar" target-dir="libs" />
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
 
       <config-file target="config.xml" parent="*/">

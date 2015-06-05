@@ -8,7 +8,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"1.0.0"];
+    [Intercom setCordovaVersion:@"1.0.1"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -114,6 +114,32 @@
 - (void)setupAPN:(CDVInvokedUrlCommand*)command {
     NSString *deviceToken = command.arguments[0];
     [Intercom setDeviceToken:[deviceToken dataUsingEncoding:NSUTF8StringEncoding]];
+    [self sendSuccess:command];
+}
+
+- (void)registerForPush:(CDVInvokedUrlCommand*)command {
+    UIApplication *application = [UIApplication sharedApplication];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]){ // iOS 8 (User notifications)
+        [application registerUserNotificationSettings:
+         [UIUserNotificationSettings settingsForTypes:
+          (UIUserNotificationTypeBadge |
+           UIUserNotificationTypeSound |
+           UIUserNotificationTypeAlert)
+                                           categories:nil]];
+        [application registerForRemoteNotifications];
+    } else { // iOS 7 (Remote notifications)
+        [application registerForRemoteNotificationTypes:
+         (UIRemoteNotificationType)
+         (UIRemoteNotificationTypeBadge |
+          UIRemoteNotificationTypeSound |
+          UIRemoteNotificationTypeAlert)];
+    }
+
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        [Intercom registerForRemoteNotifications];
+    #pragma GCC diagnostic pop
+
     [self sendSuccess:command];
 }
 
