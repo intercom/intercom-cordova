@@ -8,7 +8,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"1.0.1"];
+    [Intercom setCordovaVersion:@"1.0.2"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -21,8 +21,12 @@
 
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = command.arguments[0];
-    NSString* userId      = [options valueForKey:@"userId"];
-    NSString* userEmail   = [options valueForKey:@"email"];
+    NSString* userId      = options[@"userId"];
+    NSString* userEmail   = options[@"email"];
+
+    if ([userId isKindOfClass:[NSNumber class]]) {
+        userId = [(NSNumber *)userId stringValue];
+    }
 
     if (userId.length > 0 && userEmail.length > 0) {
         [Intercom registerUserWithUserId:userId email:userEmail];

@@ -1,3 +1,8 @@
+= 1.0.2 (2015-07-01)
+
+* Updated Intercom for iOS to [2.3.0](https://github.com/intercom/intercom-ios/blob/master/CHANGES) and updated Intercom for Android to [1.1.0](https://github.com/intercom/intercom-android/blob/master/CHANGELOG.md).
+* Fixed https://github.com/intercom/intercom-cordova/issues/5 and https://github.com/intercom/intercom-cordova/issues/7
+
 = 1.0.1 (2015-06-05)
 
 * Improved push notification handling by introducing much simpler `intercom.registerForPush(senderId)`.
