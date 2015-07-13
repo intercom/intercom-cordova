@@ -177,16 +177,7 @@ Intercom for mobile supports Push Notifications on iOS and Google Cloud Messagin
 
 To enable iOS push notifications, simply call `intercom.registerForPush()`.
 
-To enable Android push notifications, call `intercom.registerForPush('sender_id')` and add these permissions just before the existing `<application>` element in your `platforms/android/AndroidManifest.xml` file:
-
-```
-<!-- GCM REQUIRED PERMISSIONS -->
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-<uses-permission android:name="android.permission.VIBRATE" />
-<!-- GCM Optional PERMISSIONS -->
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+To enable Android push notifications, call `intercom.registerForPush('sender_id')`.
 ```
 
 **Note:** _If you use PushPlugin to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/PushPlugin). Install it with: `cordova plugin add https://github.com/intercom/PushPlugin.git`. We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin._
