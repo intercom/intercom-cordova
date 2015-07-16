@@ -1,4 +1,4 @@
-#Intercom for Cordova/PhoneGap
+# Intercom for Cordova/PhoneGap
 
 This is a plugin that allows your Cordova or PhoneGap app to use [Intercom for iOS](https://github.com/intercom/intercom-ios) and/or [Intercom for Android](https://github.com/intercom/intercom-android).
 
@@ -30,7 +30,7 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
 If your app doesn't support iOS or Android, you can omit that API key.
 
-##How should I use Intercom in my mobile app?
+## How should I use Intercom in my mobile app?
 
 Broadly speaking, there are three types of apps that Intercom for mobile will work in.
 
@@ -38,7 +38,7 @@ Broadly speaking, there are three types of apps that Intercom for mobile will wo
 2. Apps that never log users in, like Threes Game or Angry Birds or the iOS Notes app. Your users never have to log in to use your app. [Show me how.](https://github.com/intercom/intercom-cordova#my-apps-users-never-log-in)
 3. Apps that support both logged in and logged out users, like Google Maps or Youtube. [Show me how.](https://github.com/intercom/intercom-cordova#my-app-has-logged-in-and-logged-out-users)
 
-###My app only has logged in users
+### My app only has logged in users
 
 1. Firstly, on successful completion of login you will need to register your user.
 
@@ -71,7 +71,7 @@ Broadly speaking, there are three types of apps that Intercom for mobile will wo
             intercom.reset();
         }
 
-###My apps users never log in
+### My apps users never log in
 
 1. If you only have unidentifed users in your app then your integration is only one line. Just register an unidentified user in when your app starts up, like so:
 
@@ -84,7 +84,7 @@ Broadly speaking, there are three types of apps that Intercom for mobile will wo
         
 Because Intercom listens for life cycle events, there is no need to have this line of code anywhere else. Intercom will track all of your user sessions for you.
 
-###My app has logged in and logged out users
+### My app has logged in and logged out users
 
 1. Firstly, on successful completion of login you will need to register your user.
 
@@ -124,12 +124,12 @@ Because Intercom listens for life cycle events, there is no need to have this li
         }
 
 
-###Tips on getting the best out of the Intercom in your mobile app
+### Tips on getting the best out of the Intercom in your mobile app
 
 1.  **Do not use an email address as a `userId` as this field is unique and cannot be changed or updated later.** If you only have an `email` address, you can just register a user with that by calling `intercom.registerIdentifiedUser({email: "alice@example.com"})`.
 2. Intercom for mobile listens for when your app starts and stops, so all you need to do is register a type of user like the examples above and we'll do the rest.
  
-##How does the in-app messenger work?
+## How does the in-app messenger work?
 
 Intercom allows you to send messages to your users while also enabling your users send messages to you. If you have a dedicated button in your app that you wish to hook the new message composer up to, you can control Intercom's messaging UI via the `intercom.displayMessageComposer();` and `intercom.displayConversationsList();` methods.
 
@@ -137,7 +137,7 @@ The position of the message preview can be configured using `intercom.setPreview
 
 If there is an area of your app where you do not wish your users to receive Intercom messages, you can call `intercom.setVisibility(intercom.GONE);`. To re-enable messages, call `intercom.setVisibility(intercom.VISIBLE);`.
 
-##Updating a user
+## Updating a user
 
 Attributes such as the user email or a user's name can be updated by calling:
 
@@ -155,7 +155,7 @@ Custom user attributes can be created and modified by passing a custom_attribute
         }
     });
 
-##Events
+## Events
 
 You can log events in Intercom based on user actions in your app. Events are different to custom user attributes in that events are information on what Users did and when they did it, whereas custom user attributes represent the User's current state as seen in their profile. See details about Events [here](http://doc.intercom.io/api/#events).
 
@@ -171,7 +171,7 @@ Events can optionally include meta data:
         url: "https://example.org/orders/3434-3434"
     });
 
-##Push notifications
+## Push notifications
 
 Intercom for mobile supports Push Notifications on iOS and Google Cloud Messaging (GCM). To get started, you can read our GCM docs [here](http://docs.intercom.io/Install-on-your-mobile-product/using-google-cloud-messaging-gcm-with-intercom-for-android) and our iOS push notification docs [here](http://docs.intercom.io/Install-on-your-mobile-product/enabling-push-notifications-with-intercom-for-ios).
 
@@ -185,14 +185,14 @@ To enable Android push notifications, call `intercom.registerForPush('sender_id'
 
 You can find more detailed documentation about Intercom for mobile [here](http://docs.intercom.io/Install-on-your-mobile-product).
 
-##Thanks
+## Thanks
 
 Thanks to [Josh Dover](https://github.com/joshdover) from [AskU](http://www.asku.co/) for making a Cordova plugin for Intercom for iOS which helped lots of people to integrate Intercom in their iOS Cordova apps.
 
-##License
+## License
 
 intercom-cordova is released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
-##Copyright
+## Copyright
 
 Copyright (c) 2015, Inc.  All rights reserved.
