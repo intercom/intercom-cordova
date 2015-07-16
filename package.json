@@ -1,0 +1,43 @@
+{
+  "name": "cordova-plugin-intercom",
+  "version": "1.0.2",
+  "description": "Cordova plugin for Intercom for mobile",
+  "cordova": {
+    "id": "cordova-plugin-intercom",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intercom/intercom-cordova.git"
+  },
+  "keywords": [
+    "intercom",
+    "intercom-cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=4.0.0"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Intercom",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/intercom/intercom-cordova/issues"
+  },
+  "homepage": "https://github.com/intercom/intercom-cordova#readme"
+}

@@ -14,7 +14,7 @@ Intercom for iOS supports iOS 7.x and iOS 8.x. Intercom for Android fully suppor
 
 To install the plugin in your Cordova app, run the following:
 
-    cordova plugin add io.intercom.cordova --variable APP_ID="your_app_id" -variable IOS_API_KEY="ios_sdk-..." --variable ANDROID_API_KEY="android_sdk-..."
+    cordova plugin add cordova-plugin-intercom --variable APP_ID="your_app_id" -variable IOS_API_KEY="ios_sdk-..." --variable ANDROID_API_KEY="android_sdk-..."
 
 If your app doesn't support iOS or Android, you can omit that API key.
 
@@ -22,7 +22,7 @@ If your app doesn't support iOS or Android, you can omit that API key.
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <gap:plugin name="io.intercom.cordova" version="1.0.2" source="plugins.cordova.io" >
+    <gap:plugin name="cordova-plugin-intercom" version="1.0.2" source="npm" >
         <param name="APP_ID" value="your_app_id" />
         <param name="IOS_API_KEY" value="ios_sdk-..." />
         <param name="ANDROID_API_KEY" value="android_sdk-..." />
