@@ -4,7 +4,7 @@ repositories {
     }
 }
 dependencies {
-    compile ('io.intercom.android:intercom-sdk:1.1.1@aar') { 
+    compile ('io.intercom.android:intercom-sdk:1.1.2@aar') { 
         transitive = true
     }
 }
