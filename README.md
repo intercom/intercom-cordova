@@ -20,7 +20,7 @@ If your app doesn't support iOS or Android, you can omit that API key.
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <gap:plugin name="cordova-plugin-intercom" version="1.0.5" source="npm" >
+    <gap:plugin name="cordova-plugin-intercom" version="1.0.6" source="npm" >
         <param name="APP_ID" value="your_app_id" />
         <param name="IOS_API_KEY" value="ios_sdk-..." />
         <param name="ANDROID_API_KEY" value="android_sdk-..." />

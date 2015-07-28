@@ -1,4 +1,8 @@
-= 1.0.5 (2014-07-20)
+= 1.0.6 (2015-07-28)
+
+* Updated Intercom for Android to [1.1.3](https://github.com/intercom/intercom-android/blob/master/CHANGELOG.md)
+
+= 1.0.5 (2015-07-20)
 
 * Updated Intercom for iOS to [2.3.1](https://github.com/intercom/intercom-ios/blob/master/CHANGES) and updated Intercom for Android to [1.1.2](https://github.com/intercom/intercom-android/blob/master/CHANGELOG.md).
 * The plugin is now available through npm.
