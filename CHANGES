@@ -1,6 +1,10 @@
+= 1.0.8 (2015-08-18)
+
+* Updated Intercom for iOS to [2.3.3](https://github.com/intercom/intercom-ios/releases/tag/2.3.3).
+
 = 1.0.7 (2015-08-05)
 
-* Updated Intercom for iOS to [2.3.2](https://github.com/intercom/intercom-ios/blob/master/CHANGES).
+* Updated Intercom for iOS to [2.3.2](https://github.com/intercom/intercom-ios/releases/tag/2.3.2).
 
 = 1.0.6 (2015-07-28)
 
