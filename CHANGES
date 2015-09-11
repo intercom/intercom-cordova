@@ -1,3 +1,8 @@
+= 1.0.9 (2015-09-11)
+
+* Updated Intercom for iOS to [2.3.4](https://github.com/intercom/intercom-ios/releases/tag/2.3.4).
+* Fixed https://github.com/intercom/intercom-cordova/issues/20.
+
 = 1.0.8 (2015-08-18)
 
 * Updated Intercom for iOS to [2.3.3](https://github.com/intercom/intercom-ios/releases/tag/2.3.3).

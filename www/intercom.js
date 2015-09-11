@@ -58,7 +58,7 @@ var intercom = {
 
     //iOS only: Push notification handling
     setupAPN: function(deviceToken, success, error) {
-        cordova.exec(success, error, 'Intercom', 'setupAPN', []);
+        cordova.exec(success, error, 'Intercom', 'setupAPN', [deviceToken]);
     },
 
     registerForPush: function(senderId, success, error) {
