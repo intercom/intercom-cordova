@@ -13,8 +13,8 @@
         [Intercom enableLogging];
     #endif
 
-    NSString* apiKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomApiKey"];
-    NSString* appId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
+    NSString* apiKey = [self.commandDelegate.settings objectForKey:[@"INTERCOM_IOS_API_KEY" lowercaseString]];
+    NSString* appId = [self.commandDelegate.settings objectForKey:[@"INTERCOM_APP_ID" lowercaseString]];
 
     [Intercom setApiKey:apiKey forAppId:appId];
 }
