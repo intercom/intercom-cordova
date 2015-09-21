@@ -8,13 +8,13 @@ Intercom for iOS supports iOS 7.x, iOS 8.x and iOS 9.x. Intercom for Android ful
 
 ## Installation
 
-## Cordova
+### Cordova
 
 To install the plugin in your Cordova app, run the following:
 
     cordova plugin add cordova-plugin-intercom
 
-## PhoneGap CLI
+### PhoneGap CLI
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
@@ -22,7 +22,7 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
 **Note:** Unfortunately, [PhoneGap build](https://build.phonegap.com) does not currently support [gradle builds](http://community.phonegap.com/nitobi/topics/phonegap-build-does-not-support-gradle-builds). This means on Android, our plugin only supports PhoneGap CLI or Cordova builds at this time.
 
-##Configure Intercom
+## Configuring Intercom
 
 To use Intercom, you must add your app's keys to your `config.xml`:
 
