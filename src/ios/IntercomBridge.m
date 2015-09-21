@@ -14,8 +14,9 @@
         [Intercom enableLogging];
     #endif
 
-    NSString* apiKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomApiKey"];
-    NSString* appId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
+    //Get app credentials from config.xml or the info.plist if they can't be found
+    NSString* apiKey = self.commandDelegate.settings[@"intercom-ios-api-key"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomApiKey"];
+    NSString* appId = self.commandDelegate.settings[@"intercom-app-id"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
 
     [Intercom setApiKey:apiKey forAppId:appId];
 }

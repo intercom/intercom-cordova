@@ -55,8 +55,10 @@ public class IntercomBridge extends CordovaPlugin {
                     ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
                     Bundle bundle = app.metaData;
 
-                    String apiKey = bundle.getString("intercom_api_key");
-                    String appId = bundle.getString("intercom_app_id");
+                    //Get app credentials from config.xml or the app bundle if they can't be found
+                    String apiKey = IntercomBridge.this.preferences.getString("intercom-android-api-key", bundle.getString("intercom_api_key"));
+                    String appId = IntercomBridge.this.preferences.getString("intercom-app-id", bundle.getString("intercom_app_id"));
+
                     Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
                 } catch (Exception e) {
                     System.err.println("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
