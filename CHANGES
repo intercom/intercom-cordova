@@ -1,3 +1,9 @@
+= 1.1.0 (2015-09-21)
+
+* Updated Intercom for iOS to [2.3.5](https://github.com/intercom/intercom-ios/releases/tag/2.3.5).
+* Updated Intercom for Android to [1.1.4](https://github.com/intercom/intercom-android/blob/master/CHANGELOG.md).
+* App ID and API keys are now configuratble in your `config.xml` (fixes https://github.com/intercom/intercom-cordova/issues/1).
+
 = 1.0.9 (2015-09-11)
 
 * Updated Intercom for iOS to [2.3.4](https://github.com/intercom/intercom-ios/releases/tag/2.3.4).

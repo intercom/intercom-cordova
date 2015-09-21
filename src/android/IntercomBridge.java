@@ -50,7 +50,7 @@ public class IntercomBridge extends CordovaPlugin {
                 try {
                     Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-                    HeaderInterceptor.setCordovaVersion(context, "1.0.9");
+                    HeaderInterceptor.setCordovaVersion(context, "1.1.0");
 
                     ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
                     Bundle bundle = app.metaData;

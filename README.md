@@ -4,7 +4,7 @@ This is a plugin that allows your Cordova or PhoneGap app to use [Intercom for i
 
 ## Requirements
 
-Intercom for iOS supports iOS 7.x and iOS 8.x. Intercom for Android fully supports API 15 and above but can be integrated in app with API 9 (devices below API 15 will have no Intercom functionality).
+Intercom for iOS supports iOS 7.x, iOS 8.x and iOS 9.x. Intercom for Android fully supports API 15 and above but can be integrated in app with API 9 (devices below API 15 will have no Intercom functionality).
 
 ## Installation
 
@@ -18,7 +18,7 @@ To install the plugin in your Cordova app, run the following:
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <gap:plugin name="cordova-plugin-intercom" version="1.0.9" source="npm" />
+    <gap:plugin name="cordova-plugin-intercom" version="1.1.0" source="npm" />
 
 **Note:** Unfortunately, [PhoneGap build](https://build.phonegap.com) does not currently support [gradle builds](http://community.phonegap.com/nitobi/topics/phonegap-build-does-not-support-gradle-builds). This means on Android, our plugin only supports PhoneGap CLI or Cordova builds at this time.
 
@@ -26,11 +26,9 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
 To use Intercom, you must add your app's keys to your `config.xml`:
 
-```
-<preference name="intercom-app-id" value="your_app_id"/>
-<preference name="intercom-ios-api-key" value="ios_sdk-..."/>
-<preference name="intercom-android-api-key" value="android_sdk-..."/>
-```
+    <preference name="intercom-app-id" value="your_app_id"/>
+    <preference name="intercom-ios-api-key" value="ios_sdk-..."/>
+    <preference name="intercom-android-api-key" value="android_sdk-..."/>
 
 If your app doesn't support iOS or Android, you can omit that API key.
 
