@@ -25,6 +25,9 @@
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
 
+      <header-file src="src/ios/AppDelegate+IntercomPush.h" />
+      <source-file src="src/ios/AppDelegate+IntercomPush.m" />
+
       <config-file target="config.xml" parent="*/">
         <feature name="Intercom">
           <param name="ios-package" value="IntercomBridge" />
@@ -34,7 +37,7 @@
 
       <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
       <source-file src="src/ios/Intercom.framework/Versions/A/Intercom" framework="true" />
-      <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
+      <resource-file src="src/ios/Intercom.bundle" />
 
       <framework src="Foundation.framework" />
       <framework src="UIKit.framework" />

@@ -1,4 +1,5 @@
 #import "IntercomBridge.h"
+#import "AppDelegate+IntercomPush.h"
 #import "Intercom.h"
 
 @interface Intercom (Cordoava)
@@ -138,11 +139,6 @@
           UIRemoteNotificationTypeSound |
           UIRemoteNotificationTypeAlert)];
     }
-
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        [Intercom registerForRemoteNotifications];
-    #pragma GCC diagnostic pop
 
     [self sendSuccess:command];
 }
