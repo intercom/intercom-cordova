@@ -14,13 +14,25 @@ To install the plugin in your Cordova app, run the following:
 
     cordova plugin add cordova-plugin-intercom
 
-### PhoneGap CLI
+### PhoneGap
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <gap:plugin name="cordova-plugin-intercom" version="1.1.0" source="npm" />
+    <gap:plugin name="cordova-plugin-intercom" version="1.1.1" source="npm" />
 
-**Note:** Unfortunately, [PhoneGap build](https://build.phonegap.com) does not currently support [gradle builds](http://community.phonegap.com/nitobi/topics/phonegap-build-does-not-support-gradle-builds). This means on Android, our plugin only supports PhoneGap CLI or Cordova builds at this time.
+## Troubleshooting
+
+### Android Dex errors
+
+Some users experience Android build errors similar to the following:
+
+```
+UNEXPECTED TOP-LEVEL EXCEPTION:
+    com.android.dex.DexException: Multiple dex files define Landroid/support/annotation/AnimRes;
+    ...
+```
+
+If you are seeing errors like these it means that another plugin you are using is including Google Play Services or the Android Support library in an outdated way (usually by copying a jar). We recommend you suggest to the plugin vendor that they require this via a `<framework>` tag or Gradle instead.
 
 ## Configuring Intercom
 
@@ -179,9 +191,9 @@ Intercom for mobile supports Push Notifications on iOS and Google Cloud Messagin
 
 To enable iOS push notifications, simply call `intercom.registerForPush()`.
 
-To enable Android push notifications, call `intercom.registerForPush('sender_id')`.
+To enable Android push notifications, call `intercom.registerForPush('sender_id')`. Where `sender_id` is your [Sender ID](https://developers.google.com/cloud-messaging/gcm#senderid) from the Google Developer Console.
 
-**Note:** _If you use PushPlugin to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/PushPlugin). Install it with: `cordova plugin add https://github.com/intercom/PushPlugin.git`. We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin._
+**Note:** _If you use [phonegap-plugin-push](https://github.com/phonegap/phonegap-plugin-push) to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/phonegap-plugin-push). Install it with: `cordova plugin add https://github.com/intercom/phonegap-plugin-push.git`. We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin._
 
 ## More information
 
