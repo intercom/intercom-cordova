@@ -19,6 +19,16 @@ To install the plugin in your Cordova app, run the following:
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
     <gap:plugin name="cordova-plugin-intercom" version="1.1.2" source="npm" />
+    
+## Configuring Intercom
+
+To use Intercom, you must add your app's keys to your `config.xml`:
+
+    <preference name="intercom-app-id" value="your_app_id"/>
+    <preference name="intercom-ios-api-key" value="ios_sdk-..."/>
+    <preference name="intercom-android-api-key" value="android_sdk-..."/>
+
+If your app doesn't support iOS or Android, you can omit that API key.
 
 ## Troubleshooting
 
@@ -33,16 +43,6 @@ UNEXPECTED TOP-LEVEL EXCEPTION:
 ```
 
 If you are seeing errors like these it means that another plugin you are using is including Google Play Services or the Android Support library in an outdated way (usually by copying a jar). We recommend you suggest to the plugin vendor that they require this via a `<framework>` tag or Gradle instead.
-
-## Configuring Intercom
-
-To use Intercom, you must add your app's keys to your `config.xml`:
-
-    <preference name="intercom-app-id" value="your_app_id"/>
-    <preference name="intercom-ios-api-key" value="ios_sdk-..."/>
-    <preference name="intercom-android-api-key" value="android_sdk-..."/>
-
-If your app doesn't support iOS or Android, you can omit that API key.
 
 ## How should I use Intercom in my mobile app?
 
