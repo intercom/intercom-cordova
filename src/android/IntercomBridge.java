@@ -1,5 +1,7 @@
 package io.intercom.android.sdk;
 
+import io.intercom.android.sdk.api.Api;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
@@ -29,6 +31,7 @@ public class IntercomBridge extends CordovaPlugin {
 
     @Override protected void pluginInitialize() {
         this.setUpIntercom();
+        Bridge.getApi().ping();
     }
 
     @Override public void onStart() {
@@ -50,7 +53,7 @@ public class IntercomBridge extends CordovaPlugin {
                 try {
                     Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-                    HeaderInterceptor.setCordovaVersion(context, "1.1.2");
+                    HeaderInterceptor.setCordovaVersion(context, "1.1.3");
 
                     ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
                     Bundle bundle = app.metaData;
@@ -169,7 +172,7 @@ public class IntercomBridge extends CordovaPlugin {
         },
         openGCMMessage {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData());
+                Intercom.client().openGCMMessage(cordova.getActivity().getIntent());
                 callbackContext.success();
             }
         },
