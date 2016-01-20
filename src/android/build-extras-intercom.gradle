@@ -1,0 +1,7 @@
+
+// Uses the app id as a prefix (instead of com.google.android). This prevents
+// INSTALL_FAILED_CONFLICTING_PROVIDER error when installing the app.
+// 
+// @link https://issues.apache.org/jira/browse/CB-10014
+def manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+android.defaultConfig.applicationId manifest.@package.text()

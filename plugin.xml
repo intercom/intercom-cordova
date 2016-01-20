@@ -55,6 +55,7 @@
       <source-file src="src/android/IntercomGCMManager.java" target-dir="src/io/intercom/android/sdk" />
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
       <framework src="com.google.android.gms:play-services-gcm:8.+" /> 
+      <framework src="build-extras-intercom.gradle" custom="true" type="gradleReference" />
 
       <config-file target="config.xml" parent="*/">
         <feature name="Intercom">
