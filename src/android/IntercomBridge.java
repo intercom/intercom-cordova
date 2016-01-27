@@ -158,6 +158,11 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        setPreviewPadding {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                callbackContext.error("[Intercom-Cordova] ERROR: Tried to set preview padding. This is only available on iOS.");
+            }
+        },
         setupGCM {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String registrationId = args.optString(0);
