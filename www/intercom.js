@@ -48,7 +48,7 @@ var intercom = {
     },
 
     setPreviewPadding: function(x, y, success, error) {
-        cordova.exec(success, error, 'Intercom', 'setPreviewPosition', [x, y]);
+        cordova.exec(success, error, 'Intercom', 'setPreviewPadding', [x, y]);
     },
 
     //Android only: GCM handling
