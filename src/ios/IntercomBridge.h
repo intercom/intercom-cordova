@@ -4,6 +4,7 @@
 
 @interface IntercomBridge : CDVPlugin
 
+- (void)initialize:(CDVInvokedUrlCommand*)command;
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command;
 - (void)registerUnidentifiedUser:(CDVInvokedUrlCommand*)command;
 - (void)reset:(CDVInvokedUrlCommand*)command;

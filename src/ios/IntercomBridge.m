@@ -18,7 +18,24 @@
     NSString* apiKey = self.commandDelegate.settings[@"intercom-ios-api-key"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomApiKey"];
     NSString* appId = self.commandDelegate.settings[@"intercom-app-id"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
 
-    [Intercom setApiKey:apiKey forAppId:appId];
+    if (apiKey.length > 0 && appId.length > 0) {
+        [Intercom setApiKey:apiKey forAppId:appId];
+    }
+}
+
+- (void)initialize:(CDVInvokedUrlCommand*)command {
+    NSDictionary* options = command.arguments[0];
+    NSString* apiKey      = options[@"apiKey"];
+    NSString* appId       = options[@"appId"];
+
+    if (apiKey.length > 0 && appId.length > 0) {
+        [Intercom setApiKey:apiKey forAppId:appId];
+        [self sendSuccess:command];
+    } else {
+        NSLog(@"[Intercom-Cordova] ERROR - Not initialized. You must supply both an apiKey and appId");
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
+                                    callbackId:command.callbackId];
+    }
 }
 
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command {
@@ -41,7 +58,7 @@
         [self sendSuccess:command];
     } else {
         NSLog(@"[Intercom-Cordova] ERROR - No user registered. You must supply an email, a userId or both");
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
                                     callbackId:command.callbackId];
     }
 }
@@ -147,13 +164,13 @@
 //These are the Android push methods. Only here to log errors.
 - (void)setupGCM:(CDVInvokedUrlCommand*)command {
     NSLog(@"[Intercom-Cordova] ERROR - Tried to setup GCM on iOS. Use setupGCM instead");
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
                                 callbackId:command.callbackId];
 }
 
 - (void)openGCMMessage:(CDVInvokedUrlCommand*)command {
     NSLog(@"[Intercom-Cordova] ERROR - Tried to open GCM message on iOS");
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
                                 callbackId:command.callbackId];
 }
 
