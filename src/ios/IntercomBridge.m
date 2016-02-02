@@ -117,6 +117,13 @@
     [self sendSuccess:command];
 }
 
+- (void)setPreviewPadding:(CDVInvokedUrlCommand*)command {
+    int x = [[command.arguments objectAtIndex:0] intValue];
+    int y = [[command.arguments objectAtIndex:1] intValue];
+    [Intercom setPreviewPaddingWithX:x y:y];
+    [self sendSuccess:command];
+}
+
 - (void)setupAPN:(CDVInvokedUrlCommand*)command {
     NSString *deviceToken = command.arguments[0];
     [Intercom setDeviceToken:[deviceToken dataUsingEncoding:NSUTF8StringEncoding]];

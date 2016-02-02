@@ -14,6 +14,8 @@
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command;
 - (void)setVisibility:(CDVInvokedUrlCommand*)command;
+- (void)setPreviewPosition:(CDVInvokedUrlCommand*)command;
+- (void)setPreviewPadding:(CDVInvokedUrlCommand*)command;
 
 - (void)setupAPN:(CDVInvokedUrlCommand*)command;
 
