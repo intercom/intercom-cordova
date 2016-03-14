@@ -62,7 +62,9 @@ public class IntercomBridge extends CordovaPlugin {
                     String apiKey = IntercomBridge.this.preferences.getString("intercom-android-api-key", bundle.getString("intercom_api_key"));
                     String appId = IntercomBridge.this.preferences.getString("intercom-app-id", bundle.getString("intercom_app_id"));
 
-                    Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+                    if (apiKey != null && apiKey.length() > 0 && appId != null && appId.length() > 0) {
+                        Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+                    }
                 } catch (Exception e) {
                     System.err.println("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
                 }
@@ -71,6 +73,24 @@ public class IntercomBridge extends CordovaPlugin {
     }
 
     private enum Action {
+        initialize {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                JSONObject options = args.optJSONObject(0);
+                String appId = options.optString("appId");
+                String apiKey = options.optString("apiKey");
+
+                if (apiKey != null && apiKey.length() > 0 && appId != null && appId.length() > 0) {
+                    try {
+                        Intercom.initialize(cordova.getActivity().getApplication(), apiKey, appId);
+                        callbackContext.success();
+                        return;
+                    }
+                    catch (Exception e) {}
+                }
+
+                callbackContext.error("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Did you provide a correct app ID and api key?");
+            }
+        },
         registerIdentifiedUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 JSONObject options = args.optJSONObject(0);
