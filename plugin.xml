@@ -25,7 +25,7 @@
       <header-file src="src/ios/AppDelegate+IntercomPush.h" />
       <source-file src="src/ios/AppDelegate+IntercomPush.m" />
 
-      <config-file target="config.xml" parent="*/">
+      <config-file target="config.xml" parent="/*">
         <feature name="Intercom">
           <param name="ios-package" value="IntercomBridge" />
           <param name="onload" value="true" />
@@ -57,7 +57,7 @@
       <framework src="com.google.android.gms:play-services-gcm:8.+" /> 
       <framework src="src/android/build-extras-intercom.gradle" custom="true" type="gradleReference" />
 
-      <config-file target="config.xml" parent="*/">
+      <config-file target="res/xml/config.xml" parent="/*">
         <feature name="Intercom">
           <param name="android-package" value="io.intercom.android.sdk.IntercomBridge" />
           <param name="onload" value="true" />
