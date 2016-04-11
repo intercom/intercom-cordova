@@ -3,6 +3,7 @@
 # 1.1.5 (2016-04-11)
 
 * Fixed Cordova CLI 6.1.1 compatibility. Fixes [#48](https://github.com/intercom/intercom-cordova/issues/48).
+* Updated Intercom for iOS to [2.3.19](https://github.com/intercom/intercom-ios/releases/tag/2.3.19).
 
 ## 1.1.4 (2016-01-11)
 
