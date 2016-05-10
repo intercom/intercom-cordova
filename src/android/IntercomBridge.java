@@ -42,11 +42,7 @@ public class IntercomBridge extends CordovaPlugin {
             cordova.getActivity().getIntent().setData(null);
         }
     }
-
-    @Override public void onNewIntent(Intent intent) {
-        cordova.getActivity().setIntent(intent);
-    }
-
+    
     private void setUpIntercom() {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override public void run() {
