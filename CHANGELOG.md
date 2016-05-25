@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+# 1.1.6 (2016-05-25)
+
+* Updated Intercom for iOS to [2.3.21](https://github.com/intercom/intercom-ios/releases/tag/2.3.21).
+
 # 1.1.5 (2016-04-11)
 
 * Fixed Cordova CLI 6.1.1 compatibility. Fixes [#48](https://github.com/intercom/intercom-cordova/issues/48).
