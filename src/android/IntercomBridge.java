@@ -30,17 +30,27 @@ import java.util.ArrayList;
 public class IntercomBridge extends CordovaPlugin {
 
     @Override protected void pluginInitialize() {
-        this.setUpIntercom();
-        Bridge.getApi().ping();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override public void run() {
+                setUpIntercom();
+                if (Bridge.getApi() != null) {
+                    Bridge.getApi().ping();
+                }
+            }
+        });
     }
 
     @Override public void onStart() {
-        //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
-        this.setUpIntercom();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override public void run() {
+                //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
+                setUpIntercom();
 
-        if (Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData())) {
-            cordova.getActivity().getIntent().setData(null);
-        }
+                if (Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData())) {
+                    cordova.getActivity().getIntent().setData(null);
+                }
+            }
+        });
     }
 
     @Override public void onNewIntent(Intent intent) {
@@ -48,26 +58,22 @@ public class IntercomBridge extends CordovaPlugin {
     }
 
     private void setUpIntercom() {
-        cordova.getActivity().runOnUiThread(new Runnable() {
-            @Override public void run() {
-                try {
-                    Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
+        try {
+            Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-                    HeaderInterceptor.setCordovaVersion(context, "1.1.6");
+            HeaderInterceptor.setCordovaVersion(context, "1.1.6");
 
-                    ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-                    Bundle bundle = app.metaData;
+            ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = app.metaData;
 
-                    //Get app credentials from config.xml or the app bundle if they can't be found
-                    String apiKey = IntercomBridge.this.preferences.getString("intercom-android-api-key", bundle.getString("intercom_api_key"));
-                    String appId = IntercomBridge.this.preferences.getString("intercom-app-id", bundle.getString("intercom_app_id"));
+            //Get app credentials from config.xml or the app bundle if they can't be found
+            String apiKey = IntercomBridge.this.preferences.getString("intercom-android-api-key", bundle.getString("intercom_api_key"));
+            String appId = IntercomBridge.this.preferences.getString("intercom-app-id", bundle.getString("intercom_app_id"));
 
-                    Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
-                } catch (Exception e) {
-                    System.err.println("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
-                }
-            }
-        });
+            Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+        } catch (Exception e) {
+            System.err.println("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
+        }
     }
 
     private enum Action {
