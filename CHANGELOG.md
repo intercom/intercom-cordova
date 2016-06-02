@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+# 1.1.7 (2016-06-02)
+
+* Fixed Android crash reported in [#55](https://github.com/intercom/intercom-cordova/issues/55).
+
 # 1.1.6 (2016-05-25)
 
 * Updated Intercom for iOS to [2.3.21](https://github.com/intercom/intercom-ios/releases/tag/2.3.21).
