@@ -1,6 +1,6 @@
 #import "IntercomBridge.h"
 #import "AppDelegate+IntercomPush.h"
-#import "Intercom.h"
+#import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
 + (void)setCordovaVersion:(NSString *)v;
@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"1.1.7"];
+    [Intercom setCordovaVersion:@"3.0.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -83,6 +83,12 @@
     [self sendSuccess:command];
 }
 
+- (void)unreadConversationCount:(CDVInvokedUrlCommand*)command {
+    NSUInteger count = [Intercom unreadConversationCount];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:count];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
     [Intercom presentMessageComposer];
     [self sendSuccess:command];
@@ -93,81 +99,39 @@
     [self sendSuccess:command];
 }
 
-- (void)setVisibility:(CDVInvokedUrlCommand*)command {
+- (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command {
     NSString *visibilityString = command.arguments[0];
-    BOOL hidden = NO;
-    if ([visibilityString isEqualToString:@"GONE"]) {
-        hidden = YES;
+    BOOL visible = NO;
+    if ([visibilityString isEqualToString:@"VISIBLE"]) {
+        visible = YES;
     }
-    [Intercom setMessagesHidden:hidden];
+    [Intercom setLauncherVisible:visible];
     [self sendSuccess:command];
 }
 
-- (void)setPreviewPosition:(CDVInvokedUrlCommand*)command {
-    NSString *positionString = command.arguments[0];
-    ICMPreviewPosition previewPosition = ICMPreviewPositionBottomLeft;
-    if ([positionString isEqualToString:@"BOTTOM_RIGHT"]) {
-        previewPosition = ICMPreviewPositionBottomRight;
-    } else if ([positionString isEqualToString:@"TOP_RIGHT"]) {
-        previewPosition = ICMPreviewPositionBottomRight;
-    } else if ([positionString isEqualToString:@"TOP_LEFT"]) {
-        previewPosition = ICMPreviewPositionBottomLeft;
+- (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command {
+    NSString *visibilityString = command.arguments[0];
+    BOOL visible = NO;
+    if ([visibilityString isEqualToString:@"VISIBLE"]) {
+        visible = YES;
     }
-    [Intercom setPreviewPosition:previewPosition];
-    [self sendSuccess:command];
-}
-
-- (void)setPreviewPadding:(CDVInvokedUrlCommand*)command {
-    int x = [[command.arguments objectAtIndex:0] intValue];
-    int y = [[command.arguments objectAtIndex:1] intValue];
-    [Intercom setPreviewPaddingWithX:x y:y];
-    [self sendSuccess:command];
-}
-
-- (void)setupAPN:(CDVInvokedUrlCommand*)command {
-    NSString *deviceToken = command.arguments[0];
-    [Intercom setDeviceToken:[deviceToken dataUsingEncoding:NSUTF8StringEncoding]];
+    [Intercom setInAppMessagesVisible:visible];
     [self sendSuccess:command];
 }
 
 - (void)registerForPush:(CDVInvokedUrlCommand*)command {
     UIApplication *application = [UIApplication sharedApplication];
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]){ // iOS 8 (User notifications)
-        [application registerUserNotificationSettings:
-         [UIUserNotificationSettings settingsForTypes:
-          (UIUserNotificationTypeBadge |
-           UIUserNotificationTypeSound |
-           UIUserNotificationTypeAlert)
-                                           categories:nil]];
-        [application registerForRemoteNotifications];
-    } else { // iOS 7 (Remote notifications)
-        [application registerForRemoteNotificationTypes:
-         (UIRemoteNotificationType)
-         (UIRemoteNotificationTypeBadge |
-          UIRemoteNotificationTypeSound |
-          UIRemoteNotificationTypeAlert)];
-    }
-
+    [application registerUserNotificationSettings:[UIUserNotificationSettings 
+                                 settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) 
+                                       categories:nil]];
+    [application registerForRemoteNotifications];
     [self sendSuccess:command];
-}
-
-//These are the Android push methods. Only here to log errors.
-- (void)setupGCM:(CDVInvokedUrlCommand*)command {
-    NSLog(@"[Intercom-Cordova] ERROR - Tried to setup GCM on iOS. Use setupGCM instead");
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
-                                callbackId:command.callbackId];
-}
-
-- (void)openGCMMessage:(CDVInvokedUrlCommand*)command {
-    NSLog(@"[Intercom-Cordova] ERROR - Tried to open GCM message on iOS");
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
-                                callbackId:command.callbackId];
 }
 
 #pragma mark - Private methods
 
 - (void)sendSuccess:(CDVInvokedUrlCommand*)command {
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 

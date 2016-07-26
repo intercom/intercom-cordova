@@ -1,5 +1,14 @@
 # Intercom for Cordova/PhoneGap
 
+# 3.0.0 (2016-07-26)
+
+Where is 2.x? We're skipping it. We did this to align the Cordova plugin with our iOS, Android and web counter parts.
+
+Our new Messenger is out of beta! 🎉 You can read all about the updated design and new functionality [here](https://www.intercom.io/in-app-messaging).
+
+* Updated Intercom for iOS to [3.0.3](https://github.com/intercom/intercom-ios/releases/tag/3.0.3).
+* Updated Intercom for Android to [3.0.2](https://github.com/intercom/intercom-android/releases/tag/3.0.2).
+
 # 1.1.7 (2016-06-02)
 
 * Fixed Android crash reported in [#55](https://github.com/intercom/intercom-cordova/issues/55).

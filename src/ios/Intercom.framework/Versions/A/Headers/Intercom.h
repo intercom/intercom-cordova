@@ -1,6 +1,6 @@
 //
 //  Intercom.h
-//  Intercom for iOS - Version 2.3.21
+//  Intercom for iOS - Version 3.0.3
 //
 //  Created by Intercom on 8/01/2015.
 //  Copyright (c) 2014 Intercom. All rights reserved.
@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-#error This version (2.3.21) of Intercom for iOS supports iOS 7.0 upwards.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
+#error This version (3.0.3) of Intercom for iOS supports iOS 8.0 upwards.
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-// Use these values to constrain an incoming notification view to a defined section of the window.
 typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
     ICMPreviewPositionBottomLeft   = 0,
     ICMPreviewPositionBottomRight  = 1,
@@ -54,14 +53,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  If the user subsequently logs in or you learn additional information about them (e.g. get an email address),
  calling any of the other user registration methods will update that user's identity in Intercom and contain
  all user data tracked previously.
- 
- ## I'm using a previous version and this looks different, what has changed?
- 
- We have re-architected the internals of Intercom for iOS to ensure it is as reliable as possible while tracking
- your users. We have focused on removing asynchronous behaviour. For example you no longer need to wait for the
- completion blocks of the old `beginSession` calls before logging events or updating user data.
- In doing so it is more nimble and reliable than ever before.
- 
+
  ## How do push notifications work?
  
  Intercom for iOS enables your users to receive push notifications for new messages. Simply call:
@@ -81,7 +73,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  
  ## More information
  
- Full documentation is available [here](http://docs.intercom.io/Install-on-your-mobile-product) and please contact
+ Full documentation is available [here](https://docs.intercom.io/install-on-your-product-or-site/quick-install/install-intercom-on-your-ios-app) and please contact
  us directly via Intercom for any support or questions you may have.
  
  */
@@ -106,7 +98,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  Secure Mode helps to make sure that conversations between you and your users are kept private, and that one
  user can't impersonate another. In Secure Mode Intercom for iOS will sign all requests going to the Intercom servers
  with tokens. It requires your mobile application to have its own server which authenticates the app's users,
- and which can store a secret. More information on secure mode can be found [here](http://docs.intercom.io/Install-on-your-mobile-product/enabling-secure-mode-in-intercom-for-ios).
+ and which can store a secret. More information on secure mode can be found [here](http://docs.intercom.io/Install-on-your-mobile-product/enabling-secure-mode-in-intercom-for-ios)
  
  @note This should be called before any user registration takes place.
  @param hmac A HMAC digest of data.
@@ -182,7 +174,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  relates to customer development, such as price plan, value of purchases, etc. Once these have been sent to
  Intercom you can then apply filters based on these attributes.
  
- A detailed list of the fields you can use to [update a user is available here](https://doc.intercom.io/api/#user-model)
+ A detailed list of the fields you can use to [update a user is available here](https://developers.intercom.io/reference/#user-model )
  
  Attributes such as the user email or name can be updated by calling
  
@@ -213,7 +205,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  ]}];
  
  id is a required field for adding or modifying a company. A detailed description of the
- [company model is available here](https://doc.intercom.io/api/#companies-and--users)
+ [company model is available here](https://developers.intercom.io/reference/#companies-and--users)
  
  @param attributes This is a dictionary containing key/value pairs for multiple attributes.
  @note Attributes may be either a `string`, `integer`, `double`, `unix timestamp` or `bool`.
@@ -226,7 +218,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  You can log events in Intercom based on user actions in your app. Events are different
  to custom user attributes in that events are information on what Users did and when they
  did it, whereas custom user attributes represent the User's current state as seen in their
- profile. See details about Events [here](http://doc.intercom.io/api/#events).
+ profile. See details about Events [here](https://developers.intercom.io/reference/#events)
  
  @param name The name of the event that it is going to be logged.
  */
@@ -234,7 +226,7 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
 
 /*!
  Metadata Objects support a few simple types that Intercom can present on your behalf, see the
- [Intercom API docs](http://doc.intercom.io/api/#event-metadata-types)
+ [Intercom API docs](https://developers.intercom.io/reference/#event-metadata-types)
  
  [Intercom logEventWithName:@"ordered_item" metaData:@{
  @"order_date": @1392036272,
@@ -252,6 +244,13 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
 //=========================================================================================================
 /*! @name Show Intercom messages and message composers */
 //=========================================================================================================
+
+/*!
+ Present the Intercom Messenger
+ 
+ Opens the Intercom messenger to automatically to the best place for your users.
+ */
++ (void)presentMessenger;
 
 /*!
  Present the message composer.
@@ -280,35 +279,59 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
 //=========================================================================================================
 
 /*!
- Use this to constrain an incoming notification view to a defined section of the window. By default, if this is
- not set, message previews appear in the bottom left of your application's window.
+ This method allows you to set a fixed bottom padding for in app messages and the launcher.
+ It is useful if your app has a tab bar or similar UI at the bottom of your window.
  
- @param previewPosition The ICMPreviewPosition for your incoming notifications.
+ @param bottomPadding The size of the bottom padding in points.
  */
-+ (void)setPreviewPosition:(ICMPreviewPosition)previewPosition;
-
-/*!
- Depending on the layout of your app you may need to modify the position of the message preview relative to the
- preview's position. Use this method to add sufficient padding using x and y values.
- 
- @param x A horizontal padding value.
- @param y A vertical padding value.
- */
-+ (void)setPreviewPaddingWithX:(CGFloat)x y:(CGFloat)y;
++ (void)setBottomPadding:(CGFloat)bottomPadding;
 
 //=========================================================================================================
-/*! @name Toggling message visibility */
+/*! @name Intercom UI Visibility */
 //=========================================================================================================
 
 /*!
  Use this to hide all incoming Intercom messages and message previews in the parts of your app where you do
- not wish to interrupt users, for example Camera views, parts of a game or other scenarios. If any part of
- Intercom for iOS's UI is on screen when this is set to YES, it will close itself.
+ not wish to interrupt users, for example Camera views, parts of a game or other scenarios.
  
- @param hidden A bool that toggles message visibility. Use this to either prevent or allow messages from being
- displayed in select parts of your app.
+ By default, all in app messages will be visible.
+ 
+ @param visible A boolean indicating if in app messages should be visible.
  */
-+ (void)setMessagesHidden:(BOOL)hidden;
++ (void)setInAppMessagesVisible:(BOOL)visible;
+
+/*!
+ Use this to show the Intercom launcher selectively within your app. If you choose to display the launcher,
+ you may want to hide it on some screens where screen space is critical (e.g. parts of a game).
+ 
+ By default, the launcher is hidden.
+ 
+ @param visible A boolean indicating if the launcher should be visible.
+ */
++ (void)setLauncherVisible:(BOOL)visible;
+
+/*!
+ Hide the Intercom messenger, if it is on screen.
+ This can be useful if your app wishes to get the users attention (e.g. opening an in app link).
+ */
++ (void)hideMessenger;
+
+//=========================================================================================================
+/*! @name Unread conversations */
+//=========================================================================================================
+
+/*!
+ This method provides the current number of unread conversations.
+ This is useful if you want to display a badge counter on the button where you launch Intercom.
+ 
+ @return The number of unread conversations.
+ */
++ (NSUInteger)unreadConversationCount;
+
+/*!
+ This notification is fired when the number of unread conversations changes.
+ */
+UIKIT_EXTERN NSString *const IntercomUnreadConversationCountDidChangeNotification;
 
 //=========================================================================================================
 /*! @name Enable logging */
@@ -329,6 +352,25 @@ typedef NS_ENUM(NSUInteger, ICMPreviewPosition){
  screen, call this method so that Intercom's window can reflect these changes accordingly.
  */
 + (void)setNeedsStatusBarAppearanceUpdate;
+
+//=========================================================================================================
+/*! @name Deprecated methods */
+//=========================================================================================================
+
+/*!
+ @deprecated +[Intercom setPreviewPosition:] is no longer supported, and will not work.
+ */
++ (void)setPreviewPosition:(ICMPreviewPosition)previewPosition __attribute((deprecated("'+[Intercom setPreviewPosition:]' is no longer supported and will not work")));
+
+/*!
+ @deprecated  +[Intercom setPreviewPaddingWithX:y:] is deprecated. Use +[Intercom setBottomPadding:] instead.
+ */
++ (void)setPreviewPaddingWithX:(CGFloat)x y:(CGFloat)y __attribute((deprecated("'+[Intercom setPreviewPaddingWithX:y:]' is deprecated. Use '+[Intercom setBottomPadding:]' instead.")));
+
+/*!
+ @deprecated +[Intercom setMessagesHidden:] is deprecated. Use +[Intercom setInAppMessagesVisible:] instead.
+ */
++ (void)setMessagesHidden:(BOOL)hidden __attribute((deprecated("'+[Intercom setMessagesHidden:]' is deprecated. 'Use +[Intercom setInAppMessagesVisible:]' instead.")));
 
 //=========================================================================================================
 /*! @name Intercom Notifications */

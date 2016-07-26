@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-intercom" version="1.1.7" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-intercom" version="3.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intercom</name>
     <author>Intercom</author>
     <license>MIT License</license>
@@ -32,9 +32,8 @@
         </feature>
       </config-file>
 
-      <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
-      <source-file src="src/ios/Intercom.framework/Versions/A/Intercom" framework="true" />
-      <resource-file src="src/ios/Intercom.bundle" />
+      <framework src="src/ios/Intercom.framework" custom="true" />
+      <resource-file src="src/ios/Intercom.framework/Resources/Intercom.bundle" />
 
       <framework src="Foundation.framework" />
       <framework src="UIKit.framework" />
@@ -52,9 +51,9 @@
 
     <platform name="android">
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
-      <source-file src="src/android/IntercomGCMManager.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
+
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
-      <framework src="com.google.android.gms:play-services-gcm:8.+" /> 
       <framework src="src/android/build-extras-intercom.gradle" custom="true" type="gradleReference" />
 
       <config-file target="res/xml/config.xml" parent="/*">
