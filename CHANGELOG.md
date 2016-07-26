@@ -9,6 +9,20 @@ Our new Messenger is out of beta! 🎉 You can read all about the updated design
 * Updated Intercom for iOS to [3.0.3](https://github.com/intercom/intercom-ios/releases/tag/3.0.3).
 * Updated Intercom for Android to [3.0.2](https://github.com/intercom/intercom-android/releases/tag/3.0.2).
 
+Added the following methods:
+* `intercom.displayMessenger()`
+* `intercom.setLauncherVisibility(visibility)`
+* `intercom.setInAppMessageVisibility(visibility)`
+* `intercom.unreadConversationCount()`
+
+Removed these methods:
+* `intercom.setVisibility(visibility)`
+* `intercom.setupGCM()`
+* `intercom.openGCMMessage()`
+* `intercom.setupAPN(token)`
+* `intercom.setPreviewPosition(position)`
+* `intercom.setPreviewPadding()`
+
 # 1.1.7 (2016-06-02)
 
 * Fixed Android crash reported in [#55](https://github.com/intercom/intercom-cordova/issues/55).
