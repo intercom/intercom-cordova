@@ -18,8 +18,10 @@ import android.os.Bundle;
 import android.os.Build;
 
 import io.intercom.android.sdk.identity.Registration;
-import io.intercom.android.sdk.preview.IntercomPreviewPosition;
-import io.intercom.android.sdk.api.HeaderInterceptor;
+import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
+
+import io.intercom.android.sdk.Gcm;
+import io.intercom.android.sdk.Intercom.Visibility;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -33,8 +35,8 @@ public class IntercomBridge extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override public void run() {
                 setUpIntercom();
-                if (Bridge.getApi() != null) {
-                    Bridge.getApi().ping();
+                if (Injector.get().getApi() != null) {
+                    Injector.get().getApi().ping();
                 }
             }
         });
@@ -46,9 +48,7 @@ public class IntercomBridge extends CordovaPlugin {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
 
-                if (Intercom.client().openGCMMessage(cordova.getActivity().getIntent().getData())) {
-                    cordova.getActivity().getIntent().setData(null);
-                }
+                Intercom.client().openGcmMessage();
             }
         });
     }
@@ -60,8 +60,13 @@ public class IntercomBridge extends CordovaPlugin {
     private void setUpIntercom() {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
+            
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.0");
 
-            HeaderInterceptor.setCordovaVersion(context, "1.1.7");
+            String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
+            if (senderId != null) {
+                Gcm.cacheSenderId(context, senderId);
+            }
 
             ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = app.metaData;
@@ -127,6 +132,18 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        unreadConversationCount {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                int count = Intercom.client().getUnreadConversationCount();
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, count));
+            }
+        },
+        displayMessenger {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().displayMessenger();
+                callbackContext.success();
+            }
+        },
         displayMessageComposer {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().displayMessageComposer();
@@ -139,6 +156,28 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        setLauncherVisibility {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String visibilityString = args.optString(0);
+                Visibility visibility = Intercom.VISIBLE;
+                if ("GONE".equals(visibilityString)) {
+                    visibility = Intercom.GONE;
+                }
+                Intercom.client().setLauncherVisibility(visibility);
+                callbackContext.success();
+            }
+        },
+        setInAppMessageVisibility {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String visibilityString = args.optString(0);
+                Visibility visibility = Intercom.VISIBLE;
+                if ("GONE".equals(visibilityString)) {
+                    visibility = Intercom.GONE;
+                }
+                Intercom.client().setInAppMessageVisibility(visibility);
+                callbackContext.success();
+            }
+        },
         updateUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Map<String, Object> attributes = IntercomBridge.mapFromJSON(args.optJSONObject(0));
@@ -146,61 +185,9 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
-        setVisibility {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String visibilityString = args.optString(0);
-                int visibility = Intercom.VISIBLE;
-                if ("GONE".equals(visibilityString)) {
-                    visibility = Intercom.GONE;
-                }
-                Intercom.client().setVisibility(visibility);
-                callbackContext.success();
-            }
-        },
-        setPreviewPosition {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String previewString = args.optString(0);
-                Intercom.client().setPreviewPosition(IntercomPreviewPosition.toPresentationModeEnum(previewString));
-                callbackContext.success();
-            }
-        },
-        setPreviewPadding {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                callbackContext.error("[Intercom-Cordova] ERROR: Tried to set preview padding. This is only available on iOS.");
-            }
-        },
-        setupGCM {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String registrationId = args.optString(0);
-
-                int resourceId = -1; //Don't use the app icon in lollipop as it doesn't work nicely
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    resourceId = cordova.getActivity().getApplicationContext().getApplicationInfo().icon;
-                }
-                Intercom.client().setupGCM(registrationId, resourceId);
-                callbackContext.success();
-            }
-        },
-        openGCMMessage {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().openGCMMessage(cordova.getActivity().getIntent());
-                callbackContext.success();
-            }
-        },
         registerForPush {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String senderId = args.optString(0);
-                if (senderId == null) {
-                    callbackContext.error("[Intercom-Cordova] ERROR: Tried to setup GCM with no sender Id.");
-                } else {
-                    IntercomGCMManager.setUpPush(senderId, cordova.getActivity().getApplicationContext());
-                    callbackContext.success();
-                }
-            }
-        },
-        setupAPN {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                callbackContext.error("[Intercom-Cordova] ERROR: Tried to setup iOS push notifications on Android. Use setupGCM instead.");
+                //This doesn't need to do anything on Android
             }
         },
         unknown {

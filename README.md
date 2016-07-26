@@ -18,7 +18,7 @@ To install the plugin in your Cordova app, run the following:
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
-    <plugin name="cordova-plugin-intercom" version="~1.1.7" />
+    <plugin name="cordova-plugin-intercom" version="~3.0.0" />
     
 ## Configuring Intercom
 
@@ -145,11 +145,9 @@ Because Intercom listens for life cycle events, there is no need to have this li
  
 ## How does the in-app messenger work?
 
-Intercom allows you to send messages to your users while also enabling your users send messages to you. If you have a dedicated button in your app that you wish to hook the new message composer up to, you can control Intercom's messaging UI via the `intercom.displayMessageComposer();` and `intercom.displayConversationsList();` methods.
+Intercom allows you to send messages to your users while also enabling your users send messages to you. If you have a dedicated button in your app that you wish to hook the new message composer up to, you can control Intercom's messaging UI via the `intercom.displayMessenger()`, `intercom.displayMessageComposer();`, `intercom.displayConversationsList();` methods.
 
-The position of the message preview can be configured using `intercom.setPreviewPosition(intercom.BOTTOM_RIGHT);`. The possible values are `intercom.BOTTOM_LEFT`, `intercom.BOTTOM_RIGHT`, `intercom.TOP_RIGHT` and `intercom.TOP_LEFT`.
-
-If there is an area of your app where you do not wish your users to receive Intercom messages, you can call `intercom.setVisibility(intercom.GONE);`. To re-enable messages, call `intercom.setVisibility(intercom.VISIBLE);`.
+If there is an area of your app where you do not wish your users to receive Intercom messages, you can call `intercom.setInAppMessageVisibility(intercom.GONE);`. To re-enable messages, call `intercom.setInAppMessageVisibility(intercom.VISIBLE);`.
 
 ## Updating a user
 
@@ -191,7 +189,11 @@ Intercom for mobile supports Push Notifications on iOS and Google Cloud Messagin
 
 To enable iOS push notifications, simply call `intercom.registerForPush()`.
 
-To enable Android push notifications, call `intercom.registerForPush('sender_id')`. Where `sender_id` is your [Sender ID](https://developers.google.com/cloud-messaging/gcm#senderid) from the Google Developer Console.
+To enable Android push notifications, your [Sender ID](https://developers.google.com/cloud-messaging/gcm#senderid) to your app's `config.xml` as follows:
+
+```
+<preference name="intercom-android-sender-id" value="YOUR_SENDER_ID"/>
+```
 
 **Note:** _If you use [phonegap-plugin-push](https://github.com/phonegap/phonegap-plugin-push) to support non Intercom push notifications in addition to Intercom's notifications, you must use our fork which is available [here](https://github.com/intercom/phonegap-plugin-push). Install it with: `cordova plugin add https://github.com/intercom/phonegap-plugin-push.git`. We know this is not ideal but unfortunately it is necessary due to the inflexible nature of PushPlugin._
 
@@ -209,4 +211,4 @@ intercom-cordova is released under the [MIT License](http://www.opensource.org/l
 
 ## Copyright
 
-Copyright (c) 2015, Inc.  All rights reserved.
+Copyright (c) 2016, Inc.  All rights reserved.
