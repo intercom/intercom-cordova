@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+# 3.0.2 (2016-07-27)
+
+* Fixed [#63](https://github.com/intercom/intercom-cordova/issues/63).
+
 # 3.0.1 (2016-07-27)
 
 * Fixed Android build error.
