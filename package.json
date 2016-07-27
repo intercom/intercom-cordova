@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-intercom",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Official Cordova/PhoneGap plugin for Intercom",
   "cordova": {
     "id": "cordova-plugin-intercom",
@@ -23,7 +23,7 @@
   "engines": [
     {
       "name": "cordova",
-      "version": ">=3.0.0"
+      "version": ">=3.0.1"
     },
     {
       "name": "cordova-android",
@@ -31,7 +31,7 @@
     },
     {
       "name": "cordova-ios",
-      "version": ">=3.0.0"
+      "version": ">=3.0.1"
     }
   ],
   "author": "Intercom",
