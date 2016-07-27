@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+# 3.0.1 (2016-07-27)
+
+* Fixed Android build error.
+
 # 3.0.0 (2016-07-26)
 
 Where is 2.x? We're skipping it. We did this to align the Cordova plugin with our iOS, Android and web counter parts.

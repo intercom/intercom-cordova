@@ -5,6 +5,7 @@ import io.intercom.android.sdk.api.Api;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -61,7 +62,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
             
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.1");
 
             String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
             if (senderId != null) {
