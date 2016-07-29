@@ -33,10 +33,12 @@
       </config-file>
 
       <framework src="src/ios/Intercom.framework" custom="true" />
+      <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
       <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
 
       <framework src="Foundation.framework" />
       <framework src="UIKit.framework" />
+      <framework src="Accelerate.framework" />
       <framework src="Security.framework" />
       <framework src="SystemConfiguration.framework" />
       <framework src="MobileCoreServices.framework" />

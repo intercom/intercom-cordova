@@ -1,5 +1,5 @@
 #import "AppDelegate+IntercomPush.h"
-#import <Intercom/Intercom.h>
+#import "Intercom.h"
 #import <objc/runtime.h>
 
 @implementation AppDelegate (IntercomPush)
