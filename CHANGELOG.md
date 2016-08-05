@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.0.5 (2016-08-05)
+
+* Updated Intercom for iOS to [3.0.8](https://github.com/intercom/intercom-ios/releases/tag/3.0.8).
+
 # 3.0.4 (2016-08-03)
 
 * Updated Intercom for iOS to [3.0.7](https://github.com/intercom/intercom-ios/releases/tag/3.0.7).

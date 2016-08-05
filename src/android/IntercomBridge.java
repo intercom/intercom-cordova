@@ -62,7 +62,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
             
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.4");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.5");
 
             String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
             if (senderId != null) {
