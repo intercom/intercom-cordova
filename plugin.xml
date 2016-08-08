@@ -38,6 +38,7 @@
 
       <framework src="Foundation.framework" />
       <framework src="UIKit.framework" />
+      <framework src="Photos.framework" />
       <framework src="Accelerate.framework" />
       <framework src="Security.framework" />
       <framework src="SystemConfiguration.framework" />
