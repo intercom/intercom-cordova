@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.0.6 (2016-08-10)
+
+* Fixed [#67](https://github.com/intercom/intercom-cordova/issues/66).
+* Added `Photos.framework` to stop iOS build error.
+
 ## 3.0.5 (2016-08-05)
 
 * Updated Intercom for iOS to [3.0.8](https://github.com/intercom/intercom-ios/releases/tag/3.0.8).

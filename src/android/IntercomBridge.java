@@ -36,7 +36,7 @@ public class IntercomBridge extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override public void run() {
                 setUpIntercom();
-                if (Injector.get().getApi() != null) {
+                if (Injector.get() != null && Injector.get().getApi() != null) {
                     Injector.get().getApi().ping();
                 }
             }
@@ -62,7 +62,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
             
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.5");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.6");
 
             String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
             if (senderId != null) {
