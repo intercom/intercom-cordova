@@ -47,7 +47,7 @@ var intercom = {
     },
 
     setInAppMessageVisibility: function(visibility, success, error) {
-        cordova.exec(success, error, 'Intercom', 'setLauncherVisibility', [visibility]);
+        cordova.exec(success, error, 'Intercom', 'setInAppMessageVisibility', [visibility]);
     },
 
     registerForPush: function(success, error) {

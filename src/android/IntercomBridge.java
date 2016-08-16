@@ -21,7 +21,7 @@ import android.os.Build;
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
 
-import io.intercom.android.sdk.Gcm;
+import io.intercom.android.sdk.IntercomPushManager;
 import io.intercom.android.sdk.Intercom.Visibility;
 
 import java.util.Map;
@@ -49,7 +49,7 @@ public class IntercomBridge extends CordovaPlugin {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
 
-                Intercom.client().openGcmMessage();
+                Intercom.client().handlePushMessage();
             }
         });
     }
@@ -62,11 +62,16 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
             
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.6");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.7");
 
-            String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
-            if (senderId != null) {
-                Gcm.cacheSenderId(context, senderId);
+            switch (IntercomPushManager.getInstalledModuleType()) {
+                case GCM: {
+                    String senderId = IntercomBridge.this.preferences.getString("intercom-android-sender-id", null);
+                    if (senderId != null) {
+                        IntercomPushManager.cacheSenderId(context, senderId);
+                    }
+                    break;
+                }
             }
 
             ApplicationInfo app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
