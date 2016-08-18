@@ -89,6 +89,11 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)displayMessenger:(CDVInvokedUrlCommand*)command {
+    [Intercom presentMessenger];
+    [self sendSuccess:command];
+}
+
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
     [Intercom presentMessageComposer];
     [self sendSuccess:command];
