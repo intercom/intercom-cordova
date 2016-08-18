@@ -15,6 +15,7 @@
 
 - (void)unreadConversationCount:(CDVInvokedUrlCommand*)command;
 
+- (void)displayMessenger:(CDVInvokedUrlCommand*)command;
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command ;
 
