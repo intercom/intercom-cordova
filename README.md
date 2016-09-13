@@ -199,7 +199,7 @@ To enable Android push notifications, your [Sender ID](https://developers.google
 
 ## More information
 
-You can find more detailed documentation about Intercom for mobile [here](http://docs.intercom.io/Install-on-your-mobile-product).
+You can find more detailed documentation about Intercom for mobile [here](https://docs.intercom.com/help-and-faqs/mobile/how-does-intercom-work-on-my-mobile-product).
 
 ## Thanks
 
