@@ -8,7 +8,7 @@
 ## 3.0.10 (2016-09-09)
 
 * Updated Intercom for Android to [3.0.7](https://github.com/intercom/intercom-android/releases/tag/3.0.7).
-* Updated Intercom for iOS to [3.0.11](https://github.com/intercom/intercom-ios/releases/tag/3.0.11).
+* Updated Intercom for iOS to [3.0.10](https://github.com/intercom/intercom-ios/releases/tag/3.0.11).
 
 ## 3.0.9 (2016-08-29)
 
