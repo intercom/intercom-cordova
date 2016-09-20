@@ -103,6 +103,13 @@
     [Intercom presentConversationList];
     [self sendSuccess:command];
 }
+    
+- (void)hideMessenger:(CDVInvokedUrlCommand*)command {
+    [Intercom hideMessenger];
+    [self sendSuccess:command];
+}
+    
+    
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command {
     NSString *visibilityString = command.arguments[0];

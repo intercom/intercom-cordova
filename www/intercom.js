@@ -50,6 +50,10 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'setInAppMessageVisibility', [visibility]);
     },
 
+    hideMessenger: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'hideMessenger', []);
+    },
+
     registerForPush: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'registerForPush', []);
     }
