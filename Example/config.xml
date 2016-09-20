@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.intercom.cordova.sample" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Intercom Cordova</name>
+    <description>
+        An Intercom sample application for Cordova.
+    </description>
+    <author email="team@intercom.com" href="http://intercom.com">
+        Brian Boyle
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" version="1.0.0" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="15" />
+        
+        <!-- Android Launcher Icons  -->
+        <icon src="www/img/android/hdpi.png" density="hdpi" />
+        <icon src="www/img/android/mdpi.png" density="mdpi" />
+        <icon src="www/img/android/xhdpi.png" density="xhdpi" />
+        <icon src="www/img/android/xxhdpi.png" density="xxhdpi" />
+        <icon src="www/img/android/xxxhdpi.png" density="xxxhdpi" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <preference name="deployment-target" value="8.0" />
+        <preference name="BackupWebStorage" value="local" />
+        
+        <!-- iOS App Icons  -->
+        <icon src="www/img/icon-29.png" width="29" height="29" />
+        <icon src="www/img/icon-29@2x.png" width="58" height="58" />
+        <icon src="www/img/icon-29@3x.png" width="87" height="87" />
+        <icon src="www/img/icon-60@3x.png" width="180" height="180" />
+
+        <icon src="www/img/icon-60.png" width="60" height="60" />
+        <icon src="www/img/icon-60@2x.png" width="120" height="120" />
+        <icon src="www/img/icon-76.png" width="76" height="76" />
+        <icon src="www/img/icon-76@2x.png" width="152" height="152" />
+        <icon src="www/img/icon-40.png" width="40" height="40" />
+        <icon src="www/img/icon-40@2x.png" width="80" height="80" />
+        <icon src="www/img/icon-83.5@2x.png" width="167" height="167" />
+
+        <!-- iOS Launch Images  -->
+        <splash src="www/img/launch/Default@2x.png" width="640" height="960"/>
+        <splash src="www/img/launch/Default.png" width="320" height="480"/>
+        <splash src="www/img/launch/Default-Portrait_iPad.png" width="768" height="1024"/>
+        <splash src="www/img/launch/Default-Portrait_iPad@2x.png" width="1536" height="2048"/>
+        <splash src="www/img/launch/iPad_landscape.png" width="1024" height="768"/>
+        <splash src="www/img/launch/iPad_landscape@2x.png" width="2048" height="1536"/>
+        <splash src="www/img/launch/iPhone_small.png" width="640" height="960"/>
+        <splash src="www/img/launch/Default-568h@2x.png" width="640" height="1136"/>
+        <splash src="www/img/launch/Default-667h@2x.png" width="750" height="1334"/>
+        <splash src="www/img/launch/Default-736@2x.png" width="1242" height="2208"/>
+        <splash src="www/img/launch/iPad_landscape_large.png" width="2208" height="1242"/>
+    </platform>
+
+    <preference name="intercom-app-id" value="YOUR_APP_ID"/>
+    <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY"/>
+    <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY"/>
+    <preference name="intercom-android-sender-id" value="YOUR_ANDROID_SENDER_ID"/>
+
+</widget>
