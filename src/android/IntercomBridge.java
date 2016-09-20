@@ -184,6 +184,12 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        hideMessenger {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().hideMessenger();
+                callbackContext.success();
+            }
+        },
         updateUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Map<String, Object> attributes = IntercomBridge.mapFromJSON(args.optJSONObject(0));
