@@ -45,7 +45,6 @@ body {
     text-align:center;
     padding:50px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin: 0 auto;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
 }
 
 /* Landscape layout (with min-width) */
@@ -71,12 +70,6 @@ button {
     display: inline-block;
     font-size: 20px;
 }
-
-button:active {
-  background-color: red;
-}
-
-
 
 @keyframes fade {
     from { opacity: 1.0; }

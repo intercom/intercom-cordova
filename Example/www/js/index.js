@@ -50,7 +50,7 @@ var app = {
             intercom.reset();
             var storage = window.localStorage;
             storage.removeItem("email");
-            app.hideLoggedInButtons();
+            app.configureViewForLoggedOutUser();
             console.log('Logout successful');
         }, false);
 
@@ -64,31 +64,31 @@ var app = {
     receivedEvent: function(id) {
 
         var storage = window.localStorage;
-        if (storage.getItem("email") != null) {
-          app.showLoggedInButtons();
+        if (storage.getItem("email")) {
+          app.configureViewForLoggedInUser();
         } else {
-          app.hideLoggedInButtons();
+          app.configureViewForLoggedOutUser();
         }
     },
 
     login: function() {
       var emailAddress = prompt("Type in an email address", "");
-      if (emailAddress != null) {
+      if (emailAddress) {
         intercom.registerIdentifiedUser({email: emailAddress});
         var storage = window.localStorage;
         storage.setItem("email", emailAddress);
-        app.showLoggedInButtons();
+        app.configureViewForLoggedInUser();
       }
       console.log('Successfully logged in with : ' + emailAddress);
     },
 
-    showLoggedInButtons: function() {
+    configureViewForLoggedInUser: function() {
       document.getElementById("logut-btn").style.visibility = 'visible';
       document.getElementById("open-intercom-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
 
-    hideLoggedInButtons: function() {
+    configureViewForLoggedOutUser: function() {
       document.getElementById("logut-btn").style.visibility = 'hidden';
       document.getElementById("open-intercom-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
