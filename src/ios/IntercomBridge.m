@@ -18,7 +18,18 @@
     NSString* apiKey = self.commandDelegate.settings[@"intercom-ios-api-key"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomApiKey"];
     NSString* appId = self.commandDelegate.settings[@"intercom-app-id"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
 
+    if (appId != nil) {
+        [Intercom setApiKey:apiKey forAppId:appId];
+    }
+}
+
+- (void)setup:(CDVInvokedUrlCommand*)command {
+    NSDictionary* options = command.arguments[0];
+    NSString* appId  = options[@"intercom-app-id"];
+    NSString* apiKey = options[@"intercom-ios-api-key"];
+
     [Intercom setApiKey:apiKey forAppId:appId];
+    [self sendSuccess:command];
 }
 
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command {

@@ -1,4 +1,8 @@
 var intercom = {
+    setup: function(options, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setup', [options]);
+    },
+
     registerIdentifiedUser: function(options, success, error) {
         cordova.exec(success, error, 'Intercom', 'registerIdentifiedUser', [options]);
     },
