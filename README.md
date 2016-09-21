@@ -19,7 +19,7 @@ To install the plugin in your Cordova app, run the following:
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 
     <plugin name="cordova-plugin-intercom" version="~3.0.11" />
-    
+
 ## Configuring Intercom
 
 To use Intercom, you must add your app's keys to your `config.xml`:
@@ -64,19 +64,19 @@ Broadly speaking, there are three types of apps that Intercom for mobile will wo
 
 **Note:** _If you don't have a unique `userId` to use here, or if you have a `userId` and an `email` you can register with those too, by calling `intercom.registerIdentifiedUser({email: "alice@example.com"})` or `intercom.registerIdentifiedUser({email:"alice@example.com", userId: "123456"})`_
 
-2. Also, in your app's `onDeviceReady` function (or wherever you _check_ your user's authenticated state when your app starts up) 
+2. Also, in your app's `onDeviceReady` function (or wherever you _check_ your user's authenticated state when your app starts up)
 
         onDeviceReady: function() {
             if(loggedIn){
                 ...
                 // We're logged in, we can register the user with Intercom
                 intercom.registerIdentifiedUser({userId: "123456"});
-                
+
                 // Carry on as normal
                 ...
             }
         }
-        
+
 3. Finally, when users eventually want to log out of your app, we should clear Intercom's local caches so that when they log back in again, everything works perfectly. In your logout code, simply call `intercom.reset();` like so:
 
         function logout() {
@@ -95,7 +95,7 @@ Broadly speaking, there are three types of apps that Intercom for mobile will wo
             intercom.registerUnidentifiedUser();
             ...
         }
-        
+
 Because Intercom listens for life cycle events, there is no need to have this line of code anywhere else. Intercom will track all of your user sessions for you.
 
 ### My app has logged in and logged out users
@@ -110,7 +110,7 @@ Because Intercom listens for life cycle events, there is no need to have this li
 
 **Note:** _If you don't have a unique `userId` to use here, or if you have a `userId` and an `email` you can register with those too, by calling `intercom.registerIdentifiedUser({email: "alice@example.com"})` or `intercom.registerIdentifiedUser({email:"alice@example.com", userId: "123456"})`_
 
-2. Also, in your app's `onDeviceReady` function (or wherever you _check_ your user's authenticated state when your app starts up) 
+2. Also, in your app's `onDeviceReady` function (or wherever you _check_ your user's authenticated state when your app starts up)
 
         onDeviceReady: function() {
             if(loggedIn){
@@ -124,7 +124,7 @@ Because Intercom listens for life cycle events, there is no need to have this li
                 ...
             }
         }
-        
+
 3. Finally, when users eventually want to log out of your app, we should clear Intercom's local caches so that when they log back in again, everything works perfectly. In your logout code, simply call `intercom.reset();` like so:
 
         function logout() {
@@ -142,7 +142,7 @@ Because Intercom listens for life cycle events, there is no need to have this li
 
 1.  **Do not use an email address as a `userId` as this field is unique and cannot be changed or updated later.** If you only have an `email` address, you can just register a user with that by calling `intercom.registerIdentifiedUser({email: "alice@example.com"})`.
 2. Intercom for mobile listens for when your app starts and stops, so all you need to do is register a type of user like the examples above and we'll do the rest.
- 
+
 ## How does the in-app messenger work?
 
 Intercom allows you to send messages to your users while also enabling your users send messages to you. If you have a dedicated button in your app that you wish to hook the new message composer up to, you can control Intercom's messaging UI via the `intercom.displayMessenger()`, `intercom.displayMessageComposer();`, `intercom.displayConversationsList();` methods.
@@ -154,7 +154,7 @@ If there is an area of your app where you do not wish your users to receive Inte
 Attributes such as the user email or a user's name can be updated by calling:
 
     intercom.updateUser({ email: "joe@example.com", name: @"Joe" });
-    
+
 Details of the attributes that can be updated are available [here](https://doc.intercom.io/api/#user-model).
 
 Custom user attributes can be created and modified by passing a custom_attributes dictionary You do not have to create attributes in Intercom beforehand.
@@ -199,7 +199,7 @@ To enable Android push notifications, your [Sender ID](https://developers.google
 
 ## More information
 
-You can find more detailed documentation about Intercom for mobile [here](https://docs.intercom.com/help-and-faqs/mobile/how-does-intercom-work-on-my-mobile-product).
+You can find more detailed documentation about Intercom for mobile [here](https://docs.intercom.io/configure-intercom-for-your-product-or-site#configure-intercom-for-mobile).
 
 ## Thanks
 
