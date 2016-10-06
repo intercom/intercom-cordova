@@ -1,0 +1,17 @@
+language: objective-c
+
+node_js:
+  - 5.10
+
+sudo: false
+
+install:
+  - npm install -g cordova
+
+before_script:
+  - cd Example
+  - cordova platform add ios
+  - cordova plugin add ..
+
+script:
+  - cordova build ios
