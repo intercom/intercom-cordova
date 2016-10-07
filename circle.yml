@@ -1,0 +1,13 @@
+general:
+  build_dir: Example
+
+dependencies:
+  override:
+    - npm install -g cordova
+test:
+  pre:
+    - echo y | android update sdk -u --filter "extra-google-m2repository, extra-android-m2repository"
+    - cordova platform add android
+    - cordova plugin add ..
+  override:
+    - cordova build android
