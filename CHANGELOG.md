@@ -1,5 +1,11 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.0.12 (2016-10-10)
+
+* Added a new method `displayMessageComposerWithInitialMessage` which opens up the message composer and takes in a string to pre-populate the message composer with. Example usage `intercom.displayMessageComposerWithInitialMessage("Question asked from the FAQ page: ");`
+* Updated Intercom for Android to [3.0.10](https://github.com/intercom/intercom-android/releases/tag/3.0.10).
+* Updated Intercom for iOS to [3.0.13](https://github.com/intercom/intercom-ios/releases/tag/3.0.13).
+
 ## 3.0.11 (2016-09-16)
 
 * Updated Intercom for Android to [3.0.9](https://github.com/intercom/intercom-android/releases/tag/3.0.9).

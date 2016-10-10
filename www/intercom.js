@@ -31,6 +31,10 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'displayMessageComposer', []);
     },
 
+    displayMessageComposerWithInitialMessage: function(initialMessage, success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayMessageComposerWithInitialMessage', [initialMessage]);
+    },
+
     displayConversationsList: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'displayConversationsList', []);
     },

@@ -17,6 +17,7 @@
 
 - (void)displayMessenger:(CDVInvokedUrlCommand*)command;
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
+- (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command;
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
