@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.0.11"];
+    [Intercom setCordovaVersion:@"3.0.12"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -96,6 +96,12 @@
 
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
     [Intercom presentMessageComposer];
+    [self sendSuccess:command];
+}
+
+- (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command {
+    NSString *initialMessage = command.arguments[0];
+    [Intercom presentMessageComposerWithInitialMessage:initialMessage];
     [self sendSuccess:command];
 }
 

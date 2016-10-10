@@ -62,7 +62,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
             
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.11");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.12");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
@@ -153,6 +153,14 @@ public class IntercomBridge extends CordovaPlugin {
         displayMessageComposer {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().displayMessageComposer();
+                callbackContext.success();
+            }
+        },
+        displayMessageComposerWithInitialMessage {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String initialMessage = args.optString(0);
+
+                Intercom.client().displayMessageComposer(initialMessage);
                 callbackContext.success();
             }
         },
