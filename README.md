@@ -30,6 +30,24 @@ To use Intercom, you must add your app's keys to your `config.xml`:
 
 If your app doesn't support iOS or Android, you can omit that API key.
 
+## Configuring Intercom for Meteor Apps
+
+Add to your mobile-config.js file:
+
+// Intercom.io
+App.setPreference('intercom-app-id', 'xxxxxxxxxx');
+App.setPreference('intercom-ios-api-key', 'ios_sdk-xxxxxxxx');
+App.setPreference('intercom-android-api-key', 'android_sdk-xxxxxxxxx');
+
+In your client-side code in a template.rendered function include something like:
+
+Template.home.rendered = function () {
+    if (Meteor.isCordova) {
+        // define values for userId and phoneNumber...
+        intercom.registerIdentifiedUser({userId: userId,phone:phoneNumber});
+    }
+    ...
+
 ## Troubleshooting
 
 ### Android Dex errors
