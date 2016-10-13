@@ -32,6 +32,10 @@
         </feature>
       </config-file>
 
+      <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+        <string>Attach images to your messages.</string>
+      </config-file>
+
       <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
       <source-file src="src/ios/Intercom.framework/Versions/A/Intercom" framework="true" />
       <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
