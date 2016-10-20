@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.0.14"];
+    [Intercom setCordovaVersion:@"3.0.15"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -41,7 +41,7 @@
         [self sendSuccess:command];
     } else {
         NSLog(@"[Intercom-Cordova] ERROR - No user registered. You must supply an email, a userId or both");
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] 
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
                                     callbackId:command.callbackId];
     }
 }
@@ -109,13 +109,13 @@
     [Intercom presentConversationList];
     [self sendSuccess:command];
 }
-    
+
 - (void)hideMessenger:(CDVInvokedUrlCommand*)command {
     [Intercom hideMessenger];
     [self sendSuccess:command];
 }
-    
-    
+
+
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command {
     NSString *visibilityString = command.arguments[0];
@@ -139,8 +139,8 @@
 
 - (void)registerForPush:(CDVInvokedUrlCommand*)command {
     UIApplication *application = [UIApplication sharedApplication];
-    [application registerUserNotificationSettings:[UIUserNotificationSettings 
-                                 settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) 
+    [application registerUserNotificationSettings:[UIUserNotificationSettings
+                                 settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)
                                        categories:nil]];
     [application registerForRemoteNotifications];
     [self sendSuccess:command];
