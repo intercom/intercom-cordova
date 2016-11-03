@@ -1,4 +1,4 @@
-![Intercom](Example/www/img/Intercom-logo.png)
+![Intercom](Example/www/img/Intercom_logo-github)
 
 # Intercom for Cordova/PhoneGap
 
