@@ -12,15 +12,15 @@ This is a plugin that allows your Cordova or PhoneGap app to use [Intercom for i
 ### Cordova
 
 To install the plugin in your Cordova app, run the following:
-
+```script
 cordova plugin add cordova-plugin-intercom
-
+```
 ### PhoneGap
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
-
+```xml
 <plugin name="cordova-plugin-intercom" version="~3.0.15" />
-
+```
 ## Example App
 
 An example app is provided [here](https://github.com/intercom/intercom-cordova/tree/master/Example) that shows a basic Cordova/Phonegap app integration with Intercom.
