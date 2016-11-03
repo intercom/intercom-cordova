@@ -1,4 +1,4 @@
-![Intercom](Example/www/img/Intercom_logo-github)
+![Intercom](Example/www/img/Intercom_logo-github.png)
 
 # Intercom for Cordova/PhoneGap
 
@@ -29,7 +29,7 @@ An example app is provided [here](https://github.com/intercom/intercom-cordova/t
 
 * Our [installation guide](https://developers.intercom.com/v2.0/docs/cordova-phonegap-installation) contains full setup and initialisation instructions.
 * The [configuration guide](https://developers.intercom.com/v2.0/docs/cordova-phonegap-configuration) provides info on how to configure Intercom for Cordova/Phonegap.
-* Read our guide on [Push Notification](https://developers.intercom.com/v2.0/docs/cordova-phonegap-push-notifications) support.
+* Read our guide on [Push Notifications](https://developers.intercom.com/v2.0/docs/cordova-phonegap-push-notifications) support.
 * Please contact us on [Intercom](https://www.intercom.com/) with any questions you may have, we're only a message away!
 
 
