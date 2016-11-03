@@ -1,12 +1,27 @@
 general:
   build_dir: Example
 
+machine:
+  node:
+    version: 6.1.0
+  java:
+    version: openjdk8
+
 dependencies:
   override:
     - npm install -g cordova
+    - if [ ! -e $ANDROID_HOME/platforms/android-24 ]; then echo y | android update sdk --no-ui --all --filter android-24; fi
+    - if [ ! -e $ANDROID_HOME/extras/android/m2repository/com/android/support/design/24.2.1 ]; then echo y | android update sdk --no-ui --all --filter extra-android-m2repository; fi
+    - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/9.8.0 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
+
+  cache_directories:
+    # Android SDK
+    - "/usr/local/android-sdk-linux/platforms/android-24"
+    - "/usr/local/android-sdk-linux/extras/android/m2repository"
+    - "/usr/local/android-sdk-linux/extras/google/m2repository"
+    
 test:
   pre:
-    - echo y | android update sdk -u --filter "extra-google-m2repository, extra-android-m2repository"
     - cordova platform add android
     - cordova plugin add ..
   override:
