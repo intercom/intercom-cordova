@@ -1,8 +1,7 @@
 repositories {
-  maven {
-    url 'https://dl.bintray.com/intercom/intercom-maven'
-  }
+    jcenter()
 }
+
 dependencies {
-    compile 'io.intercom.android:intercom-sdk:3.0.10'
+    compile 'io.intercom.android:intercom-sdk:3.0.11'
 }
