@@ -1,4 +1,5 @@
 package io.intercom.android.sdk.api;
+
 import android.content.Context;
 
 public class CordovaHeaderInterceptor {
