@@ -27,9 +27,9 @@ An example app is provided [here](https://github.com/intercom/intercom-cordova/t
 
 ## Setup and Configuration
 
-* Our [installation guide](https://developers.intercom.com/v2.0/docs/cordova-phonegap-installation) contains full setup and initialisation instructions.
-* The [configuration guide](https://developers.intercom.com/v2.0/docs/cordova-phonegap-configuration) provides info on how to configure Intercom for Cordova/Phonegap.
-* Read our guide on [Push Notifications](https://developers.intercom.com/v2.0/docs/cordova-phonegap-push-notifications) support.
+* Our [installation guide](https://developers.intercom.com/docs/cordova-phonegap-installation) contains full setup and initialisation instructions.
+* The [configuration guide](https://developers.intercom.com/docs/cordova-phonegap-configuration) provides info on how to configure Intercom for Cordova/Phonegap.
+* Read our guide on [Push Notifications](https://developers.intercom.com/docs/cordova-phonegap-push-notifications) support.
 * Please contact us on [Intercom](https://www.intercom.com/) with any questions you may have, we're only a message away!
 
 
