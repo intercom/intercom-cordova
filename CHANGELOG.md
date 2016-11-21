@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.0.19 (2016-11-21)
+
+* Improved initialization process for Android.
+
 ## 3.0.18 (2016-11-18)
 
 * Updated Intercom for iOS to [3.0.19](https://github.com/intercom/intercom-android/releases/tag/3.0.19).
