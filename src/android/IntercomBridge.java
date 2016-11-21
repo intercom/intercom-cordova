@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Build;
+import android.util.Log;
 
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
@@ -36,8 +37,10 @@ public class IntercomBridge extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override public void run() {
                 setUpIntercom();
-                if (Injector.get() != null && Injector.get().getApi() != null) {
+                try {
                     Injector.get().getApi().ping();
+                } catch (RuntimeException e) {
+                    // Intercom is not initialised yet, do nothing
                 }
             }
         });
@@ -83,7 +86,7 @@ public class IntercomBridge extends CordovaPlugin {
 
             Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
         } catch (Exception e) {
-            System.err.println("[Intercom-Cordova] ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
+            Log.e("Intercom-Cordova", "ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
         }
     }
 
