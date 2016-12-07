@@ -1,5 +1,11 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.0.20 (2016-12-06)
+
+* Now supports Intercom Educate. Learn more [here](https://www.intercom.com/customer-support-software/knowledge-base).
+* Updated Intercom for iOS to [3.0.21](https://github.com/intercom/intercom-android/releases/tag/3.0.21).
+* Updated Intercom for Android to [3.0.15](https://github.com/intercom/intercom-android/releases/tag/3.0.15).
+
 ## 3.0.19 (2016-11-21)
 
 * Improved initialization process for Android.
