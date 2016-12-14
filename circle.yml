@@ -32,6 +32,5 @@ deployment:
     tag: /3(\.[0-9]+)+/
     owner: intercom
     commands:
-      - cd ..
       - echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-      - npm publish
+      - cd .. && npm publish
