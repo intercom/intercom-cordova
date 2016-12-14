@@ -26,3 +26,12 @@ test:
     - cordova plugin add ..
   override:
     - cordova build android
+
+deployment:
+  master:
+    tag: /3(\.[0-9]+)+/
+    owner: intercom
+    commands:
+      - cd ..
+      - echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
+      - npm publish
