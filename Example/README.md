@@ -15,7 +15,7 @@ npm install -g ios-sim
 
 Before you run your app, you'll need to add your Intercom **AppID** and **API Key** to `config.xml` for both Android and/or iOS.
 For Android, if you want to enable GCM in the test app make sure you set your sender_id as well.
-```
+```xml
 <preference name="intercom-app-id" value="YOUR_APP_ID"/>
 <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY"/>
 <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY"/>
