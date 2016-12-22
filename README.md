@@ -19,7 +19,7 @@ cordova plugin add cordova-plugin-intercom
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
-<plugin name="cordova-plugin-intercom" version="~3.0.22" />
+<plugin name="cordova-plugin-intercom" version="~3.0.23" />
 ```
 ## Example App
 
@@ -40,4 +40,3 @@ Thanks to [Josh Dover](https://github.com/joshdover) from [AskU](http://www.asku
 ## License
 
 intercom-cordova is released under the [MIT License](http://www.opensource.org/licenses/MIT).
-

@@ -1,6 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
-## 3.0.22 (2016-11-19)
+## 3.0.23 (2016-12-22)
+
+* Updated Intercom to provide support for Ionic 2.
+
+## 3.0.22 (2016-12-19)
 
 * Updated Intercom for iOS to [3.0.22](https://github.com/intercom/intercom-android/releases/tag/3.0.22).
 * Updated Intercom for Android to [3.0.17](https://github.com/intercom/intercom-android/releases/tag/3.0.17).
