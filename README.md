@@ -21,6 +21,21 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
 <plugin name="cordova-plugin-intercom" version="~3.0.23" />
 ```
+### Ionic 2
+To use the Intercom with Ionic 2, run the following:
+```script
+cordova plugin add cordova-plugin-intercom
+```
+Then add the folling variable to your `app.component.ts`:
+`declare var cordova:any;`
+You can then use Intercom like this:
+```
+this.platform.ready().then(() => {
+    cordova.plugins.intercom.registerIdentifiedUser({userId: "12345"});
+    cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
+});
+```
+
 ## Example App
 
 An example app is provided [here](https://github.com/intercom/intercom-cordova/tree/master/Example) that shows a basic Cordova/Phonegap app integration with Intercom.
