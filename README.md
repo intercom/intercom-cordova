@@ -27,7 +27,9 @@ To use the Intercom with Ionic 2, run the following:
 cordova plugin add cordova-plugin-intercom
 ```
 Then add the folling variable to your `app.component.ts`:
+
 `declare var cordova:any;`
+
 You can then use Intercom like this:
 ```
 this.platform.ready().then(() => {
