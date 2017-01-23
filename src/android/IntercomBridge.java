@@ -21,6 +21,7 @@ import android.util.Log;
 
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
+import io.intercom.android.sdk.api.UserUpdateRequest;
 
 import io.intercom.android.sdk.IntercomPushManager;
 import io.intercom.android.sdk.Intercom.Visibility;
@@ -38,7 +39,7 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 setUpIntercom();
                 try {
-                    Injector.get().getApi().ping();
+                    Injector.get().getApi().updateUser(new UserUpdateRequest(true, false));
                 } catch (RuntimeException e) {
                     // Intercom is not initialised yet, do nothing
                 }
@@ -65,7 +66,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.24");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.0.25");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
