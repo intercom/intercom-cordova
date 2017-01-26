@@ -10,7 +10,7 @@ machine:
 dependencies:
   override:
     - npm install -g cordova
-    - if [ ! -e $ANDROID_HOME/platforms/android-24 ]; then echo y | android update sdk --no-ui --all --filter android-24; fi
+    - if [ ! -e $ANDROID_HOME/platforms/android-25 ]; then echo y | android update sdk --no-ui --all --filter android-25; fi
     - if [ ! -e $ANDROID_HOME/extras/android/m2repository/com/android/support/design/25.0.1 ]; then echo y | android update sdk --no-ui --all --filter extra-android-m2repository; fi
     - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/9.8.0 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
 
