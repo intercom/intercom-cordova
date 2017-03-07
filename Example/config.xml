@@ -65,5 +65,9 @@
     <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY"/>
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY"/>
     <preference name="intercom-android-sender-id" value="YOUR_ANDROID_SENDER_ID"/>
+<!--     
+    Include this line if you wish to use GCM rather than FCM for Android push notifications
+    <preference name="intercom-android-push-type" value="GCM"/>
+ -->
 
 </widget>
