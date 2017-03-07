@@ -1,6 +1,6 @@
 #import "IntercomBridge.h"
 #import "AppDelegate+IntercomPush.h"
-#import "Intercom.h"
+#import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
 + (void)setCordovaVersion:(NSString *)v;

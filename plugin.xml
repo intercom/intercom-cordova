@@ -10,7 +10,7 @@
     <engines>
       <engine name="cordova" version=">=4.0.0" />
       <engine name="cordova-android" version=">=4.0.0" />
-      <engine name="cordova-ios" version=">=4.0.0" />
+      <engine name="cordova-ios" version=">=4.3.1" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">
@@ -38,25 +38,7 @@
         <string>Send photos in your messages to the app.</string>
       </config-file>
 
-      <header-file src="src/ios/Intercom.framework/Versions/A/Headers/Intercom.h" />
-      <source-file src="src/ios/Intercom.framework/Versions/A/Intercom" framework="true" />
-      <resource-file src="src/ios/Intercom.framework/Versions/A/Resources/Intercom.bundle" />
-
-      <framework src="Foundation.framework" />
-      <framework src="UIKit.framework" />
-      <framework src="Photos.framework" />
-      <framework src="Accelerate.framework" />
-      <framework src="Security.framework" />
-      <framework src="SystemConfiguration.framework" />
-      <framework src="MobileCoreServices.framework" />
-      <framework src="ImageIO.framework" />
-      <framework src="QuartzCore.framework" />
-      <framework src="AudioToolbox.framework" />
-      <framework src="CoreGraphics.framework" />
-      <framework src="CFNetwork.framework" />
-      <framework src="WebKit.framework" />
-      <framework src="libicucore.dylib" />
-      <framework src="libxml2.dylib" />
+      <framework src="Intercom" type="podspec" spec="~> 3.1.0" />
     </platform>
 
     <platform name="android">
