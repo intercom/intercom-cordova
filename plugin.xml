@@ -8,7 +8,7 @@
     <keywords>intercom,intercom-cordova</keywords>
 
     <engines>
-      <engine name="cordova" version=">=4.0.0" />
+      <engine name="cordova" version=">=6.4.0" />
       <engine name="cordova-android" version=">=4.0.0" />
       <engine name="cordova-ios" version=">=4.3.1" />
     </engines>
@@ -42,6 +42,7 @@
     </platform>
 
     <platform name="android">
+      <hook type="before_plugin_install" src="src/android/setupFcm.js"/>
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
 
