@@ -7,6 +7,7 @@ sudo: false
 
 install:
   - npm install -g cordova
+  - pod repo update
 
 before_script:
   - cd Example

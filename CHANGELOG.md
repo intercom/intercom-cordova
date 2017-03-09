@@ -1,5 +1,12 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.1.0 (2016-03-09)
+
+* Updated Intercom for Android to [3.1.x](https://github.com/intercom/intercom-android/releases/).
+* FCM push notifications are now enabled by default for Android. GCM may still be used by specifying `intercom-android-push-type` in your `config.xml`.
+* Updated Intercom for iOS to [3.1.x](https://github.com/intercom/intercom-ios/releases/).
+* Intercom for iOS is now installed via CocoaPods, so updates can be received automatically.
+
 ## 3.0.26 (2016-01-25)
 
 * Updated Intercom for Android to [3.0.20](https://github.com/intercom/intercom-android/releases/tag/3.0.20).
