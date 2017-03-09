@@ -10,6 +10,7 @@ module.exports = function(ctx) {
         } else {
             fs.createReadStream(settingsFile).pipe(fs.createWriteStream('platforms/android/google-services.json'));
         }
+        deferral.resolve();
     });
     return deferral.promise;
 };
