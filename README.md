@@ -21,15 +21,13 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
 <plugin name="cordova-plugin-intercom" version="~3.0.26" />
 ```
-### Ionic 2
-To use the Intercom with Ionic 2, run the following:
+### Ionic
+
+Intercom is compatible with both Ionic 1 & 2
+To use the Intercom with Ionic, run the following:
 ```script
 cordova plugin add cordova-plugin-intercom
 ```
-Then add the folling variable to your `app.component.ts`:
-
-`declare var cordova:any;`
-
 You can then use Intercom like this:
 ```
 this.platform.ready().then(() => {
@@ -37,6 +35,10 @@ this.platform.ready().then(() => {
     cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
 });
 ```
+####Ionic 2
+For Ionic 2 you need to add the folling variable to your `app.component.ts`:
+
+`declare var cordova:any;`
 
 ## Example App
 
