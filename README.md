@@ -28,17 +28,32 @@ To use the Intercom with Ionic, run the following:
 ```script
 cordova plugin add cordova-plugin-intercom
 ```
+Make sure you [initialize Intercom](https://developers.intercom.com/docs/cordova-phonegap-installation#section-step-2-initialize-intercom) correctly.
+####Ionic 1
+For Ionic 1 you can use Intercom like this:
+```
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    cordova.plugins.intercom.registerIdentifiedUser({userId: "123456"});
+    cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
+  });
+})
+```
+
+
+####Ionic 2
+For Ionic 2 you need to add the folling variable to your `app.component.ts`:
+
+`declare var cordova:any;`
+
 You can then use Intercom like this:
+
 ```
 this.platform.ready().then(() => {
     cordova.plugins.intercom.registerIdentifiedUser({userId: "12345"});
     cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
 });
 ```
-####Ionic 2
-For Ionic 2 you need to add the folling variable to your `app.component.ts`:
-
-`declare var cordova:any;`
 
 ## Example App
 
