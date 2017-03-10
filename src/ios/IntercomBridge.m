@@ -1,6 +1,6 @@
 #import "IntercomBridge.h"
 #import "AppDelegate+IntercomPush.h"
-#import "Intercom.h"
+#import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
 + (void)setCordovaVersion:(NSString *)v;
@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.0.26"];
+    [Intercom setCordovaVersion:@"3.1.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif

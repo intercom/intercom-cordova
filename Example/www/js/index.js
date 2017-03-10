@@ -57,8 +57,6 @@ var app = {
       document.getElementById("open-intercom-btn").addEventListener("click", function(){
           intercom.displayMessenger();
       }, false);
-
-        intercom.setPreviewPosition(intercom.BOTTOM_RIGHT);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
