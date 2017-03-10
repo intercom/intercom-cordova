@@ -42,7 +42,7 @@
     </platform>
 
     <platform name="android">
-      <hook type="before_plugin_install" src="src/android/setupFcm.js"/>
+      <hook type="after_prepare" src="src/android/setupFcm.js"/>
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
 

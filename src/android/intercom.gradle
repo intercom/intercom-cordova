@@ -1,7 +1,7 @@
-def pushType = 'fcm'
-new XmlSlurper().parse(file("../../config.xml")).preference.each {
+def pushType = ''
+new XmlSlurper().parse(file('../../config.xml')).preference.each {
     if (it.@name.text() == 'intercom-android-push-type') {
-        pushType = it.@value.text()
+        pushType = it.@value.text().toLowerCase()
     }
 }
 
@@ -10,9 +10,14 @@ repositories {
 }
 dependencies {
     compile 'io.intercom.android:intercom-sdk-base:3.1.+'
-    if (pushType.toLowerCase() == "gcm") {
-        compile "io.intercom.android:intercom-sdk-gcm:3.1.+"
-    } else {
-        compile "io.intercom.android:intercom-sdk-fcm:3.1.+"
+    if (pushType == 'gcm') {
+        compile 'io.intercom.android:intercom-sdk-gcm:3.1.+'
+    } else if (pushType == 'fcm') {
+        compile 'com.google.firebase:firebase-messaging:10.+'
+        compile 'io.intercom.android:intercom-sdk-fcm:3.1.+'
     }
+}
+
+if (pushType == 'fcm') {
+    apply plugin: 'com.google.gms.google-services'
 }
