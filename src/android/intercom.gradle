@@ -1,7 +1,21 @@
-def pushType = ''
-new XmlSlurper().parse(file('../../config.xml')).preference.each {
-    if (it.@name.text() == 'intercom-android-push-type') {
-        pushType = it.@value.text().toLowerCase()
+buildscript {
+    ext {
+        pushType = ''
+        new XmlSlurper().parse(file('../../config.xml')).preference.each {
+            if (it.@name.text() == 'intercom-android-push-type') {
+                pushType = it.@value.text().toLowerCase()
+            }
+        }
+    }
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:+'
+        if (pushType == 'fcm') {
+            classpath 'com.google.gms:google-services:3.0.0'
+        }
     }
 }
 
@@ -19,5 +33,5 @@ dependencies {
 }
 
 if (pushType == 'fcm') {
-    apply plugin: 'com.google.gms.google-services'
+    apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
 }
