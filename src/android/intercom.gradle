@@ -32,6 +32,12 @@ dependencies {
     }
 }
 
+task copyGoogleServices(type: Copy) {
+    from '../../google-services.json'
+    into '.'
+}
+
 if (pushType == 'fcm') {
+    tasks.copyGoogleServices.execute()
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
 }
