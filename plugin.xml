@@ -38,6 +38,12 @@
         <string>Send photos in your messages to the app.</string>
       </config-file>
 
+      <config-file target="*-Info.plist" parent="UIBackgroundModes">
+        <array>
+          <string>remote-notification</string>
+        </array>
+      </config-file>
+
       <framework src="Intercom" type="podspec" spec="~> 3.1.0" />
     </platform>
 
