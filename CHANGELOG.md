@@ -1,6 +1,13 @@
 # Intercom for Cordova/PhoneGap
 
-## 3.1.0 (2016-03-10)
+## 3.1.1 (2017-03-16)
+
+* Removed reliance on hooks for Android FCM support. Gradle is now used for the whole process.
+* Improved iOS interoperability with `phonegap-plugin-push` (Fixes [#154](https://github.com/intercom/intercom-cordova/issues/154)).
+* Automatically add `remote-notification` background mode to the app's `Info.plist` on iOS.
+* Updated minimum Intercom for iOS version to [3.1.2](https://github.com/intercom/intercom-ios/releases/tag/3.1.2).
+
+## 3.1.0 (2017-03-10)
 
 * Updated Intercom for Android to [3.1.x](https://github.com/intercom/intercom-android/releases/).
 * FCM push notifications for Android are now supported. This can be configured by specifying `intercom-android-push-type` in your `config.xml`.
