@@ -60,6 +60,11 @@
           <param name="onload" value="true" />
         </feature>
       </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+        <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE"/>
+        <permission android:name="${applicationId}.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+      </config-file>
     </platform>
 
 </plugin>
