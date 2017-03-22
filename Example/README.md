@@ -1,8 +1,8 @@
-#Example Cordova app
+# Example Cordova app
 
 This is a simple Cordova app with an Intercom integration.
 
-##Installing the Cordova CLI
+## Installing the Cordova CLI
 
 To install Cordova, run the following from your command line:
 
@@ -11,7 +11,7 @@ npm install -g cordova
 npm install -g ios-sim
 ```
 
-##Configuration
+## Configuration
 
 Before you run your app, you'll need to add your Intercom **AppID** and **API Key** to `config.xml` for both Android and/or iOS.
 ```xml
@@ -31,7 +31,7 @@ If you want to enable Android GCM push notifications add these lines to `config.
 <preference name="intercom-android-push-type" value="GCM"/>
 ```
 
-##Running the app
+## Running the app
 
 To get started, add your platform(s) of choice:
 
@@ -46,11 +46,11 @@ Now you can install the Intercom plugin:
 cordova plugin add cordova-plugin-intercom
 ```
 You can now run your app with the following command:
-####iOS
+#### iOS
 ```
 cordova run ios
 ```
-###Android
+### Android
 ```
 cordova run android
 ```
