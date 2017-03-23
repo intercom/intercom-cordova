@@ -23,8 +23,7 @@ To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```
 ### Ionic
 
-Intercom is compatible with both Ionic 1 & 2
-To use the Intercom with Ionic, run the following:
+Intercom is compatible with both Ionic 1 & 2. To use the Intercom with Ionic, run the following:
 ```script
 cordova plugin add cordova-plugin-intercom
 ```
