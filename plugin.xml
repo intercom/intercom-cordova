@@ -50,6 +50,7 @@
     <platform name="android">
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/IntercomIntentService.java" target-dir="src/io/intercom/android/sdk" />
 
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
       <framework src="src/android/build-extras-intercom.gradle" custom="true" type="gradleReference" />
@@ -59,6 +60,16 @@
           <param name="android-package" value="io.intercom.android.sdk.IntercomBridge" />
           <param name="onload" value="true" />
         </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <service
+            android:name="io.intercom.android.sdk.IntercomIntentService"
+            android:exported="false">
+            <intent-filter
+                android:priority="999">
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
       </config-file>
     </platform>
 
