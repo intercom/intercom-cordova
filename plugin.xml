@@ -21,6 +21,8 @@
 
 
     <platform name="ios">
+      <hook type="before_build" src="scripts/checkForUpdate.js" />
+
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
 
