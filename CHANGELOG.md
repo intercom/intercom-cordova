@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.1.2 (2017-03-31)
+
+* Fixed compatibility with other Android GCM providers (details are outlined in [#166](https://github.com/intercom/intercom-cordova/pull/166)). It is no longer necessary to use a fork of `phonegap-plugin-push`.
+* Added hook to automatically update Intercom for iOS via CocoaPods (see [#168](https://github.com/intercom/intercom-cordova/pull/168)).
+
 ## 3.1.1 (2017-03-16)
 
 * Removed reliance on hooks for Android FCM support. Gradle is now used for the whole process.
