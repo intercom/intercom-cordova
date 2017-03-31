@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.1.1"];
+    [Intercom setCordovaVersion:@"3.1.2"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
