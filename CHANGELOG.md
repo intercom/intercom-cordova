@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.1.3 (2017-04-05)
+
+* Added hook to ensure the local CocoaPods specs repo is up to date when installing the plugin (see [#170](https://github.com/intercom/intercom-cordova/pull/170)).
+
 ## 3.1.2 (2017-03-31)
 
 * Fixed compatibility with other Android GCM providers (details are outlined in [#166](https://github.com/intercom/intercom-cordova/pull/166)). It is no longer necessary to use a fork of `phonegap-plugin-push`.
