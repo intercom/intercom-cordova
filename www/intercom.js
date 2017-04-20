@@ -15,6 +15,10 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'setSecureMode', [secureHash, secureData]);
     },
 
+    setUserHash: function(secureHash, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setUserHash', [secureHash]);
+    },
+
     updateUser: function(attributes, success, error) {
         cordova.exec(success, error, 'Intercom', 'updateUser', [attributes]);
     },

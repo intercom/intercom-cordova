@@ -66,7 +66,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.1.3");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.2.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
@@ -126,6 +126,13 @@ public class IntercomBridge extends CordovaPlugin {
                 String hmac = args.optString(0);
                 String data = args.optString(1);
                 Intercom.client().setSecureMode(hmac, data);
+                callbackContext.success();
+            }
+        },
+        setUserHash {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String hmac = args.optString(0);
+                Intercom.client().setUserHash(hmac);
                 callbackContext.success();
             }
         },
