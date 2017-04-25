@@ -23,12 +23,12 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'io.intercom.android:intercom-sdk-base:3.1.+'
+    compile 'io.intercom.android:intercom-sdk-base:3.2.+'
     if (pushType == 'gcm') {
-        compile 'io.intercom.android:intercom-sdk-gcm:3.1.+'
+        compile 'io.intercom.android:intercom-sdk-gcm:3.2.+'
     } else if (pushType == 'fcm') {
         compile 'com.google.firebase:firebase-messaging:10.+'
-        compile 'io.intercom.android:intercom-sdk-fcm:3.1.+'
+        compile 'io.intercom.android:intercom-sdk-fcm:3.2.+'
     }
 }
 

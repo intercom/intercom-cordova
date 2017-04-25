@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.1.3"];
+    [Intercom setCordovaVersion:@"3.2.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -61,6 +61,13 @@
     NSString *data = command.arguments[1];
 
     [Intercom setHMAC:hmac data:data];
+    [self sendSuccess:command];
+}
+
+- (void)setUserHash:(CDVInvokedUrlCommand*)command {
+    NSString *hmac = command.arguments[0];
+
+    [Intercom setUserHash:hmac];
     [self sendSuccess:command];
 }
 
