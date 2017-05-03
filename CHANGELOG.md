@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.2.1 (2017-05-03)
+
+* Fixed build error reported in [#180](https://github.com/intercom/intercom-cordova/issues/180).
+
 ## 3.2.0 (2017-04-21)
 
 * Added a new method to the API `intercom.setUserHash(userHash)` to support Identity Verification. This method replaces `intercom.setSecureMode(hmac, data)` which was used for our previous security feature Secure Mode.
