@@ -66,7 +66,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "3.2.1");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "3.2.2");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
@@ -178,6 +178,12 @@ public class IntercomBridge extends CordovaPlugin {
         displayConversationsList {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().displayConversationsList();
+                callbackContext.success();
+            }
+        },
+        setBottomPadding {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().setBottomPadding(args.optInt(0));
                 callbackContext.success();
             }
         },

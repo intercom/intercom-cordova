@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.2.2 (2017-05-11)
+
+* Added new public API intercom.setBottomPadding(padding) which adds the parameter passed in to the bottom padding of in-apps and the default launcher.
+
 ## 3.2.1 (2017-05-03)
 
 * Fixed build error reported in [#180](https://github.com/intercom/intercom-cordova/issues/180).

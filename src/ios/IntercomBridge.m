@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"3.2.1"];
+    [Intercom setCordovaVersion:@"3.2.2"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -122,7 +122,10 @@
     [self sendSuccess:command];
 }
 
-
+- (void)setBottomPadding:(CDVInvokedUrlCommand*)command {
+    [Intercom setBottomPadding: command.arguments[0].integerValue];
+    [self sendSuccess:command];
+}
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command {
     NSString *visibilityString = command.arguments[0];

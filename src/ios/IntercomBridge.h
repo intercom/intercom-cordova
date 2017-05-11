@@ -9,6 +9,7 @@
 - (void)reset:(CDVInvokedUrlCommand*)command;
 
 - (void)setSecureMode:(CDVInvokedUrlCommand*)command;
+- (void)setUserHash:(CDVInvokedUrlCommand*)command;
 
 - (void)updateUser:(CDVInvokedUrlCommand*)command;
 - (void)logEvent:(CDVInvokedUrlCommand*)command;
@@ -19,6 +20,8 @@
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
 - (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command;
+
+- (void)setBottomPadding:(CDVInvokedUrlCommand*)command;
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
 - (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command;
