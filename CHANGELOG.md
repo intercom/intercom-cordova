@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 3.2.2 (2017-05-17)
+
+* Prevent unsafe versions of the Support Library being used to fix [#182](https://github.com/intercom/intercom-cordova/issues/182).
+
 ## 3.2.1 (2017-05-03)
 
 * Fixed build error reported in [#180](https://github.com/intercom/intercom-cordova/issues/180).
