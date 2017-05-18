@@ -5,3 +5,28 @@
 // @link https://issues.apache.org/jira/browse/CB-10014
 def manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
 android.defaultConfig.applicationId manifest.@package.text()
+
+// some libraries depend on higher versions of our dependencies than we support
+// we keep track of these dependencies here and override the version to a safe one
+def safeVersions = [
+        "com.android.support:support-v4": "25.+"
+]
+
+def badVersionIndicators = [
+        'alpha',
+        'beta',
+        'preview',
+        ',)'
+]
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+        DependencyResolveDetails details ->
+        def safeVersion = safeVersions[details.requested.group + ":" + details.requested.name]
+        def requestedVersion = details.requested.version
+        if (safeVersion != null && badVersionIndicators.any { requestedVersion.contains(it) }) {
+            println "Intercom: Overriding dependency ${details.requested.group}:${details.requested.name} version ${details.requested.version} --> $safeVersion"
+            details.useVersion safeVersion
+        }
+    }
+}
