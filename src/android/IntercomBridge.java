@@ -52,8 +52,9 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
-
-                Intercom.client().handlePushMessage();
+                if (Injector.get() != null && Injector.get().getApi() != null) {
+                    Intercom.client().handlePushMessage();
+                }
             }
         });
     }
@@ -85,13 +86,38 @@ public class IntercomBridge extends CordovaPlugin {
             String apiKey = IntercomBridge.this.preferences.getString("intercom-android-api-key", bundle.getString("intercom_api_key"));
             String appId = IntercomBridge.this.preferences.getString("intercom-app-id", bundle.getString("intercom_app_id"));
 
-            Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+            if (apiKey != null) {
+                Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+            }
         } catch (Exception e) {
             Log.e("Intercom-Cordova", "ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?");
         }
     }
 
     private enum Action {
+        setup {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Context context = cordova.getActivity().getApplicationContext();
+
+                JSONObject options = args.optJSONObject(0);
+                String appId = options.optString("intercom-app-id");
+                String apiKey = options.optString("intercom-android-api-key");
+                String senderId = options.optString("intercom-android-sender-id");
+
+                switch (IntercomPushManager.getInstalledModuleType()) {
+                    case GCM: {
+                        if (senderId != null) {
+                            IntercomPushManager.cacheSenderId(context, senderId);
+                        }
+                        break;
+                    }
+                }
+
+                Intercom.initialize(cordova.getActivity().getApplication(), apiKey, appId);
+
+                callbackContext.success();
+            }
+        },
         registerIdentifiedUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 JSONObject options = args.optJSONObject(0);
