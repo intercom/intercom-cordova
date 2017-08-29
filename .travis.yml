@@ -1,12 +1,14 @@
 language: objective-c
 
 node_js:
-  - 5.10
+  - 7
 
 sudo: false
 
+before_install:
+  - npm install -g npm@5.3.0
+  
 install:
-  - npm install npm@latest -g
   - npm install -g cordova
 
 before_script:
