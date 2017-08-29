@@ -25,11 +25,11 @@ dependencies:
     - "/usr/local/android-sdk-linux/build-tools/26.0.1"
     - "/usr/local/android-sdk-linux/extras/android/m2repository"
     - "/usr/local/android-sdk-linux/extras/google/m2repository"
-    
+
 test:
   override:
     - cordova platform add android
-    - cordova plugin add ..
+    - cordova plugin add ../intercom-plugin
     - cordova build android --verbose -- --gradleArg=--stacktrace
 
 deployment:
@@ -38,4 +38,4 @@ deployment:
     owner: intercom
     commands:
       - echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-      - cd .. && npm publish
+      - cd ../intercom-plugin && npm publish
