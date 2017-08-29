@@ -123,14 +123,6 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
-        setSecureMode {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String hmac = args.optString(0);
-                String data = args.optString(1);
-                Intercom.client().setSecureMode(hmac, data);
-                callbackContext.success();
-            }
-        },
         setUserHash {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String hmac = args.optString(0);
