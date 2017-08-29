@@ -17,6 +17,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
+        <hook type="before_build" src="scripts/beforeAndroidBuild.sh"/>
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="15" />
         
