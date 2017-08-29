@@ -14,8 +14,8 @@ dependencies:
   override:
     - npm install -g cordova
     # Need to always update these 2 to accept licenses
-    - echo y | android update sdk --no-ui --all --filter android-25; fi
-    - echo y | android update sdk --no-ui --all --filter android-26; fi
+    - echo y | android update sdk --no-ui --all --filter android-25
+    - echo y | android update sdk --no-ui --all --filter android-26
     - if [ ! -e $ANDROID_HOME/build-tools/26.0.1 ]; then echo y | android update sdk --no-ui --all --filter build-tools-26.0.1; fi
     - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/11.0.4 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
 
