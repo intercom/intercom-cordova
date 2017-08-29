@@ -4,7 +4,10 @@
 
 * Updated Intercom for Android to 4.0.1
 * Updated Intercom for iOS to 4.0.1
-* Removed deprecated method `intercom.setSecureMode(hmac, data)`
+* Removed deprecated method `intercom.setSecureMode(hmac, data)`.
+* Added support for iOS 11.
+* Added support for Android Oreo.
+* Updated GCM & FCM to version 11.
 
 ## 3.2.2 (2017-05-17)
 
