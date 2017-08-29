@@ -13,13 +13,14 @@ machine:
 dependencies:
   override:
     - npm install -g cordova
-    - if [ ! -e $ANDROID_HOME/platforms/android-25 ]; then echo y | android update sdk --no-ui --all --filter android-25; fi
+    # Need to always update these 2 to accept licenses
+    - echo y | android update sdk --no-ui --all --filter android-25; fi
+    - echo y | android update sdk --no-ui --all --filter android-26; fi
     - if [ ! -e $ANDROID_HOME/build-tools/26.0.1 ]; then echo y | android update sdk --no-ui --all --filter build-tools-26.0.1; fi
     - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/11.0.4 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
 
   cache_directories:
     # Android SDK
-    - "/usr/local/android-sdk-linux/platforms/android-25"
     - "/usr/local/android-sdk-linux/build-tools/26.0.1"
     - "/usr/local/android-sdk-linux/extras/google/m2repository"
 
