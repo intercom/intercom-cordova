@@ -12,7 +12,7 @@ install:
 before_script:
   - cd Example
   - cordova platform add ios --verbose
-  - cordova plugin add .. --verbose
+  - cordova plugin add /Users/travis/build/intercom/intercom-cordova --verbose
 
 script:
   - cordova build ios
