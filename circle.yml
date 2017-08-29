@@ -2,6 +2,9 @@ general:
   build_dir: Example
 
 machine:
+  environment:
+    ORG_GRADLE_PROJECT_cdvCompileSdkVersion: 26
+    ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 26.0.1
   node:
     version: 6.1.0
   java:
