@@ -6,7 +6,7 @@ machine:
     ORG_GRADLE_PROJECT_cdvCompileSdkVersion: 26
     ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 26.0.1
   node:
-    version: 6.1.0
+    version: 6.11.2
   java:
     version: openjdk8
 
@@ -15,22 +15,22 @@ dependencies:
     - npm install -g cordova
     - if [ ! -e $ANDROID_HOME/platforms/android-26 ]; then echo y | android update sdk --no-ui --all --filter android-26; fi
     - if [ ! -e $ANDROID_HOME/build-tools/26.0.1 ]; then echo y | android update sdk --no-ui --all --filter build-tools-26.0.1; fi
-    - if [ ! -e $ANDROID_HOME/extras/android/m2repository/com/android/support/design/26.0.1 ]; then echo y | android update sdk --no-ui --all --filter extra-android-m2repository; fi
     - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/11.0.4 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
 
   cache_directories:
+    # Node dependencies
+    - "node_modules"
     # Android SDK
-    - "/usr/local/android-sdk-linux/platforms/android-25"
+    - "/usr/local/android-sdk-linux/platforms/android-26"
     - "/usr/local/android-sdk-linux/build-tools/26.0.1"
     - "/usr/local/android-sdk-linux/extras/android/m2repository"
     - "/usr/local/android-sdk-linux/extras/google/m2repository"
     
 test:
-  pre:
+  override:
     - cordova platform add android
     - cordova plugin add ..
-  override:
-    - cordova build android
+    - cordova build android --verbose -- --gradleArg=--stacktrace
 
 deployment:
   master:
