@@ -11,8 +11,8 @@ install:
 
 before_script:
   - cd Example
-  - cordova platform add ios
-  - cordova plugin add ..
+  - cordova platform add ios --verbose
+  - cordova plugin add .. --verbose
 
 script:
   - cordova build ios
