@@ -1,5 +1,14 @@
 # Intercom for Cordova/PhoneGap
 
+## 4.0.0 (2017-08-29)
+
+* Updated Intercom for Android to 4.0.1
+* Updated Intercom for iOS to 4.0.1
+* Removed deprecated method `intercom.setSecureMode(hmac, data)`.
+* Added support for iOS 11.
+* Added support for Android Oreo.
+* Updated GCM & FCM to version 11.
+
 ## 3.2.2 (2017-05-17)
 
 * Prevent unsafe versions of the Support Library being used to fix [#182](https://github.com/intercom/intercom-cordova/issues/182).

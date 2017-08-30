@@ -10,9 +10,10 @@ buildscript {
     repositories {
         jcenter()
         mavenLocal()
+        maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:+'
+        classpath 'com.android.tools.build:gradle:2.3.+'
         if (pushType == 'fcm') {
             classpath 'com.google.gms:google-services:3.0.0'
         }
@@ -21,14 +22,15 @@ buildscript {
 
 repositories {
     jcenter()
+    maven { url 'https://maven.google.com' }
 }
 dependencies {
-    compile 'io.intercom.android:intercom-sdk-base:3.2.+'
+    compile 'io.intercom.android:intercom-sdk-base:4.0.+'
     if (pushType == 'gcm') {
-        compile 'io.intercom.android:intercom-sdk-gcm:3.2.+'
+        compile 'io.intercom.android:intercom-sdk-gcm:4.0.+'
     } else if (pushType == 'fcm') {
-        compile 'com.google.firebase:firebase-messaging:10.+'
-        compile 'io.intercom.android:intercom-sdk-fcm:3.2.+'
+        compile 'com.google.firebase:firebase-messaging:11.+'
+        compile 'io.intercom.android:intercom-sdk-fcm:4.0.+'
     }
 }
 

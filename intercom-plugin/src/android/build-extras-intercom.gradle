@@ -9,7 +9,7 @@ android.defaultConfig.applicationId manifest.@package.text()
 // some libraries depend on higher versions of our dependencies than we support
 // we keep track of these dependencies here and override the version to a safe one
 def safeVersions = [
-        "com.android.support:support-v4": "25.+"
+        "com.android.support:support-v4": "26.+"
 ]
 
 def badVersionIndicators = [
