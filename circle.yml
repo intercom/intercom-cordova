@@ -1,39 +1,94 @@
-general:
-  build_dir: Example
+version: 2
 
-machine:
-  environment:
-    ORG_GRADLE_PROJECT_cdvCompileSdkVersion: android-26
-    ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 26.0.1
-  node:
-    version: 6.11.2
-  java:
-    version: openjdk8
+jobs:
+  ios:
+    macos:
+      xcode: "9.0"
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - run:
+          name: Install node/npm
+          command: command -v node || brew install node
+      - run:
+          name: Install Cordova
+          command: npm install -g cordova
+      - run:
+          name: Setup CocoaPods
+          command: curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
+      - run:
+          name: Add iOS platform
+          command: cd Example && cordova platform add ios
+      - run:
+          name: Install intercom plugin
+          command: cd Example && cordova plugin add ../intercom-plugin
+      - run:
+          name: Build
+          command: cd Example && cordova build ios
 
-dependencies:
-  override:
-    - npm install -g cordova
-    # Need to always update these 2 to accept licenses
-    - echo y | android update sdk --no-ui --all --filter android-25
-    - echo y | android update sdk --no-ui --all --filter android-26
-    - if [ ! -e $ANDROID_HOME/build-tools/26.0.1 ]; then echo y | android update sdk --no-ui --all --filter build-tools-26.0.1; fi
-    - if [ ! -e $ANDROID_HOME/extras/google/m2repository/com/google/firebase/firebase-messaging/11.0.4 ]; then echo y | android update sdk --no-ui --all --filter extra-google-m2repository; fi
+  android:
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      - JVM_OPTS: -Xmx3200m
+    working_directory: ~/project/Example
+    steps:
+      - checkout
+      - run:
+          name: Install node/npm
+          command: |
+            curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+      - run:
+          name: Install gradle
+          command: sudo apt-get install gradle
+      - run:
+          name: Install Cordova
+          command: sudo npm install -g cordova
+      - run:
+          name: Add Android platform
+          command: cd Example && cordova platform add android
+      - run:
+          name: Install intercom plugin
+          command: cd Example && cordova plugin add ../intercom-plugin
+      - run:
+          name: Build
+          command: cd Example && cordova build android --verbose -- --gradleArg=--stacktrace
 
-  cache_directories:
-    # Android SDK
-    - "/usr/local/android-sdk-linux/build-tools/26.0.1"
-    - "/usr/local/android-sdk-linux/extras/google/m2repository"
+  publish:
+    docker:
+      - image: circleci/android:api-26-alpha
+    steps:
+      - checkout
+      - run:
+          name: Install node/npm
+          command: |
+            curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+      - run:
+          name: Publish to npm
+          command: |
+            echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
+            cd ../intercom-plugin && npm publish
 
-test:
-  override:
-    - cordova platform add android
-    - cordova plugin add ../intercom-plugin
-    - cordova build android --verbose -- --gradleArg=--stacktrace
-
-deployment:
-  master:
-    tag: /[0-9](\.[0-9]+)+/
-    owner: intercom
-    commands:
-      - echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-      - cd ../intercom-plugin && npm publish
+workflows:
+  version: 2
+  ios_and_android:
+    jobs:
+      - ios:
+          filters:
+            tags:
+              only: /[0-9](\.[0-9]+)+/
+      - android:
+          filters:
+            tags:
+              only: /[0-9](\.[0-9]+)+/
+      - publish:
+          requires:
+            - ios
+            - android
+          filters:
+            tags:
+              only: /[0-9](\.[0-9]+)+/
+            branches:
+              ignore: /.*/
