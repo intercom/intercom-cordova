@@ -8,7 +8,11 @@ var intercom = {
     },
 
     reset: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'reset', []);
+        cordova.exec(success, error, 'Intercom', 'logout', []);
+    },
+
+    logout: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'logout', []);
     },
 
     setSecureMode: function(secureHash, secureData, success, error) {

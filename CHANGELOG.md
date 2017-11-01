@@ -1,5 +1,12 @@
 # Intercom for Cordova/PhoneGap
 
+## 4.1.0 (2017-11-02)
+
+* Updated Intercom for Android to 4.1.x
+* Updated Intercom for iOS to 4.1.x
+* Added `intercom.logout()`.
+* Added diagnostic messages for Android build errors.
+
 ## 4.0.0 (2017-08-29)
 
 * Updated Intercom for Android to 4.0.1

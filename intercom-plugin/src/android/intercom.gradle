@@ -15,7 +15,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.+'
         if (pushType == 'fcm') {
-            classpath 'com.google.gms:google-services:3.0.0'
+            classpath 'com.google.gms:google-services:3.1.0'
         }
     }
 }
@@ -26,12 +26,12 @@ repositories {
 }
 
 dependencies {
-    compile 'io.intercom.android:intercom-sdk-base:4.0.+'
+    compile 'io.intercom.android:intercom-sdk-base:4.1.+'
     if (pushType == 'gcm') {
-        compile 'io.intercom.android:intercom-sdk-gcm:4.0.+'
+        compile 'io.intercom.android:intercom-sdk-gcm:4.1.+'
     } else if (pushType == 'fcm') {
         compile 'com.google.firebase:firebase-messaging:11.+'
-        compile 'io.intercom.android:intercom-sdk-fcm:4.0.+'
+        compile 'io.intercom.android:intercom-sdk-fcm:4.1.+'
     }
 }
 

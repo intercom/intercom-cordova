@@ -6,7 +6,7 @@
 
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command;
 - (void)registerUnidentifiedUser:(CDVInvokedUrlCommand*)command;
-- (void)reset:(CDVInvokedUrlCommand*)command;
+- (void)logout:(CDVInvokedUrlCommand*)command;
 
 - (void)setUserHash:(CDVInvokedUrlCommand*)command;
 

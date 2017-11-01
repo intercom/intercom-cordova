@@ -68,7 +68,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = IntercomBridge.this.cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "4.0.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "4.1.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
@@ -117,9 +117,9 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
-        reset {
+        logout {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().reset();
+                Intercom.client().logout();
                 callbackContext.success();
             }
         },

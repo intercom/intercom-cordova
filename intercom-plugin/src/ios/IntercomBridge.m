@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"4.0.0"];
+    [Intercom setCordovaVersion:@"4.1.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -51,8 +51,8 @@
     [self sendSuccess:command];
 }
 
-- (void)reset:(CDVInvokedUrlCommand*)command {
-    [Intercom reset];
+- (void)logout:(CDVInvokedUrlCommand*)command {
+    [Intercom logout];
     [self sendSuccess:command];
 }
 
