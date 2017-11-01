@@ -24,6 +24,7 @@ repositories {
     jcenter()
     maven { url 'https://maven.google.com' }
 }
+
 dependencies {
     compile 'io.intercom.android:intercom-sdk-base:4.0.+'
     if (pushType == 'gcm') {

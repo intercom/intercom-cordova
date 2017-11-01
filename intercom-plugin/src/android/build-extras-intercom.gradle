@@ -1,3 +1,4 @@
+import java.util.regex.Matcher
 
 // Uses the app id as a prefix (instead of com.google.android). This prevents
 // INSTALL_FAILED_CONFLICTING_PROVIDER error when installing the app.
@@ -22,11 +23,72 @@ def badVersionIndicators = [
 configurations.all {
     resolutionStrategy.eachDependency {
         DependencyResolveDetails details ->
-        def safeVersion = safeVersions[details.requested.group + ":" + details.requested.name]
-        def requestedVersion = details.requested.version
-        if (safeVersion != null && badVersionIndicators.any { requestedVersion.contains(it) }) {
-            println "Intercom: Overriding dependency ${details.requested.group}:${details.requested.name} version ${details.requested.version} --> $safeVersion"
-            details.useVersion safeVersion
+            def requested = details.requested
+            def safeVersion = safeVersions[requested.group + ":" + requested.name]
+            if (safeVersion != null && badVersionIndicators.any { requested.version.contains(it) }) {
+                println "Intercom: Overriding dependency ${requested.group}:${requested.name} version ${requested.version} --> $safeVersion"
+                details.useVersion safeVersion
+            }
+    }
+}
+
+afterEvaluate {
+    logIfIncorrectCompileSdkVersion()
+    logIfIncorrectBuildToolsVersion()
+    configurations
+            .findAll { isCompileConfig(it) }
+            .each { logIncompatibleDependencies(it) }
+}
+
+private static String errorPrefix() {
+    "Intercom Android Error:"
+}
+
+private static String guideUrl() {
+    "https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-gradle-properties"
+}
+
+private void logIfIncorrectCompileSdkVersion() {
+    // this can be `{number}` or `android-{number}`
+    // regex checks that it ends with a number between 16 and 25 inclusive
+    if (cdvCompileSdkVersion != null && cdvCompileSdkVersion =~ /.*(1[6-9]|2[0-5])$/) {
+        logger.error("${errorPrefix()} cdvCompileSdkVersion = ${cdvCompileSdkVersion}. \n" +
+                "You need to use a cdvCompileSdkVersion of at least 26.\n" +
+                "See here for more: ${guideUrl()}\n")
+    }
+}
+
+private void logIfIncorrectBuildToolsVersion() {
+    // regex checks for a major version between 16 and 25 inclusive
+    if (cdvBuildToolsVersion != null && cdvBuildToolsVersion =~ /(1[6-9]|2[0-5])\..+$/) {
+        logger.error("${errorPrefix()}  cdvBuildToolsVersion = ${cdvBuildToolsVersion}. \n" +
+                "You need to use a cdvBuildToolsVersion of at least 26.0.0.\n" +
+                "See here for more: ${guideUrl()}\n")
+    }
+}
+
+private static Matcher isCompileConfig(config) {
+    // these can be `compile` or `{variant}Compile`
+    config.name =~ /^[a-z][a-zA-Z]*ompile/
+}
+
+private void logIncompatibleDependencies(config) {
+    config.resolvedConfiguration.resolvedArtifacts.each {
+        def artifact = it.moduleVersion.id
+        // check Support Library versions are 26.x
+        // regex checks for a major version between 16 and 25 inclusive
+        if (artifact.group == "com.android.support" && artifact.version =~ /^(1[6-9]|2[0-5])\./) {
+            logger.error("${errorPrefix()}  Build config ${config.name} has dependency: ${artifact}\n" +
+                    "The Intercom SDK requires version 26.x or higher of this dependency.\n" +
+                    "Check your plugins to see if any of them are bringing in this dependency")
+        }
+        // check Play Services/Firebase versions are 11.x
+        // regex checks for a major version between 7 and 10 inclusive
+        if ((artifact.group == "com.google.firebase" || artifact.group == "com.google.android.gms")
+                && artifact.version =~ /^([7-9]|10)\./) {
+            logger.error("${errorPrefix()}  Build config ${config.name} has dependency: ${artifact}\n" +
+                    "The Intercom SDK requires version 11.4.x or higher of this dependency.\n" +
+                    "Check your plugins to see if any of them are bringing in this dependency")
         }
     }
 }
