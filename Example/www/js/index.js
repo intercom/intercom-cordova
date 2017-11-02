@@ -46,8 +46,8 @@ var app = {
             app.login();
         }, false);
 
-        document.getElementById("logut-btn").addEventListener("click", function(){
-            intercom.reset();
+        document.getElementById("logout-btn").addEventListener("click", function(){
+            intercom.logout();
             var storage = window.localStorage;
             storage.removeItem("email");
             app.configureViewForLoggedOutUser();
@@ -81,13 +81,13 @@ var app = {
     },
 
     configureViewForLoggedInUser: function() {
-      document.getElementById("logut-btn").style.visibility = 'visible';
+      document.getElementById("logout-btn").style.visibility = 'visible';
       document.getElementById("open-intercom-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
 
     configureViewForLoggedOutUser: function() {
-      document.getElementById("logut-btn").style.visibility = 'hidden';
+      document.getElementById("logout-btn").style.visibility = 'hidden';
       document.getElementById("open-intercom-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
