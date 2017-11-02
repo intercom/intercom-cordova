@@ -69,7 +69,7 @@ jobs:
           name: Publish to npm
           command: |
             echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-            cd ../intercom-plugin && npm publish
+            cd intercom-plugin && npm publish
 
 workflows:
   version: 2
