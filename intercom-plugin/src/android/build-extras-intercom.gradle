@@ -67,9 +67,11 @@ private void logIfIncorrectBuildToolsVersion() {
     }
 }
 
-private static Matcher isCompileConfig(config) {
+private static boolean isCompileConfig(config) {
     // these can be `compile` or `{variant}Compile`
-    config.name =~ /^[a-z][a-zA-Z]*ompile/
+    config.name =~ /^[a-z][a-zA-Z]*ompile/ \
+        && !(config.name =~ /^test.*Compile/) \
+        && !(config.name =~ /^androidTest.*Compile/)
 }
 
 private void logIncompatibleDependencies(config) {
