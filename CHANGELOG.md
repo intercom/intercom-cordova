@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 4.1.1 (2017-11-15)
+
+* Fixed issue with diagnostic messages on Android: [#219](https://github.com/intercom/intercom-cordova/issues/219).
+
 ## 4.1.0 (2017-11-02)
 
 * Updated Intercom for Android to 4.1.x
