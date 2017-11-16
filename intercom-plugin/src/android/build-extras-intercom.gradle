@@ -36,7 +36,7 @@ afterEvaluate {
     logIfIncorrectCompileSdkVersion()
     logIfIncorrectBuildToolsVersion()
     configurations
-            .findAll { isCompileConfig(it) }
+            .findAll { it.name == "compile" }
             .each { logIncompatibleDependencies(it) }
 }
 
@@ -65,13 +65,6 @@ private void logIfIncorrectBuildToolsVersion() {
                 "You need to use a cdvBuildToolsVersion of at least 26.0.0.\n" +
                 "See here for more: ${guideUrl()}\n")
     }
-}
-
-private static boolean isCompileConfig(config) {
-    // these can be `compile` or `{variant}Compile`
-    config.name =~ /^[a-z][a-zA-Z]*ompile/ \
-        && !(config.name =~ /^test.*Compile/) \
-        && !(config.name =~ /^androidTest.*Compile/)
 }
 
 private void logIncompatibleDependencies(config) {
