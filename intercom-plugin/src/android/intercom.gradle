@@ -1,7 +1,7 @@
 buildscript {
     ext {
         pushType = ''
-        new XmlSlurper().parse(file('../../config.xml')).preference.each {
+        new XmlSlurper().parse(file('../app/src/main/res/xml/config.xml')).preference.each {
             if (it.@name.text() == 'intercom-android-push-type') {
                 pushType = it.@value.text().toLowerCase()
             }
@@ -36,7 +36,7 @@ dependencies {
 }
 
 task copyGoogleServices(type: Copy) {
-    from '../../google-services.json'
+    from '../../../google-services.json'
     into '.'
 }
 
