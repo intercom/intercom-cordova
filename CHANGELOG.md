@@ -1,5 +1,37 @@
 # Intercom for Cordova/PhoneGap
 
+## 5.0.0 (2018-01-22)
+
+* Supports `cordova-android` 7.0.0, the default Android build version when using `cordova-cli` 8.0.0, though it may also be specified on earlier versions (tested on [Cordova 7.1.0](https://github.com/apache/cordova-cli/releases/tag/7.1.0))
+
+* Deprecates GCM as a push type in favor of FCM. This includes removing the ability to specify a GCM/FCM sender id directly from config.xml. To use push on Android, adding your google-services.json to the root of your project is now required.
+
+* Per the [`cordova-android` 7.0.0 release notes](cordova.apache.org/announcements/2017/12/04/cordova-android-7.0.0.html), the minimum Android API version supported is now API Level 19.
+
+---
+
+Update guide:
+
+1. If you have not already done so, update your `cordova-cli`:
+    ```
+    npm install -g cordova
+    cd my_project
+    cordova platform remove android
+    cordova platform add android@7.0.0
+    ```
+2. Update `plugin-cordova-intercom`:
+    ```
+    cordova plugin remove cordova-plugin-intercom
+    cordova plugin add cordova-plugin-intercom@5.0.0
+    ```
+3. Ensure your config.xml specifies an android-minSdkVersion at or above 19:
+    * `<preference name="android-minSdkVersion" value="19" />`
+4. To use push on Android:
+    * Ensure you've added `<preference name="intercom-android-push-type" value="FCM"/>` to your config.xml
+    * Copy your FCM `google-services.json` file to the root directory of your project.
+
+_NB: The above steps may not be exhaustive and are dependent on your app and system Cordova configuration_
+
 ## 4.1.2 (2017-11-16)
 
 * Further fixes to issue with diagnostic messages on Android: [#219](https://github.com/intercom/intercom-cordova/issues/219).
