@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 5.0.1 (2018-01-23)
+
+* Removes dependency on `PackageManager.GET_META_DATA`, which Cordova does not appear to generate any longer for new projects: [#239](https://github.com/intercom/intercom-cordova/issues/239).
+
 ## 5.0.0 (2018-01-22)
 
 * Supports `cordova-android` 7.0.0, the default Android build version when using `cordova-cli` 8.0.0, though it may also be specified on earlier versions (tested on [Cordova 7.1.0](https://github.com/apache/cordova-cli/releases/tag/7.1.0))
@@ -22,7 +26,7 @@ Update guide:
 2. Update `plugin-cordova-intercom`:
     ```
     cordova plugin remove cordova-plugin-intercom
-    cordova plugin add cordova-plugin-intercom@5.0.0
+    cordova plugin add cordova-plugin-intercom
     ```
 3. Ensure your config.xml specifies an android-minSdkVersion at or above 19:
     * `<preference name="android-minSdkVersion" value="19" />`
