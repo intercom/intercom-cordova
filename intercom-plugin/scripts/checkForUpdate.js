@@ -89,15 +89,15 @@ module.exports = function(context) {
         updateInfo.lastCheckDate = Date.now();
 
         if (releaseData != null) {
-          updateInfo.releaseDate = Date.parse(releaseData['published_at']);
-          updateIntercomIfNeeded(context, updateInfo, function() {
-            deferral.resolve();
-          });
+          updateInfo.releaseDate = Date.parse(releaseData['published_at']);          
         } else {
-          writeUpdateInfo(context, updateInfo, function() {
-            deferral.resolve();
-          });
+          // last release date is unavailable, set it to today so that the pod is installed
+          updateInfo.releaseDate = Date.now();
         }
+
+        updateIntercomIfNeeded(context, updateInfo, function() {
+          deferral.resolve();
+        });
       });
     } else {
       deferral.resolve();
