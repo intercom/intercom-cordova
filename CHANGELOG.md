@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 5.0.2 (2018-02-12)
+
+* Fix issue with Intercom pod not being updated / installed when GitHub response was not 200 OK: [#246](https://github.com/intercom/intercom-cordova/pull/246)
+
 ## 5.0.1 (2018-01-23)
 
 * Removes dependency on `PackageManager.GET_META_DATA`, which Cordova does not appear to generate any longer for new projects: [#239](https://github.com/intercom/intercom-cordova/issues/239).
