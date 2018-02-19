@@ -22,7 +22,7 @@
 
     <platform name="ios">
       <hook type="before_plugin_install" src="scripts/prepareCocoaPods.js" />
-      <hook type="before_build" src="scripts/checkForUpdate.js" />
+      <hook type="after_prepare" src="scripts/checkForUpdate.js" />
 
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
