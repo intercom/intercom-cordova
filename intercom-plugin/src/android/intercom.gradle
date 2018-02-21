@@ -62,4 +62,7 @@ if (pushType == 'gcm') {
 } else if (pushType == 'fcm') {
     tasks.copyGoogleServices.execute()
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
+} else if (pushType == 'fcm-without-build-plugin') {
+    tasks.copyGoogleServices.execute()
+    logger.info("Not applying GoogleServicesPlugin from Intercom plugin, another plugin should do this")
 }
