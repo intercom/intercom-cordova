@@ -1,5 +1,14 @@
 # Intercom for Cordova/PhoneGap
 
+## 5.1.0 (2018-02-12)
+
+* Created fork of `phonegap-plugin-push` to allow it to work with this plugin: https://github.com/intercom/phonegap-plugin-push
+* Allow FCM notifications without applying build plugin [#253](https://github.com/intercom/intercom-cordova/pull/253)
+* Update recommended build tool & library versions [#252](https://github.com/intercom/intercom-cordova/pull/252)
+* Remove broken support for multiple GCM libraries [#251](https://github.com/intercom/intercom-cordova/pull/251)
+* Fix GCM sender ID reading [#250](https://github.com/intercom/intercom-cordova/pull/250)
+* Change hook for checkForUpdate to be after_prepare [#249](https://github.com/intercom/intercom-cordova/pull/249)
+
 ## 5.0.2 (2018-02-12)
 
 * Fix issue with Intercom pod not being updated / installed when GitHub response was not 200 OK: [#246](https://github.com/intercom/intercom-cordova/pull/246)
