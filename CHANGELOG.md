@@ -1,6 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
-## 5.1.0 (2018-02-12)
+## 5.1.1 (2018-02-26)
+
+* Include FCM libraries when building without build plugin [#257](https://github.com/intercom/intercom-cordova/pull/257)
+
+## 5.1.0 (2018-02-26)
 
 * Created fork of `phonegap-plugin-push` to allow it to work with this plugin: https://github.com/intercom/phonegap-plugin-push
 * Allow FCM notifications without applying build plugin [#253](https://github.com/intercom/intercom-cordova/pull/253)
