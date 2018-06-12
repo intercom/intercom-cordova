@@ -1,5 +1,30 @@
 # Intercom for Cordova/PhoneGap
 
+## 6.0.0 (2018-06-12)
+
+The Business Messenger reimagined.
+
+**Messenger apps**
+* Complete actions beyond chat in the Messenger seamlessly with a growing library of apps. Messenger apps are being rolled out to all customers over the next 2 weeks.
+
+**Extendable platform**
+* Create your own Messenger apps to suit your unique workflows – and enable entirely new ones.
+
+**Updated Design**
+* Updated visual design with new wallpapers and expanded color settings.
+
+**Messenger settings**
+* New wallpapers to customize your profile.
+* Set a background color for your profile and an action color for cards and chat bubbles.
+* Support light theme colors in your messenger.
+
+**Help Center**
+* Added the method `displayHelpCenter()`. Calling this method in your app displays your Articles Help Center. Learn more about Articles [here](https://www.intercom.com/articles/features).
+
+![5-0-0-android-release-screens](https://user-images.githubusercontent.com/2615468/39157445-befb7196-4752-11e8-8a33-57636975ecec.png)
+
+![5-0-0-ios-release-screens](https://user-images.githubusercontent.com/3185423/39155559-6a3f239e-474a-11e8-8eb0-fdb0c69d288f.jpg)
+
 ## 5.1.1 (2018-02-26)
 
 * Include FCM libraries when building without build plugin [#257](https://github.com/intercom/intercom-cordova/pull/257)

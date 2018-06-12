@@ -47,6 +47,10 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'displayConversationsList', []);
     },
 
+    displayHelpCenter: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayHelpCenter', []);
+    },
+
     unreadConversationCount: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'unreadConversationCount', []);
     },

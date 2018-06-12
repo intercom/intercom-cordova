@@ -57,6 +57,10 @@ var app = {
       document.getElementById("open-intercom-btn").addEventListener("click", function(){
           intercom.displayMessenger();
       }, false);
+
+      document.getElementById("open-help-center-btn").addEventListener("click", function(){
+          intercom.displayHelpCenter();
+      }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -83,12 +87,14 @@ var app = {
     configureViewForLoggedInUser: function() {
       document.getElementById("logout-btn").style.visibility = 'visible';
       document.getElementById("open-intercom-btn").style.visibility = 'visible';
+      document.getElementById("open-help-center-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
 
     configureViewForLoggedOutUser: function() {
       document.getElementById("logout-btn").style.visibility = 'hidden';
       document.getElementById("open-intercom-btn").style.visibility = 'hidden';
+      document.getElementById("open-help-center-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
 };

@@ -40,17 +40,7 @@
         <icon height="40" src="www/img/icon-40.png" width="40" />
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
-        <splash height="960" src="www/img/launch/Default@2x.png" width="640" />
-        <splash height="480" src="www/img/launch/Default.png" width="320" />
-        <splash height="1024" src="www/img/launch/Default-Portrait_iPad.png" width="768" />
-        <splash height="2048" src="www/img/launch/Default-Portrait_iPad@2x.png" width="1536" />
-        <splash height="768" src="www/img/launch/iPad_landscape.png" width="1024" />
-        <splash height="1536" src="www/img/launch/iPad_landscape@2x.png" width="2048" />
-        <splash height="960" src="www/img/launch/iPhone_small.png" width="640" />
-        <splash height="1136" src="www/img/launch/Default-568h@2x.png" width="640" />
-        <splash height="1334" src="www/img/launch/Default-667h@2x.png" width="750" />
-        <splash height="2208" src="www/img/launch/Default-736@2x.png" width="1242" />
-        <splash height="1242" src="www/img/launch/iPad_landscape_large.png" width="2208" />
+        <splash src="www/img/launch/Default@2x~universal~anyany.png" />
     </platform>
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
     <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY" />
@@ -62,6 +52,6 @@
  -->
 
     <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
-    <engine name="android" spec="^7.0.0" />
+    <engine name="android" spec="^7.1.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
