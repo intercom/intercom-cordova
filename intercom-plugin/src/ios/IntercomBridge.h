@@ -19,6 +19,7 @@
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
 - (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command;
+- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command;
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
 - (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command;

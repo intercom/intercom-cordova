@@ -189,6 +189,12 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        displayHelpCenter {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().displayHelpCenter();
+                callbackContext.success();
+            }
+        },
         setLauncherVisibility {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String visibilityString = args.optString(0);

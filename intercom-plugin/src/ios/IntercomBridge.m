@@ -108,6 +108,11 @@
     [self sendSuccess:command];
 }
 
+- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command {
+    [Intercom presentHelpCenter];
+    [self sendSuccess:command];
+}
+
 - (void)hideMessenger:(CDVInvokedUrlCommand*)command {
     [Intercom hideMessenger];
     [self sendSuccess:command];
