@@ -72,6 +72,10 @@ var intercom = {
 
     registerForPush: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'registerForPush', []);
+    },
+
+    sendPushTokenToIntercom: function(token, success, error) {
+        cordova.exec(success, error, 'Intercom', 'sendPushTokenToIntercom', [token]);
     }
 }
 
