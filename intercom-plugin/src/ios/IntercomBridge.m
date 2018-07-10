@@ -149,6 +149,10 @@
     [self sendSuccess:command];
 }
 
+- (void)sendPushTokenToIntercom:(CDVInvokedUrlCommand*)command {
+  NSLog(@"[Intercom-Cordova] INFO - sendPushTokenToIntercom called");
+}
+
 #pragma mark - User attributes
 
 - (ICMUserAttributes *)userAttributesForDictionary:(NSDictionary *)attributesDict {
