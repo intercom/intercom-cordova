@@ -1,5 +1,21 @@
 # Intercom for Cordova/PhoneGap
 
+## 6.1.0 (2018-07-20)
+
+**Enable mobile users to help themselves with the new mobile SDK for iOS and Android 🎉 😃**
+
+The new Intercom mobile SDK brings the Messenger Home to your mobile applications. This means you can add messenger apps that allow your users to self-serve instead of starting a conversation. Users can now quickly access relevant help articles, review pinned content, and view product status in real time – all from the messenger home screen.
+
+![android-release-screens](https://user-images.githubusercontent.com/2615468/42951497-316de29a-8b6e-11e8-8ed8-a0a3a93f6f4f.png)
+
+![ios-release-screens](https://user-images.githubusercontent.com/3185423/42937925-71ab4b5c-8b48-11e8-913b-88d48c9b82f3.png)
+
+**API changes**
+
+* `displayConversationsList` - Use `displayMessenger` instead.
+
+These deprecated methods will still work, but will be removed in a future release. 
+
 ## 6.0.0 (2018-06-12)
 
 The Business Messenger reimagined.
