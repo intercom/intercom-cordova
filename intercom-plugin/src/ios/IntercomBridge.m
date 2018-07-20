@@ -9,7 +9,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"5.1.1"];
+    [Intercom setCordovaVersion:@"6.1.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -93,18 +93,19 @@
 }
 
 - (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
-    [Intercom presentMessageComposer];
+    [Intercom presentMessageComposer:nil];
     [self sendSuccess:command];
 }
 
 - (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command {
     NSString *initialMessage = command.arguments[0];
-    [Intercom presentMessageComposerWithInitialMessage:initialMessage];
+    [Intercom presentMessageComposer:initialMessage];
     [self sendSuccess:command];
 }
 
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command {
-    [Intercom presentConversationList];
+    NSLog(@"[Intercom-Cordova] WARNING - displayConversationsList is deprecated. Please use displayMessenger instead.");
+    [Intercom presentMessenger];
     [self sendSuccess:command];
 }
 
