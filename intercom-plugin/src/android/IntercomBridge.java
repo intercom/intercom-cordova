@@ -23,6 +23,7 @@ import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
 import io.intercom.android.sdk.api.UserUpdateRequest;
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.logger.LumberMill;
+import io.intercom.android.sdk.push.IntercomPushClient;
 public class IntercomBridge extends CordovaPlugin {
 
     private static final String CUSTOM_ATTRIBUTES = "custom_attributes";
@@ -242,6 +243,13 @@ public class IntercomBridge extends CordovaPlugin {
         registerForPush {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 //This doesn't need to do anything on Android
+            }
+        },
+        sendPushTokenToIntercom {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String token = args.optString(0);
+                IntercomPushClient intercomPushClient = new IntercomPushClient();
+                intercomPushClient.sendTokenToIntercom(cordova.getActivity().getApplication(), token);
             }
         },
         unknown {
