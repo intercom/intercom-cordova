@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 6.2.0 (2018-12-18)
+
+* Support sending a push token to Intercom manually with the addition of the method `sendPushTokenToIntercom`
+
 ## 6.1.0 (2018-07-20)
 
 **Enable mobile users to help themselves with the new mobile SDK for iOS and Android 🎉 😃**
