@@ -12,7 +12,7 @@ jobs:
           command: command -v node || brew install node
       - run:
           name: Install Cordova
-          command: npm install -g cordova
+          command: npm install -g cordova@8.0.0
       - run:
           name: Setup CocoaPods
           command: curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
@@ -35,7 +35,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Accept any Android licenses
+          name: Accept all Android licenses
           command: |
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
       - run:
