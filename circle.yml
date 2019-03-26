@@ -35,6 +35,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Accept any Android licenses
+          command: |
+            yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
+      - run:
           name: Install node/npm
           command: |
             curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
