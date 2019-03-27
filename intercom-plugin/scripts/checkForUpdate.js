@@ -1,5 +1,5 @@
 function fetchUpdateInfo(context, callback) {
-  var fs = context.requireCordovaModule('fs');
+  var fs = context.require('fs');
 
   var updateInfo = {
     releaseDate: 0,
@@ -19,14 +19,14 @@ function fetchUpdateInfo(context, callback) {
 }
 
 function writeUpdateInfo(context, updateInfo, callback) {
-  var fs = context.requireCordovaModule('fs');
+  var fs = context.require('fs');
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
 }
 
 function updateIntercomIfNeeded(context, updateInfo, callback) {
-  var exec = context.requireCordovaModule('child_process').exec;
+  var exec = context.require('child_process').exec;
 
   var completion = function() {
     writeUpdateInfo(context, updateInfo, function() {
@@ -49,7 +49,7 @@ function updateIntercomIfNeeded(context, updateInfo, callback) {
 }
 
 function fetchLatestRelease(context, callback) {
-  var https = context.requireCordovaModule('https');
+  var https = context.require('https');
 
   var req = https.get({
     headers: {
@@ -79,7 +79,7 @@ function fetchLatestRelease(context, callback) {
 }
 
 module.exports = function(context) {
-  var Q = context.requireCordovaModule('q');
+  var Q = context.require('q');
   var deferral = new Q.defer();
 
   fetchUpdateInfo(context, function(updateInfo) {
