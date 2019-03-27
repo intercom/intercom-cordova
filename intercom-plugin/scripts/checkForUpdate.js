@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 var fs = require('fs');
+=======
+function fetchUpdateInfo(context, callback) {
+  var fs = context.require('fs');
+>>>>>>> Fixing builds
 
 function fetchUpdateInfo(callback) {
   var updateInfo = {
@@ -18,14 +23,25 @@ function fetchUpdateInfo(callback) {
   });
 }
 
+<<<<<<< HEAD
 function writeUpdateInfo(updateInfo, callback) {  
+=======
+function writeUpdateInfo(context, updateInfo, callback) {
+  var fs = context.require('fs');
+>>>>>>> Fixing builds
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
 }
 
+<<<<<<< HEAD
 function updateIntercomIfNeeded(updateInfo, callback) {
   var exec = require('child_process').exec;
+=======
+function updateIntercomIfNeeded(context, updateInfo, callback) {
+  var exec = context.require('child_process').exec;
+
+>>>>>>> Fixing builds
   var completion = function() {
     writeUpdateInfo(updateInfo, function() {
       callback();
@@ -46,8 +62,13 @@ function updateIntercomIfNeeded(updateInfo, callback) {
   }
 }
 
+<<<<<<< HEAD
 function fetchLatestRelease(callback) {
   var https = require('https');
+=======
+function fetchLatestRelease(context, callback) {
+  var https = context.require('https');
+>>>>>>> Fixing builds
 
   var req = https.get({
     headers: {
@@ -76,9 +97,15 @@ function fetchLatestRelease(callback) {
   });
 }
 
+<<<<<<< HEAD
 module.exports = function() {
   var q = require('q');
   var deferral = new q.defer();
+=======
+module.exports = function(context) {
+  var Q = context.require('q');
+  var deferral = new Q.defer();
+>>>>>>> Fixing builds
 
   fetchUpdateInfo(function(updateInfo) {
     // Check at most once every 48 hours
