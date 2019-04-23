@@ -1,6 +1,6 @@
-function fetchUpdateInfo(context, callback) {
-  var fs = context.requireCordovaModule('fs');
+var fs = require('fs');
 
+function fetchUpdateInfo(callback) {
   var updateInfo = {
     releaseDate: 0,
     podUpdateDate: 0,
@@ -18,18 +18,16 @@ function fetchUpdateInfo(context, callback) {
   });
 }
 
-function writeUpdateInfo(context, updateInfo, callback) {
-  var fs = context.requireCordovaModule('fs');
+function writeUpdateInfo(updateInfo, callback) {  
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
 }
 
-function updateIntercomIfNeeded(context, updateInfo, callback) {
-  var exec = context.requireCordovaModule('child_process').exec;
-
+function updateIntercomIfNeeded(updateInfo, callback) {
+  var exec = require('child_process').exec;
   var completion = function() {
-    writeUpdateInfo(context, updateInfo, function() {
+    writeUpdateInfo(updateInfo, function() {
       callback();
     });
   };
@@ -48,8 +46,8 @@ function updateIntercomIfNeeded(context, updateInfo, callback) {
   }
 }
 
-function fetchLatestRelease(context, callback) {
-  var https = context.requireCordovaModule('https');
+function fetchLatestRelease(callback) {
+  var https = require('https');
 
   var req = https.get({
     headers: {
@@ -78,14 +76,14 @@ function fetchLatestRelease(context, callback) {
   });
 }
 
-module.exports = function(context) {
-  var Q = context.requireCordovaModule('q');
-  var deferral = new Q.defer();
+module.exports = function() {
+  var q = require('q');
+  var deferral = new q.defer();
 
-  fetchUpdateInfo(context, function(updateInfo) {
+  fetchUpdateInfo(function(updateInfo) {
     // Check at most once every 48 hours
     if (Date.now() - updateInfo.lastCheckDate > 1000 * 60 * 60 * 48) {
-      fetchLatestRelease(context, function(releaseData) {
+      fetchLatestRelease(function(releaseData) {
         updateInfo.lastCheckDate = Date.now();
 
         if (releaseData != null) {
@@ -95,7 +93,7 @@ module.exports = function(context) {
           updateInfo.releaseDate = Date.now();
         }
 
-        updateIntercomIfNeeded(context, updateInfo, function() {
+        updateIntercomIfNeeded(updateInfo, function() {
           deferral.resolve();
         });
       });
