@@ -3,7 +3,10 @@ var fs = require('fs');
 =======
 function fetchUpdateInfo(context, callback) {
   var fs = context.require('fs');
+<<<<<<< HEAD
 >>>>>>> Fixing builds
+=======
+>>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
 
 function fetchUpdateInfo(callback) {
   var updateInfo = {
@@ -28,7 +31,10 @@ function writeUpdateInfo(updateInfo, callback) {
 =======
 function writeUpdateInfo(context, updateInfo, callback) {
   var fs = context.require('fs');
+<<<<<<< HEAD
 >>>>>>> Fixing builds
+=======
+>>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
@@ -68,7 +74,10 @@ function fetchLatestRelease(callback) {
 =======
 function fetchLatestRelease(context, callback) {
   var https = context.require('https');
+<<<<<<< HEAD
 >>>>>>> Fixing builds
+=======
+>>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
 
   var req = https.get({
     headers: {
