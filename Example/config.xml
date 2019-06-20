@@ -45,13 +45,7 @@
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
     <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
-
-<!--
-    Include this line if you wish to use FCM for Android push notifications
-    <preference name="intercom-android-push-type" value="FCM" />
- -->
-
     <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
-    <engine name="android" spec="^7.1.0" />
     <engine name="ios" spec="^4.5.4" />
+    <engine name="android" spec="~7.1.4" />
 </widget>

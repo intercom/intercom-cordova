@@ -18,7 +18,7 @@ function fetchUpdateInfo(callback) {
   });
 }
 
-function writeUpdateInfo(updateInfo, callback) {  
+function writeUpdateInfo(updateInfo, callback) {
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
@@ -31,7 +31,7 @@ function updateIntercomIfNeeded(updateInfo, callback) {
       callback();
     });
   };
-    
+
   if (updateInfo.releaseDate > updateInfo.podUpdateDate) {
     console.log("Updating Intercom");
     exec('cd platforms/ios && pod update Intercom', function(error, stdout, stderr) {
@@ -87,7 +87,7 @@ module.exports = function() {
         updateInfo.lastCheckDate = Date.now();
 
         if (releaseData != null) {
-          updateInfo.releaseDate = Date.parse(releaseData['published_at']);          
+          updateInfo.releaseDate = Date.parse(releaseData['published_at']);
         } else {
           // last release date is unavailable, set it to today so that the pod is installed
           updateInfo.releaseDate = Date.now();
