@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 var fs = require('fs');
-=======
-function fetchUpdateInfo(context, callback) {
-  var fs = context.require('fs');
-<<<<<<< HEAD
->>>>>>> Fixing builds
-=======
->>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
 
 function fetchUpdateInfo(callback) {
   var updateInfo = {
@@ -26,34 +18,20 @@ function fetchUpdateInfo(callback) {
   });
 }
 
-<<<<<<< HEAD
-function writeUpdateInfo(updateInfo, callback) {  
-=======
-function writeUpdateInfo(context, updateInfo, callback) {
-  var fs = context.require('fs');
-<<<<<<< HEAD
->>>>>>> Fixing builds
-=======
->>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
+function writeUpdateInfo(updateInfo, callback) {
   fs.writeFile('platforms/ios/.intercom_update', JSON.stringify(updateInfo), 'utf8', function (err,data) {
     callback();
   });
 }
 
-<<<<<<< HEAD
 function updateIntercomIfNeeded(updateInfo, callback) {
   var exec = require('child_process').exec;
-=======
-function updateIntercomIfNeeded(context, updateInfo, callback) {
-  var exec = context.require('child_process').exec;
-
->>>>>>> Fixing builds
   var completion = function() {
     writeUpdateInfo(updateInfo, function() {
       callback();
     });
   };
-    
+
   if (updateInfo.releaseDate > updateInfo.podUpdateDate) {
     console.log("Updating Intercom");
     exec('cd platforms/ios && pod update Intercom', function(error, stdout, stderr) {
@@ -68,16 +46,8 @@ function updateIntercomIfNeeded(context, updateInfo, callback) {
   }
 }
 
-<<<<<<< HEAD
 function fetchLatestRelease(callback) {
   var https = require('https');
-=======
-function fetchLatestRelease(context, callback) {
-  var https = context.require('https');
-<<<<<<< HEAD
->>>>>>> Fixing builds
-=======
->>>>>>> 6589adde09224605ace925f9f1f6e29d5a94138e
 
   var req = https.get({
     headers: {
@@ -106,15 +76,9 @@ function fetchLatestRelease(context, callback) {
   });
 }
 
-<<<<<<< HEAD
 module.exports = function() {
   var q = require('q');
   var deferral = new q.defer();
-=======
-module.exports = function(context) {
-  var Q = context.require('q');
-  var deferral = new Q.defer();
->>>>>>> Fixing builds
 
   fetchUpdateInfo(function(updateInfo) {
     // Check at most once every 48 hours
@@ -123,7 +87,7 @@ module.exports = function(context) {
         updateInfo.lastCheckDate = Date.now();
 
         if (releaseData != null) {
-          updateInfo.releaseDate = Date.parse(releaseData['published_at']);          
+          updateInfo.releaseDate = Date.parse(releaseData['published_at']);
         } else {
           // last release date is unavailable, set it to today so that the pod is installed
           updateInfo.releaseDate = Date.now();
