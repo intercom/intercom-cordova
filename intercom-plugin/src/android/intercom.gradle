@@ -28,12 +28,10 @@ repositories {
 }
 
 dependencies {
-    compile 'io.intercom.android:intercom-sdk-base:5.1.5'
-    if (pushType == 'gcm') {
-        compile 'io.intercom.android:intercom-sdk-gcm:5.1.5'
-    } else if (pushType == 'fcm' || pushType == 'fcm-without-build-plugin') {
-        compile 'com.google.firebase:firebase-messaging:11.+'
-        compile 'io.intercom.android:intercom-sdk-fcm:5.1.5'
+    compile 'io.intercom.android:intercom-sdk-base:5.+'
+    if (pushType == 'fcm' || pushType == 'fcm-without-build-plugin') {
+        compile 'com.google.firebase:firebase-messaging:17.+'
+        compile 'io.intercom.android:intercom-sdk-fcm:5.+'
     }
 }
 

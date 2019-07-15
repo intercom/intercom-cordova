@@ -63,11 +63,11 @@ public class IntercomBridge extends CordovaPlugin {
             CordovaHeaderInterceptor.setCordovaVersion(context, "6.2.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
-                case GCM: {
+                case FCM: {
                     String senderId = getSenderId(context);
 
                     if (senderId != null) {
-                        LumberMill.getLogger().d("Using GCM Sender ID: " + senderId);
+                        LumberMill.getLogger().d("Using FCM Sender ID: " + senderId);
                         IntercomPushManager.cacheSenderId(context, senderId);
                     }
                     break;
