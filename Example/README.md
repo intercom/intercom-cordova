@@ -20,7 +20,7 @@ Before you run your app, you'll need to add your Intercom **AppID** and **API Ke
 <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY"/>
 ```
 
-If you want to enable Android FCM/GCM push notifications copy your `google-services.json` file into the `Example/` folder add this line to `config.xml`:
+If you want to enable Android FCM push notifications copy your `google-services.json` file into the `Example/` folder add this line to `config.xml`:
 ```xml
 <preference name="intercom-android-push-type" value="FCM"/>
 ```

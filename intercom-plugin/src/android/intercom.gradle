@@ -42,24 +42,7 @@ task copyGoogleServices(type: Copy) {
     into '.'
 }
 
-if (pushType == 'gcm') {
-    try {
-        def jsonFile = file(googleServicesJsonPath)
-        def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
-        def senderId = parsedJson.project_info.project_number
-
-        android {
-            defaultConfig {
-                resValue "string", "intercom_gcm_sender_id", senderId
-                buildConfigField "String", 'INTERCOM_SENDER_ID', "\"${senderId}\""
-            }
-        }
-    } catch (Exception e) {
-        logger.error("Could not read sender ID from google-services.json, falling back to " +
-                "`intercom-android-sender-id` preference:" + e.getMessage())
-    }
-
-} else if (pushType == 'fcm') {
+if (pushType == 'fcm') {
     tasks.copyGoogleServices.execute()
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
 } else if (pushType == 'fcm-without-build-plugin') {
