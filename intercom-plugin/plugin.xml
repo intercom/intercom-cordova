@@ -8,9 +8,9 @@
     <keywords>intercom,intercom-cordova</keywords>
 
     <engines>
-      <engine name="cordova" version=">=7.1.0" />
-      <engine name="cordova-android" version=">=7.1.0" />
-      <engine name="cordova-ios" version=">=4.5.4" />
+      <engine name="cordova" version=">=9.0.0" />
+      <engine name="cordova-android" version=">=8.0.0" />
+      <engine name="cordova-ios" version=">=5.0.0" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">
@@ -47,7 +47,7 @@
         </array>
       </config-file>
 
-      <framework src="Intercom" type="podspec" spec="~> 5.1.0" />
+      <framework src="Intercom" type="podspec" spec="~> 5.4.0" />
     </platform>
 
     <platform name="android">

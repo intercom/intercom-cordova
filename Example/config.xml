@@ -43,9 +43,9 @@
         <splash src="www/img/launch/Default@2x~universal~anyany.png" />
     </platform>
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
-    <preference name="intercom-ios-api-key" value="YOU_IOS_API_KEY" />
+    <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
     <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
-    <engine name="ios" spec="^4.5.4" />
-    <engine name="android" spec="~7.1.4" />
+    <engine name="ios" spec="^5.0.0" />
+    <engine name="android" spec="~8.0.0" />
 </widget>
