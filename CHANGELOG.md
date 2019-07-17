@@ -1,5 +1,17 @@
 # Intercom for Cordova/PhoneGap
 
+## 7.1.0 (2019-07-17)
+
+* Updated to cordova-android 8.0.0 and cordova-ios 5.0.0
+* Removed GCM as [Google has removed GCM](https://developers.google.com/cloud-messaging/faq)
+* Updated Firebase version 
+* Updated our Example app to use the newer versions of Cordova
+* Now using the latest versions of the Intercom [Android SDK](https://github.com/intercom/intercom-android/releases) and [iOS SDK](https://github.com/intercom/intercom-android/releases) with support for Custom Bots!
+
+## 7.0.0 (2019-06-20)
+
+* Cordova 9 support
+
 ## 6.2.0 (2018-12-18)
 
 * Support sending a push token to Intercom manually with the addition of the method `sendPushTokenToIntercom`
