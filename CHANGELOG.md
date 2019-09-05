@@ -1,10 +1,14 @@
 # Intercom for Cordova/PhoneGap
 
+## 7.1.1 (2019-09-05)
+
+* * The Intercom Cordova plugin has been updated to use v5.4.1 of the Intercom Android SDK as the latest version. This is because v5.5.0 of the Intercom Android SDK targets Android 10, which is currently unsupported by Cordova.
+
 ## 7.1.0 (2019-07-17)
 
 * Updated to cordova-android 8.0.0 and cordova-ios 5.0.0
 * Removed GCM as [Google has removed GCM](https://developers.google.com/cloud-messaging/faq)
-* Updated Firebase version 
+* Updated Firebase version
 * Updated our Example app to use the newer versions of Cordova
 * Now using the latest versions of the Intercom [Android SDK](https://github.com/intercom/intercom-android/releases) and [iOS SDK](https://github.com/intercom/intercom-android/releases) with support for Custom Bots!
 
@@ -30,7 +34,7 @@ The new Intercom mobile SDK brings the Messenger Home to your mobile application
 
 * `displayConversationsList` - Use `displayMessenger` instead.
 
-These deprecated methods will still work, but will be removed in a future release. 
+These deprecated methods will still work, but will be removed in a future release.
 
 ## 6.0.0 (2018-06-12)
 
