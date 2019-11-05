@@ -17,7 +17,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-minSdkVersion" value="21" />
         <icon density="hdpi" src="www/img/android/hdpi.png" />
         <icon density="mdpi" src="www/img/android/mdpi.png" />
         <icon density="xhdpi" src="www/img/android/xhdpi.png" />
@@ -27,7 +27,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <preference name="deployment-target" value="8.0" />
+        <preference name="deployment-target" value="10.0" />
         <preference name="BackupWebStorage" value="local" />
         <icon height="29" src="www/img/icon-29.png" width="29" />
         <icon height="58" src="www/img/icon-29@2x.png" width="58" />
@@ -46,6 +46,4 @@
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
     <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
-    <engine name="ios" spec="^5.0.0" />
-    <engine name="android" spec="~8.0.0" />
 </widget>

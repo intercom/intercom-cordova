@@ -74,7 +74,8 @@ var app = {
     },
 
     login: function() {
-      var emailAddress = prompt("Type in an email address", "");
+      // Replace this email with your own
+      var emailAddress = "sample-email@test.com";
       if (emailAddress) {
         intercom.registerIdentifiedUser({email: emailAddress});
         var storage = window.localStorage;

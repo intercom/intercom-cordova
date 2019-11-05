@@ -1,5 +1,13 @@
 # Intercom for Cordova/PhoneGap
 
+## 8.0.0 (2019-11-04)
+
+* Upgraded to version 6.0.0 of the iOS and Android SDK.
+* iOS 10 is now the minimum version of iOS that is supported by the Intercom iOS SDK.
+* We have deprecated support for iOS 8 & 9.
+* Android API level 21 (v5 - Lollipop) is now the minimum version of Android that is supported by the Intercom Android SDK.
+* If your app still support API levels before 21 you'll need to bump minSdkVersion to 21 in order to use version 6+ of our SDK.
+
 ## 7.1.1 (2019-09-05)
 
 * * The Intercom Cordova plugin has been updated to use v5.4.1 of the Intercom Android SDK as the latest version. This is because v5.5.0 of the Intercom Android SDK targets Android 10, which is currently unsupported by Cordova.

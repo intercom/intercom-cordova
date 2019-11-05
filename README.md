@@ -4,8 +4,8 @@
 
 This is a plugin that allows your Cordova or PhoneGap app to use [Intercom for iOS](https://github.com/intercom/intercom-ios) and/or [Intercom for Android](https://github.com/intercom/intercom-android).
 
-* Intercom for iOS supports iOS 8, 9, 10, 11 & 12.
-* Intercom for Android supports API 19 and above.
+* Intercom for iOS supports iOS 10 and above.
+* Intercom for Android supports API 21 and above.
 
 ## Customer Support
 👋 We are moving all our issues support to our [Intercom Developer Hub available here](https://developers.intercom.com/docs/intercom-mobile-installation?utm_source=github&utm_campaign=cordova-help). If you bump into any problems or need more support, just start a conversation using Intercom there and it will be immediately routed to our Customer Support Engineers.
@@ -22,39 +22,7 @@ cordova plugin add cordova-plugin-intercom
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
-<plugin name="cordova-plugin-intercom" version="~7.1.1" />
-```
-### Ionic
-
-Intercom is compatible with both Ionic 1 & 2. To use the Intercom with Ionic, run the following:
-```script
-cordova plugin add cordova-plugin-intercom
-```
-Make sure you [initialize Intercom](https://developers.intercom.com/docs/cordova-phonegap-installation#section-step-2-initialize-intercom) correctly.
-#### Ionic 1
-For Ionic 1 you can use Intercom like this:
-```
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    cordova.plugins.intercom.registerIdentifiedUser({userId: "123456"});
-    cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
-  });
-})
-```
-
-
-#### Ionic 2
-For Ionic 2 you need to add the folling variable to your `app.component.ts`:
-
-`declare var cordova:any;`
-
-You can then use Intercom like this:
-
-```
-this.platform.ready().then(() => {
-    cordova.plugins.intercom.registerIdentifiedUser({userId: "12345"});
-    cordova.plugins.intercom.setLauncherVisibility('VISIBLE');
-});
+<plugin name="cordova-plugin-intercom" version="~8.0.0" />
 ```
 
 ## Example App
