@@ -11,7 +11,7 @@ npm install -g cordova
 npm install -g ios-sim
 ```
 
-## Configuration
+## Configuration 
 
 Before you run your app, you'll need to add your Intercom **AppID** and **API Key** to `config.xml` for both Android and/or iOS.
 ```xml
