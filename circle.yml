@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Install node/npm
           command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Install gradle
@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Install node/npm
           command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Publish to npm
