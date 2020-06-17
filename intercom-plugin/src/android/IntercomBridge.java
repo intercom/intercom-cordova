@@ -33,7 +33,7 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 setUpIntercom();
                 try {
-                    Injector.get().getApi().updateUser(new UserUpdateRequest(true, false, true));
+                    Injector.get().getApi().updateUser(UserUpdateRequest.create(true, false, true));
                 } catch (RuntimeException e) {
                     // Intercom is not initialised yet, do nothing
                 }
@@ -60,7 +60,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "8.0.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "9.0.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case FCM: {
