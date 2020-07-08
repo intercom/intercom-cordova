@@ -1,5 +1,15 @@
 # Intercom for Cordova/PhoneGap
 
+## 9.0.0 (2020-07-08)
+
+The Intercom Cordova plugin has been updated to use v7.1.1 of the iOS and Android SDK. We fixed a number of bugs in this release:
+
+*Android:
+ *Fixed: An issue where buttons on the Messenger conversation card were not fully visible on small devices.
+ *Fixed: An issue where the conversation header wasn’t updates after a teammate reply.
+*iOS:
+ *Improved: If your app does not request location permissions, you will no longer have to add a location permission string to your PList when using the Intercom iOS SDK.
+
 ## 9.0.0 (2020-06-17)
 **v9.0.0 of the Cordova plugin supports the latest version (7.1.0) of the Intercom mobile SDK. We’re introducing a fantastic new mobile engagement feature called Mobile Carousels. We’ve also added support for closed conversations, as well as a number of fixes and performance improvements.**
 
