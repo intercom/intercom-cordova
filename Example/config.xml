@@ -40,7 +40,6 @@
         <icon height="40" src="www/img/icon-40.png" width="40" />
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
-        <splash src="www/img/launch/Default@2x~universal~anyany.png" />
     </platform>
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
