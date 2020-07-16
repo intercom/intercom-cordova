@@ -4,15 +4,15 @@
     "displayName": "Intercom Cordova",
     "cordova": {
         "platforms": [
-            "android",
-            "ios"
+            "ios",
+            "android"
         ],
         "plugins": {
             "cordova-plugin-whitelist": {}
         }
     },
     "dependencies": {
-        "cordova-android": "^8.1.0",
+        "cordova-android": "^9.0.0",
         "cordova-ios": "^6.0.0",
         "cordova-plugin-whitelist": "^1.0.0"
     }
