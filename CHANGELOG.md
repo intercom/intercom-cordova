@@ -1,5 +1,11 @@
 # Intercom for Cordova/PhoneGap
 
+## 9.1.0 (2020-07-20)
+
+* The Cordova plugin has been updated to be compatible with v7.2.0 of the Android SDK and v9.0.0 of Cordova Android.
+* v7.2.0 of the Android SDK now uses [Android X](https://developer.android.com/jetpack/androidx), and includes updates to the Gson and Firebase Messaging libraries it uses.
+* In [Cordova Android v9.0.0](https://cordova.apache.org/announcements/2020/06/29/cordova-android-9.0.0.html), the minimum Android API level is now API 22 (Android 5.1). The Cordova plugin's minimum version is now API 22 as well.
+
 ## 9.0.1 (2020-07-08)
 
 The Intercom Cordova plugin has been updated to use v7.1.1 of the iOS and Android SDK. We fixed a number of bugs in this release:
