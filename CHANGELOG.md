@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 9.2.0 (2020-09-09)
+
+* The Intercom Cordova plugin has been updated to use v8.1.0 of the Intercom Android SDK as the latest version.
+* Fixed the Gradle [issue](https://community.intercom.com/t/cordova-android-9-and-cordova-intercom-9-1/2235) with enabling push notification
+
 ## 9.1.1 (2020-08-25)
 
 * The Intercom Cordova plugin has been updated to use v8.0.0 of the Intercom Android SDK as the latest version.

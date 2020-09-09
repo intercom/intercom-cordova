@@ -14,9 +14,9 @@ buildscript {
         maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.+'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         if (pushType == 'fcm') {
-            classpath 'com.google.gms:google-services:3.2.0'
+            classpath 'com.google.gms:google-services:4.3.3'
         }
     }
 }
@@ -28,10 +28,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.intercom.android:intercom-sdk-base:8.0.0'
+    implementation 'io.intercom.android:intercom-sdk-base:8.1.0'
     if (pushType == 'fcm' || pushType == 'fcm-without-build-plugin') {
         implementation 'com.google.firebase:firebase-messaging:20.+'
-        implementation 'io.intercom.android:intercom-sdk-fcm:8.0.0'
+        implementation 'io.intercom.android:intercom-sdk-fcm:8.1.0'
     }
 }
 
@@ -42,10 +42,12 @@ task copyGoogleServices(type: Copy) {
     into '.'
 }
 
+gradle.taskGraph.whenReady {
+    copyGoogleServices
+}
+
 if (pushType == 'fcm') {
-    tasks.copyGoogleServices.execute()
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
 } else if (pushType == 'fcm-without-build-plugin') {
-    tasks.copyGoogleServices.execute()
     logger.info("Not applying GoogleServicesPlugin from Intercom plugin, another plugin should do this")
 }
