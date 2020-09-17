@@ -47,7 +47,7 @@
         </array>
       </config-file>
 
-      <framework src="Intercom" type="podspec" spec="~> 7.1.1" />
+      <framework src="Intercom" type="podspec" spec="~> 8.0.0" />
     </platform>
 
     <platform name="android">

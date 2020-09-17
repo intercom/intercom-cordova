@@ -28,10 +28,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.intercom.android:intercom-sdk-base:8.1.0'
+    implementation 'io.intercom.android:intercom-sdk-base:8.2.0'
     if (pushType == 'fcm' || pushType == 'fcm-without-build-plugin') {
         implementation 'com.google.firebase:firebase-messaging:20.+'
-        implementation 'io.intercom.android:intercom-sdk-fcm:8.1.0'
+        implementation 'io.intercom.android:intercom-sdk-fcm:8.2.0'
     }
 }
 
