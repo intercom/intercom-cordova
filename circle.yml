@@ -14,9 +14,6 @@ jobs:
           name: Install Cordova
           command: npm install -g cordova@9.0.0
       - run:
-          name: Setup CocoaPods
-          command: curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
-      - run:
           name: Add iOS platform
           command: cd Example && cordova platform add ios
       - run:
