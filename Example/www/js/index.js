@@ -63,11 +63,11 @@ var app = {
       }, false);
 
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
-          intercom.displayCarousel("4596192");
+          intercom.displayCarousel("carousel-id");
       }, false);
 
       document.getElementById("display-article-btn").addEventListener("click", function(){
-          intercom.displayArticle("3614462");
+          intercom.displayArticle("article-id");
       }, false);
     },
     // Update DOM on a Received Event
