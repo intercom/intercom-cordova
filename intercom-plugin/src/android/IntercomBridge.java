@@ -252,6 +252,20 @@ public class IntercomBridge extends CordovaPlugin {
                 intercomPushClient.sendTokenToIntercom(cordova.getActivity().getApplication(), token);
             }
         },
+        displayCarousel {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String carouselId = args.optString(0);
+                Intercom.client().displayCarousel(carouselId);
+                callbackContext.success();
+            }
+        },
+        displayArticle {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String articleId = args.optString(0);
+                Intercom.client().displayArticle(articleId);
+                callbackContext.success();
+            }
+        },
         unknown {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 callbackContext.error("[Intercom-Cordova] ERROR: Undefined function");

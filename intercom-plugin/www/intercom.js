@@ -76,6 +76,14 @@ var intercom = {
 
     sendPushTokenToIntercom: function(token, success, error) {
         cordova.exec(success, error, 'Intercom', 'sendPushTokenToIntercom', [token]);
+    },
+
+    displayCarousel: function(carouselId, success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayCarousel', [carouselId]);
+    },
+
+    displayArticle: function(articleId, success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayArticle', [articleId]);
     }
 }
 
