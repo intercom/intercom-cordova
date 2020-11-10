@@ -10,7 +10,7 @@
     <engines>
       <engine name="cordova" version=">=9.0.0" />
       <engine name="cordova-android" version=">=9.0.0" />
-      <engine name="cordova-ios" version=">=5.0.0" />
+      <engine name="cordova-ios" version=">=6.1.1" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">

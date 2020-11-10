@@ -4,6 +4,7 @@
 
 * The Intercom Cordova plugin has been updated to use v8.3.0 of the Intercom Android SDK and v8.1.0 of the iOS SDK as the latest version.
 * New feature: You can now open an article or Mobile Carousel programmatically in your app. We have added two new methods to our API to enable this, [displayArticle](https://developers.intercom.com/installing-intercom/docs/cordova-phonegap-configuration#section-present-an-article-programmatically) and [displayCarousel](https://developers.intercom.com/installing-intercom/docs/cordova-phonegap-configuration#section-present-a-carousel-programmatically).
+* Updated to cordova-ios 6.1.1.
 
 ## 9.2.1 (2020-09-17)
 
