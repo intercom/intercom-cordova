@@ -61,6 +61,14 @@ var app = {
       document.getElementById("open-help-center-btn").addEventListener("click", function(){
           intercom.displayHelpCenter();
       }, false);
+
+      document.getElementById("display-carousel-btn").addEventListener("click", function(){
+          intercom.displayCarousel("carousel-id");
+      }, false);
+
+      document.getElementById("display-article-btn").addEventListener("click", function(){
+          intercom.displayArticle("article-id");
+      }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -89,6 +97,8 @@ var app = {
       document.getElementById("logout-btn").style.visibility = 'visible';
       document.getElementById("open-intercom-btn").style.visibility = 'visible';
       document.getElementById("open-help-center-btn").style.visibility = 'visible';
+      document.getElementById("display-carousel-btn").style.visibility = 'visible';
+      document.getElementById("display-article-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
 
@@ -96,6 +106,8 @@ var app = {
       document.getElementById("logout-btn").style.visibility = 'hidden';
       document.getElementById("open-intercom-btn").style.visibility = 'hidden';
       document.getElementById("open-help-center-btn").style.visibility = 'hidden';
+      document.getElementById("display-carousel-btn").style.visibility = 'hidden';
+      document.getElementById("display-article-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
 };

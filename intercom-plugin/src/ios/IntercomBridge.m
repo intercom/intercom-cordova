@@ -119,8 +119,6 @@
     [self sendSuccess:command];
 }
 
-
-
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command {
     NSString *visibilityString = command.arguments[0];
     BOOL visible = NO;
@@ -152,6 +150,18 @@
 
 - (void)sendPushTokenToIntercom:(CDVInvokedUrlCommand*)command {
   NSLog(@"[Intercom-Cordova] INFO - sendPushTokenToIntercom called");
+}
+
+- (void)displayCarousel:(CDVInvokedUrlCommand*)command {
+  NSString *carouselId = command.arguments[0];
+    [Intercom presentCarousel:carouselId];
+    [self sendSuccess:command];
+}
+
+- (void)displayArticle:(CDVInvokedUrlCommand*)command {
+  NSString *articleId = command.arguments[0];
+    [Intercom presentArticle:articleId];
+    [self sendSuccess:command];
 }
 
 #pragma mark - User attributes
