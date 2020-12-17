@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 9.4.0 (2020-11-17)
+* Updated both the Android and iOS SDK to 9.0.0
+* On iOS, cocoapods 1.10 is required to install the iOS SDK correctly.
+
 ## 9.3.0 (2020-11-10)
 
 * The Intercom Cordova plugin has been updated to use v8.3.0 of the Intercom Android SDK and v8.1.0 of the iOS SDK as the latest version.
