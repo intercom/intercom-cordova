@@ -22,6 +22,7 @@
 - (void)displayHelpCenter:(CDVInvokedUrlCommand*)command;
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
+- (void)setBottomPadding:(CDVInvokedUrlCommand*)command;
 - (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command;
 - (void)hideMessenger:(CDVInvokedUrlCommand*)command;
     

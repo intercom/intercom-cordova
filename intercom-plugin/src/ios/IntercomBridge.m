@@ -164,6 +164,12 @@
     [self sendSuccess:command];
 }
 
+- (void)setBottomPadding:(CDVInvokedUrlCommand*)command {
+    double bottomPadding = [[command.arguments objectAtIndex:0] doubleValue];
+    [Intercom setBottomPadding:bottomPadding];
+    [self sendSuccess:command];
+}
+
 #pragma mark - User attributes
 
 - (ICMUserAttributes *)userAttributesForDictionary:(NSDictionary *)attributesDict {

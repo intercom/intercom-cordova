@@ -266,6 +266,13 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        setBottomPadding {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                int bottomPadding = args.optInt(0);
+                Intercom.client().setBottomPadding(bottomPadding);
+                callbackContext.success();
+            }
+        },
         unknown {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 callbackContext.error("[Intercom-Cordova] ERROR: Undefined function");
