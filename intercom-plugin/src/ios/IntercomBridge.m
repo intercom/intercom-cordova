@@ -1,5 +1,8 @@
 #import "IntercomBridge.h"
 #import "AppDelegate+IntercomPush.h"
+#import "ICMHelpCenterCollection+DictionaryConversion.h"
+#import "ICMHelpCenterArticleSearchResult+DictionaryConversion.h"
+#import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
 #import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
@@ -114,8 +117,66 @@
     [self sendSuccess:command];
 }
 
-- (void)hideMessenger:(CDVInvokedUrlCommand*)command {
-    [Intercom hideMessenger];
+- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command {
+    NSDictionary *args = command.arguments[0];
+    NSArray* collectionIds = args[@"collectionIds"];
+    [Intercom presentHelpCenterCollections:collectionIds];
+    [self sendSuccess:command];
+}
+
+- (void)fetchHelpCenterCollections:(CDVInvokedUrlCommand*)command {
+    [Intercom fetchHelpCenterCollectionsWithCompletion:^(NSArray<ICMHelpCenterCollection *> * _Nullable collections, NSError * _Nullable error) {
+        if (error) {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:error.code];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        } else {
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i = 0; i < collections.count; i++)
+            {
+                [array addObject:collections[i].toDictionary];
+            }
+            NSString *jsonString = [self stringValueForDictionaries:(NSArray *)array];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    }];
+}
+
+- (void)fetchHelpCenterCollection:(CDVInvokedUrlCommand*)command {
+    NSString *collectionId = command.arguments[0];
+    [Intercom fetchHelpCenterCollection:collectionId withCompletion:^(ICMHelpCenterCollectionContent * _Nullable collectionContent, NSError * _Nullable error) {
+        if (error) {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:error.code];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        } else {
+            NSString *jsonString = [self stringValueForDictionary:collectionContent.toDictionary];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    }];
+}
+
+- (void)searchHelpCenter:(CDVInvokedUrlCommand*)command {
+    NSString *searchTerm = command.arguments[0];
+    [Intercom searchHelpCenter:searchTerm withCompletion:^(NSArray<ICMHelpCenterArticleSearchResult *> * _Nullable articleSearchResults, NSError * _Nullable error) {
+        if (error) {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:error.code];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        } else {
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i = 0; i < articleSearchResults.count; i++)
+            {
+                [array addObject:articleSearchResults[i].toDictionary];
+            }
+            NSString *jsonString = [self stringValueForDictionaries:(NSArray *)array];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    }];
+}
+
+- (void)hideIntercom:(CDVInvokedUrlCommand*)command {
+    [Intercom hideIntercom];
     [self sendSuccess:command];
 }
 
@@ -237,6 +298,31 @@
         return [ICMUserAttributes nullStringAttribute];
     }
     return nil;
+}
+
+- (NSString *)stringValueForDictionaries:(NSArray *)dictionaries {
+    NSError *error;
+    NSString *jsonString;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaries options:0 error:&error];
+    if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}
+
+
+- (NSString *)stringValueForDictionary:(NSDictionary *)dictionary {
+    NSError *error;
+    NSString *jsonString;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:&error];
+    if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
 }
 
 - (NSNumber *)numberValueForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary {

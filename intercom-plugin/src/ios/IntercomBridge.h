@@ -20,10 +20,14 @@
 - (void)displayMessageComposerWithInitialMessage:(CDVInvokedUrlCommand*)command;
 - (void)displayConversationsList:(CDVInvokedUrlCommand*)command;
 - (void)displayHelpCenter:(CDVInvokedUrlCommand*)command;
+- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command;
+- (void)fetchHelpCenterCollections:(CDVInvokedUrlCommand*)command;
+- (void)fetchHelpCenterCollection:(CDVInvokedUrlCommand*)command;
+- (void)searchHelpCenter:(CDVInvokedUrlCommand*)command;
 
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
 - (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command;
-- (void)hideMessenger:(CDVInvokedUrlCommand*)command;
+- (void)hideIntercom:(CDVInvokedUrlCommand*)command;
     
 
 - (void)registerForPush:(CDVInvokedUrlCommand*)command;

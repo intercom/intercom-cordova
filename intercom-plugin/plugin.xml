@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-intercom" version="9.4.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-intercom" version="10.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intercom</name>
     <author>Intercom</author>
     <license>MIT License</license>
@@ -26,6 +26,16 @@
 
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
+      <source-file src="src/ios/ICMHelpCenterCollection+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMHelpCenterCollection+DictionaryConversion.m" />
+      <source-file src="src/ios/ICMHelpCenterArticleSearchResult+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMHelpCenterArticleSearchResult+DictionaryConversion.m" />
+      <source-file src="src/ios/ICMHelpCenterArticle+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMHelpCenterArticle+DictionaryConversion.m" />
+      <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.m" />
+      <source-file src="src/ios/ICMHelpCenterSection+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMHelpCenterSection+DictionaryConversion.m" />
 
       <header-file src="src/ios/AppDelegate+IntercomPush.h" />
       <source-file src="src/ios/AppDelegate+IntercomPush.m" />
@@ -52,13 +62,16 @@
               <source url="https://cdn.cocoapods.org/"/>
           </config>
           <pods use-frameworks="true">
-              <pod name="Intercom" spec="~> 9.0.0" />
+              <pod name="Intercom" spec="~> 10.0.1" />
           </pods>
       </podspec>
     </platform>
 
     <platform name="android">
       <source-file src="src/android/IntercomBridge.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/HelpCenterCollectionModel.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/HelpCenterCollectionContentModel.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/HelpCenterCollectionSectionModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
 
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />

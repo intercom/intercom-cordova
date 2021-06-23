@@ -62,6 +62,46 @@ var app = {
           intercom.displayHelpCenter();
       }, false);
 
+      document.getElementById("open-help-center-filtered-btn").addEventListener("click", function(){
+          // Replace this with your own collections
+          var ids = ["COLLECTION_ID1", "COLLECTION_ID2"];
+          intercom.displayHelpCenterCollections({collectionIds: ids});
+      }, false);
+
+      document.getElementById("help-center-data-api-fetch-btn").addEventListener("click", function(){
+          var onSuccess = function(data) {
+            console.log('Successfully fetched collections : ' + data);
+          }
+          var onError = function(code) {
+            console.log('Failed to fetch collections with code :' + data);
+          }
+          intercom.fetchHelpCenterCollections(onSuccess, onError);
+      }, false);
+
+      document.getElementById("help-center-data-api-fetch-content-btn").addEventListener("click", function(){
+          // Add your collection Id here
+          var collectionId = "COLLECTION_ID"
+          var onSuccess = function(data) {
+            console.log('Successfully fetched collection content : ' + data);
+          }
+          var onError = function(code) {
+            console.log('Failed to fetch collection content with code :' + data);
+          }
+          intercom.fetchHelpCenterCollection(collectionId, onSuccess, onError);
+      }, false);
+
+      document.getElementById("help-center-data-api-search-btn").addEventListener("click", function(){
+          // Add your search term here
+          var searchTerm = "SEARCH_TERM"
+          var onSuccess = function(data) {
+            console.log('Successfully searched help center : ' + data);
+          }
+          var onError = function(code) {
+            console.log('Failed to search help center with code :' + data);
+          }
+          intercom.searchHelpCenter(searchTerm, onSuccess, onError);
+      }, false);
+
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
           intercom.displayCarousel("carousel-id");
       }, false);
