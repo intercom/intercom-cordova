@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,12 +21,19 @@ import java.util.List;
 import java.util.Map;
 
 import io.intercom.android.sdk.Intercom.Visibility;
-import io.intercom.android.sdk.R;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
 import io.intercom.android.sdk.api.UserUpdateRequest;
+import io.intercom.android.sdk.helpcenter.api.CollectionContentRequestCallback;
+import io.intercom.android.sdk.helpcenter.api.CollectionRequestCallback;
+import io.intercom.android.sdk.helpcenter.api.HelpCenterArticleSearchResult;
+import io.intercom.android.sdk.helpcenter.api.SearchRequestCallback;
+import io.intercom.android.sdk.helpcenter.collections.HelpCenterCollection;
+import io.intercom.android.sdk.helpcenter.sections.HelpCenterCollectionContent;
+import io.intercom.android.sdk.helpcenter.sections.HelpCenterSection;
 import io.intercom.android.sdk.identity.Registration;
 import io.intercom.android.sdk.logger.LumberMill;
 import io.intercom.android.sdk.push.IntercomPushClient;
+
 public class IntercomBridge extends CordovaPlugin {
 
     private static final String CUSTOM_ATTRIBUTES = "custom_attributes";
@@ -60,7 +70,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "9.0.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "10.0.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case FCM: {
@@ -197,6 +207,116 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        displayHelpCenterCollections {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                JSONArray jsonArray = args.optJSONObject(0).optJSONArray("collectionIds");
+                ArrayList<String> filterIds = new ArrayList<>();
+                for (int i = 0; jsonArray != null && i < jsonArray.length(); i++) {
+                    try {
+                        if(jsonArray.get(i) instanceof String) {
+                            filterIds.add(jsonArray.get(i).toString());
+                        }
+                    } catch (Exception ignored) {}
+                }
+                Intercom.client().displayHelpCenterCollections(filterIds);
+                callbackContext.success();
+            }
+        },
+        fetchHelpCenterCollections {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().fetchHelpCenterCollections(new CollectionRequestCallback() {
+                    @Override
+                    public void onComplete(@NotNull List<HelpCenterCollection> list) {
+                        ArrayList<HelpCenterCollectionModel> responseModel = new ArrayList<>();
+                        for (HelpCenterCollection helpCenterCollection : list) {
+                            String summary = helpCenterCollection.getSummary();
+                            if (summary.isEmpty()) {
+                                summary = null;
+                            }
+                            responseModel.add(
+                                    new HelpCenterCollectionModel(
+                                            helpCenterCollection.getId(),
+                                            summary,
+                                            helpCenterCollection.getTitle()
+                                    )
+                            );
+                        }
+                        String json = new Gson().toJson(responseModel);
+                        callbackContext.success(json);
+                    }
+
+                    @Override
+                    public void onError(int i) {
+                        callbackContext.error(i);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        callbackContext.error("");
+                    }
+                });
+            }
+        },
+        fetchHelpCenterCollection {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String collectionId = args.optString(0);
+                Intercom.client().fetchHelpCenterCollection(collectionId, new CollectionContentRequestCallback() {
+                    @Override
+                    public void onComplete(@NotNull HelpCenterCollectionContent helpCenterCollectionContent) {
+                        ArrayList<HelpCenterCollectionSectionModel> sectionModels = new ArrayList<>();
+                        for (HelpCenterSection helpCenterSection : helpCenterCollectionContent.getHelpCenterSections()) {
+                            sectionModels.add(
+                                    new HelpCenterCollectionSectionModel(
+                                            helpCenterSection.getHelpCenterArticles(),
+                                            helpCenterSection.getTitle()
+                                    )
+                            );
+                        }
+                        HelpCenterCollectionContentModel responseModel = new HelpCenterCollectionContentModel(
+                                helpCenterCollectionContent.getCollectionId(),
+                                helpCenterCollectionContent.getHelpCenterArticles(),
+                                sectionModels,
+                                helpCenterCollectionContent.getSummary(),
+                                helpCenterCollectionContent.getTitle()
+                        );
+                        String json = new Gson().toJson(responseModel);
+                        callbackContext.success(json);
+                    }
+
+                    @Override
+                    public void onError(int i) {
+                        callbackContext.error(i);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        callbackContext.error("");
+                    }
+                });
+            }
+        },
+        searchHelpCenter {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String searchTerm = args.optString(0);
+                Intercom.client().searchHelpCenter(searchTerm, new SearchRequestCallback() {
+                    @Override
+                    public void onComplete(@NotNull List<HelpCenterArticleSearchResult> list) {
+                        String json = new Gson().toJson(list);
+                        callbackContext.success(json);
+                    }
+
+                    @Override
+                    public void onError(int i) {
+                        callbackContext.error(i);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        callbackContext.error("");
+                    }
+                });
+            }
+        },
         setLauncherVisibility {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String visibilityString = args.optString(0);
@@ -221,7 +341,7 @@ public class IntercomBridge extends CordovaPlugin {
         },
         hideMessenger {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().hideMessenger();
+                Intercom.client().hideIntercom();
                 callbackContext.success();
             }
         },
@@ -280,7 +400,7 @@ public class IntercomBridge extends CordovaPlugin {
             try {
                 action = valueOf(actionAsString);
             } catch (NullPointerException ignored) {}
-              catch (IllegalArgumentException ignored) {}
+            catch (IllegalArgumentException ignored) {}
 
             return action;
         }

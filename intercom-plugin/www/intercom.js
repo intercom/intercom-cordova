@@ -51,6 +51,22 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'displayHelpCenter', []);
     },
 
+    fetchHelpCenterCollections: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'fetchHelpCenterCollections', []);
+    },
+
+    searchHelpCenter: function(searchTerm, success, error) {
+        cordova.exec(success, error, 'Intercom', 'searchHelpCenter', [searchTerm]);
+    },
+
+    fetchHelpCenterCollection: function(collectionId, success, error) {
+        cordova.exec(success, error, 'Intercom', 'fetchHelpCenterCollection', [collectionId]);
+    },
+
+    displayHelpCenterCollections: function(collectionIds, success, error) {
+            cordova.exec(success, error, 'Intercom', 'displayHelpCenterCollections', [collectionIds]);
+    },
+
     unreadConversationCount: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'unreadConversationCount', []);
     },
@@ -66,8 +82,8 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'setInAppMessageVisibility', [visibility]);
     },
 
-    hideMessenger: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'hideMessenger', []);
+    hideIntercom: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'hideIntercom', []);
     },
 
     registerForPush: function(success, error) {

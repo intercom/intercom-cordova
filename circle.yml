@@ -38,6 +38,7 @@ jobs:
       - run:
           name: Install node/npm
           command: |
+            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
             curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
@@ -64,6 +65,7 @@ jobs:
       - run:
           name: Install node/npm
           command: |
+            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
             curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
