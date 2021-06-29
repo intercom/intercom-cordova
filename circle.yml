@@ -83,17 +83,17 @@ workflows:
       - ios:
           filters:
             tags:
-              only: /[0-9](\.[0-9]+)+/
+              only: /[0-9]+(\.[0-9]+)+/
       - android:
           filters:
             tags:
-              only: /[0-9](\.[0-9]+)+/
+              only: /[0-9]+(\.[0-9]+)+/
       - publish:
           requires:
             - ios
             - android
           filters:
             tags:
-              only: /[0-9](\.[0-9]+)+/
+              only: /[0-9]+(\.[0-9]+)+/
             branches:
               ignore: /.*/
