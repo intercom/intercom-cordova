@@ -131,9 +131,8 @@
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         } else {
             NSMutableArray *array = [[NSMutableArray alloc] init];
-            for (int i = 0; i < collections.count; i++)
-            {
-                [array addObject:collections[i].toDictionary];
+            for (ICMHelpCenterCollection *collection in collections) {
+                [array addObject:[collection toDictionary]];
             }
             NSString *jsonString = [self stringValueForDictionaries:(NSArray *)array];
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
@@ -149,7 +148,7 @@
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:error.code];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         } else {
-            NSString *jsonString = [self stringValueForDictionary:collectionContent.toDictionary];
+            NSString *jsonString = [self stringValueForDictionary:[collectionContent toDictionary]];
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         }
@@ -164,9 +163,8 @@
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         } else {
             NSMutableArray *array = [[NSMutableArray alloc] init];
-            for (int i = 0; i < articleSearchResults.count; i++)
-            {
-                [array addObject:articleSearchResults[i].toDictionary];
+            for (ICMHelpCenterArticleSearchResult *articleSearchResult in articleSearchResults) {
+                [array addObject:[articleSearchResult toDictionary]];
             }
             NSString *jsonString = [self stringValueForDictionaries:(NSArray *)array];
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
