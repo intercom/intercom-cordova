@@ -1,5 +1,19 @@
 # Intercom for Cordova/PhoneGap
 
+## 10.0.0 (2021-06-29)
+#### v10.0.0 of the Cordova plugin supports the latest version (10.0.1) of the Intercom mobile SDK. 
+##### Enhancements
+* We have redesigned the Help Center for mobile apps. ✨
+* New UI, optimized specifically for mobile apps and small screens
+* Type-ahead search to help users find answers quicker than ever
+* Control whether users open up a specific collection of articles, a group of collections, or specific search results
+* Localization - with right to left language display
+* Accessibility support: screen readers, dynamic font sizes, and keyboard navigation - to support all end users
+* New Help Center Data API that enables you to build your own help center UI, enabling a much deeper and custom integration into your app.
+##### Improvements and bug fixes
+* Fixed an issue where the special notice message would not display.
+* `hideMessenger()` has now been deprecated and removed. Please use `hideIntercom()` instead. This method will hide all Intercom UI in your app.
+
 ## 9.4.0 (2020-11-17)
 * Updated both the Android and iOS SDK to 9.0.0
 * On iOS, cocoapods 1.10 is required to install the iOS SDK correctly.
