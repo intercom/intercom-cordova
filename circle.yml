@@ -71,9 +71,8 @@ jobs:
       - run:
           name: Publish to npm
           command: |
-            echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL"
-            sudo npm install -g npm-cli-login
-            npm-cli-login -u $NPM_USER -p $NPM_PASSWORD -e $NPM_EMAIL
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > intercom-plugin/.npmrc
+            npm config set scope $ORG_NAME
             cd intercom-plugin && npm publish
 
 workflows:
