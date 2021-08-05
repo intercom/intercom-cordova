@@ -3,7 +3,7 @@ version: 2
 jobs:
   ios:
     macos:
-      xcode: "12.0.0"
+      xcode: "13.0.0"
     shell: /bin/bash --login -eo pipefail
     steps:
       - checkout
@@ -21,7 +21,7 @@ jobs:
           command: cd Example && cordova plugin add ../intercom-plugin
       - run:
           name: Build
-          command: cd Example && cordova build ios --buildFlag="-UseModernBuildSystem=0"
+          command: cd Example && cordova build ios
 
   android:
     docker:
