@@ -100,6 +100,10 @@ var intercom = {
 
     displayArticle: function(articleId, success, error) {
         cordova.exec(success, error, 'Intercom', 'displayArticle', [articleId]);
+    },
+
+    setBottomPadding: function(bottomPadding, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setBottomPadding', [bottomPadding]);
     }
 }
 
