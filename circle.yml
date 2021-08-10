@@ -25,7 +25,7 @@ jobs:
 
   android:
     docker:
-      - image: circleci/android@sha256:424801c766d119676dfdfddf469b1268dcab9b477d449731d35af9a2f39915d1
+      - image: circleci/android:api-30
     environment:
       - JVM_OPTS: -Xmx3200m
     working_directory: ~/project/Example
@@ -46,13 +46,16 @@ jobs:
           command: sudo apt-get install gradle
       - run:
           name: Install Cordova
-          command: sudo npm install -g cordova@9.0.0
+          command: sudo npm install -g cordova@10.0.0
       - run:
           name: Add Android platform
-          command: cd Example && cordova platform add android
+          command: cd Example && cordova platform add android@10.0.0
       - run:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
+      - run:
+          name: Remove whitelist plugin
+          command: cd Example && cordova plugin rm cordova-plugin-whitelist
       - run:
           name: Build
           command: cd Example && cordova build android --verbose -- --gradleArg=--stacktrace
