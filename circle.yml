@@ -46,7 +46,7 @@ jobs:
           command: sudo apt-get install gradle
       - run:
           name: Install Cordova
-          command: sudo npm install -g cordova
+          command: sudo npm install -g cordova@9.0.0
       - run:
           name: Add Android platform
           command: cd Example && cordova platform add android@10.0.0
