@@ -1,5 +1,8 @@
 # Intercom for Cordova/PhoneGap
 
+## 10.1.1 (2021-09-14)
+* Include dependencies needed to make the Android version build
+
 ## 10.1.0 (2021-08-23)
 * The Intercom Cordova plugin has been updated to use the latest version (v10.1.0) of the Intercom iOS and Android SDK
 * Updated to cordova-android 10.0.0
