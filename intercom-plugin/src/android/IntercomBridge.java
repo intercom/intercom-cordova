@@ -209,7 +209,7 @@ public class IntercomBridge extends CordovaPlugin {
         },
         displayHelpCenterCollections {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                JSONArray jsonArray = args.optJSONObject(0).optJSONArray("collectionIds");
+                JSONArray jsonArray = args.optJSONArray(0);
                 ArrayList<String> filterIds = new ArrayList<>();
                 for (int i = 0; jsonArray != null && i < jsonArray.length(); i++) {
                     try {
