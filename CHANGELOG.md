@@ -1,5 +1,20 @@
 # Intercom for Cordova/PhoneGap
 
+## 10.2.0 (2021-09-28)
+* The Intercom Cordova plugin has been updated to use the latest version of the Intercom iOS (v10.3.0) and Android SDK (v10.2.0)
+
+Reduce customer inquiries for your team and provide faster resolutions for your customers – without sacrificing a great experience. We’ve redesigned our Messenger with an integrated help center experience that increases customer engagement by up to 3x to help you deliver the best self-serve support.
+
+#####  Enhancements
+* A new article search card on your Messenger’s home screen.
+* There are now two conversation cards, just as with our web Messenger; one for existing and one for new conversations. This gives more emphasis to existing conversations, reducing the chance of duplicates being created.
+* Optionally require specific customers to attempt to self-serve to answer their question before they can reach out to a teammate.
+* Place the article search card at the top of the Messenger home screen to give your self-serve content more prominence.
+* Uncover insights and opportunities to optimize your self-serve support by using our updated Articles reporting.
+* A number of improvements for accessibility features in the Messenger, with more coming in future updates.
+* If you’ve set a custom icon for the Intercom launcher, that icon will now be used in your app as well.
+* Support for iOS 15 is also included in this release.
+
 ## 10.1.1 (2021-09-14)
 * Include dependencies needed to make the Android version build
 
