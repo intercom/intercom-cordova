@@ -28,7 +28,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <preference name="deployment-target" value="11.0" />
+        <preference name="deployment-target" value="13.0" />
         <preference name="BackupWebStorage" value="local" />
         <icon height="29" src="www/img/icon-29.png" width="29" />
         <icon height="58" src="www/img/icon-29@2x.png" width="58" />
