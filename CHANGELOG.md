@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 11.0.0 (2022-01-13)
+* The Intercom Cordova plugin has been updated to use the latest version of the Intercom iOS (v11.0.0) and Android SDK (v10.6.0)
+* The minimum deployment version for iOS is now iOS 13.
+* Using Intercom cordova plugin for the Android platform does not require jcenter 
+
 ## 10.2.0 (2021-09-28)
 * The Intercom Cordova plugin has been updated to use the latest version of the Intercom iOS (v10.3.0) and Android SDK (v10.2.0)
 
