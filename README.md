@@ -45,7 +45,7 @@ cordova plugin add cordova-plugin-intercom
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
-<plugin name="cordova-plugin-intercom" version="~11.0.0" />
+<plugin name="cordova-plugin-intercom" version="~11.1.0" />
 ```
 
 ## Example App
@@ -59,6 +59,11 @@ An example app is provided [here](https://github.com/intercom/intercom-cordova/t
 * Read our guide on [Push Notifications](https://developers.intercom.com/docs/cordova-phonegap-push-notifications) support.
 * Please contact us on [Intercom](https://www.intercom.com/) with any questions you may have, we're only a message away!
 
+## Android 12
+* Starting with version ```11.1.0```, Intercom cordova plugin requires you to target Android 12. 
+This means you may have to set the exported flag to your MainActivity.
+
+Please check our example project's [config.xml](https://github.com/intercom/intercom-cordova/blob/master/Example/config.xml) to see how you can set this in your app.
 
 ## Acknowledgements
 
