@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.intercom.cordova.sample" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="schemas.android.com/apk/res/android">
+<widget id="io.intercom.cordova.sample" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Intercom Cordova</name>
     <description>
         An Intercom sample application for Cordova.
@@ -20,11 +20,8 @@
         <preference name="android-minSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="31" />
         <preference name="android-compileSdkVersion" value="31" />
-        <edit-config
-            file="app/src/main/AndroidManifest.xml"
-            target="/manifest/application/activity[@android:name='MainActivity']"
-            mode="merge">
-            <activity android:exported="true"/>
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='MainActivity']">
+            <activity android:exported="true" />
         </edit-config>
         <preference name="AndroidXEnabled" value="true" />
         <icon density="hdpi" src="www/img/android/hdpi.png" />
@@ -53,5 +50,4 @@
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
-    <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
 </widget>

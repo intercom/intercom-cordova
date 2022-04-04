@@ -54,9 +54,6 @@ jobs:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
       - run:
-          name: Remove whitelist plugin
-          command: cd Example && cordova plugin rm cordova-plugin-whitelist
-      - run:
           name: Build
           command: cd Example && cordova build android --verbose -- --gradleArg=--stacktrace
 
