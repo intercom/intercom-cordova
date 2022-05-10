@@ -50,4 +50,13 @@
     <preference name="intercom-app-id" value="YOUR_APP_ID" />
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
+
+    <!-- Uncomment to change region -->
+
+    <!-- <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <meta-data android:name="io.intercom.android.sdk.server.region" android:value="@integer/intercom_server_region_aus" />
+    </config-file> -->
+    <!-- <config-file target="*-Info.plist" parent="IntercomRegion">
+        <string>AU</string>
+    </config-file> -->
 </widget>
