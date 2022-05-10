@@ -1,5 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
+## 12.2.0 (2022-05-11)
+* The Intercom Cordova plugin has been updated to use the latest version of the Intercom iOS (v12.2.1) and Android SDK (v12.2.0)
+* Change data hosting region -Link Region doc here-
+
 ## 12.0.0 (2022-03-30)
 #### v12.0.0 of the Cordova plugin supports the latest version (12.0.0) of the Intercom mobile SDK.
 ##### 🚀 Enhancements
