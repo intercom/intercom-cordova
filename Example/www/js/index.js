@@ -109,6 +109,10 @@ var app = {
       document.getElementById("display-article-btn").addEventListener("click", function(){
           intercom.displayArticle("article-id");
       }, false);
+
+       document.getElementById("display-survey-btn").addEventListener("click", function(){
+          intercom.displaySurvey("survey-id");
+      }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -139,15 +143,17 @@ var app = {
       document.getElementById("open-help-center-btn").style.visibility = 'visible';
       document.getElementById("display-carousel-btn").style.visibility = 'visible';
       document.getElementById("display-article-btn").style.visibility = 'visible';
+      document.getElementById("display-survey-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
-
+  
     configureViewForLoggedOutUser: function() {
       document.getElementById("logout-btn").style.visibility = 'hidden';
       document.getElementById("open-intercom-btn").style.visibility = 'hidden';
       document.getElementById("open-help-center-btn").style.visibility = 'hidden';
       document.getElementById("display-carousel-btn").style.visibility = 'hidden';
       document.getElementById("display-article-btn").style.visibility = 'hidden';
+      document.getElementById("display-survey-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
 };

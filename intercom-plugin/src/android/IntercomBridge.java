@@ -43,7 +43,12 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 setUpIntercom();
                 try {
-                    Injector.get().getApi().updateUser(UserUpdateRequest.create(true, false, true));
+                    Injector.get().getApi().updateUser(
+                            UserUpdateRequest.create(true, false, true),
+                            new IntercomStatusCallback() {
+                                @Override public void onSuccess() { }
+                                @Override public void onFailure(IntercomError error) { }
+                            });
                 } catch (RuntimeException e) {
                     // Intercom is not initialised yet, do nothing
                 }
@@ -390,6 +395,14 @@ public class IntercomBridge extends CordovaPlugin {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 int bottomPadding = args.optInt(0);
                 Intercom.client().setBottomPadding(bottomPadding);
+                callbackContext.success();
+            }
+        },
+        displaySurvey {
+            @Override
+            void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String surveyId = args.optString(0);
+                Intercom.client().displaySurvey(surveyId);
                 callbackContext.success();
             }
         },

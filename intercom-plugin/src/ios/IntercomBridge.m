@@ -12,7 +12,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"12.0.0"];
+    [Intercom setCordovaVersion:@"12.2.1"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -220,6 +220,12 @@
 - (void)displayArticle:(CDVInvokedUrlCommand*)command {
   NSString *articleId = command.arguments[0];
     [Intercom presentArticle:articleId];
+    [self sendSuccess:command];
+}
+
+- (void)displaySurvey:(CDVInvokedUrlCommand*)command {
+  NSString *surveyId = command.arguments[0];
+    [Intercom presentSurvey:surveyId];
     [self sendSuccess:command];
 }
 
