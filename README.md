@@ -45,7 +45,7 @@ cordova plugin add cordova-plugin-intercom
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
-<plugin name="cordova-plugin-intercom" version="~12.2.0" />
+<plugin name="cordova-plugin-intercom" version="~12.1.0" />
 ```
 
 ## Example App
