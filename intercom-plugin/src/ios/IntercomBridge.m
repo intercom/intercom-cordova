@@ -12,7 +12,7 @@
 @implementation IntercomBridge : CDVPlugin
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"12.2.0"];
+    [Intercom setCordovaVersion:@"12.4.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -33,24 +33,28 @@
         userId = [(NSNumber *)userId stringValue];
     }
 
+    ICMUserAttributes *userAttributes = [ICMUserAttributes new];
+    
     if (userId.length > 0 && userEmail.length > 0) {
-        [Intercom registerUserWithUserId:userId email:userEmail];
-        [self sendSuccess:command];
+        userAttributes.userId = userId;
+        userAttributes.email = userEmail;
     } else if (userId.length > 0) {
-        [Intercom registerUserWithUserId:userId];
-        [self sendSuccess:command];
+        userAttributes.userId = userId;
     } else if (userEmail.length > 0) {
-        [Intercom registerUserWithEmail:userEmail];
-        [self sendSuccess:command];
+        userAttributes.email = userEmail;
     } else {
         NSLog(@"[Intercom-Cordova] ERROR - No user registered. You must supply an email, a userId or both");
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR]
                                     callbackId:command.callbackId];
+        return;
     }
+    
+    [Intercom loginUserWithUserAttributes:userAttributes success:nil failure:nil];
+    [self sendSuccess:command];
 }
 
 - (void)registerUnidentifiedUser:(CDVInvokedUrlCommand*)command {
-    [Intercom registerUnidentifiedUser];
+    [Intercom loginUnidentifiedUserWithSuccess:nil failure:nil];
     [self sendSuccess:command];
 }
 
@@ -68,7 +72,7 @@
 
 - (void)updateUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* attributesDict = command.arguments[0];
-    [Intercom updateUser:[self userAttributesForDictionary:attributesDict]];
+    [Intercom updateUser:[self userAttributesForDictionary:attributesDict] success:nil failure:nil];
     [self sendSuccess:command];
 }
 
