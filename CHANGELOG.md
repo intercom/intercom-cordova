@@ -1,8 +1,8 @@
 # Intercom for Cordova/PhoneGap
 
 ## 12.1.0 (2022-06-01)
-* The Intercom Cordova plugin has been updated to use the latest version of the Intercom iOS (v12.4.0) and Android SDK (v12.4.1)
-* Change data hosting region -Link Region doc here-
+* The Intercom Cordova plugin has been updated to use the latest version of the Intercom's iOS SDK (v12.4.0) and Android SDK (v12.4.1)
+* You can now display a Survey programmatically with `intercom.displaySurvey("12345")` 
 
 ## 12.0.0 (2022-03-30)
 #### v12.0.0 of the Cordova plugin supports the latest version (12.0.0) of the Intercom mobile SDK.
