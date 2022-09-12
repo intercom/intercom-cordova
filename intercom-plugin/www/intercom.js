@@ -1,10 +1,10 @@
 var intercom = {
-    registerIdentifiedUser: function(options, success, error) {
-        cordova.exec(success, error, 'Intercom', 'registerIdentifiedUser', [options]);
+    loginUserWithUserAttributes: function(options, success, error) {
+        cordova.exec(success, error, 'Intercom', 'loginUserWithUserAttributes', [options]);
     },
 
-    registerUnidentifiedUser: function(options, success, error) {
-        cordova.exec(success, error, 'Intercom', 'registerUnidentifiedUser', []);
+    loginUnidentifiedUser: function(options, success, error) {
+        cordova.exec(success, error, 'Intercom', 'loginUnidentifiedUser', []);
     },
 
     logout: function(success, error) {

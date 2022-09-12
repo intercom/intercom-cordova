@@ -23,7 +23,7 @@
     
     //Replacement IMP for original method
     IMP replacement = imp_implementationWithBlock(^void (id _self, UIApplication *application, NSData *deviceToken) {
-        [Intercom setDeviceToken:deviceToken];
+        [Intercom setDeviceToken:deviceToken failure:nil];
         
         //perform host app push logic here
         if (originalImp != NULL) {
