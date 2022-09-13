@@ -4,12 +4,15 @@
     "displayName": "Intercom Cordova",
     "cordova": {
         "platforms": [
-            "ios",
-            "android"
-        ]
+            "android",
+            "ios"
+        ],
+        "plugins": {
+            "cordova-plugin-intercom": {}
+        }
     },
     "dependencies": {
         "cordova-android": "^10.1.1",
-        "cordova-ios": "^6.2.0"
+        "cordova-ios": "6.2.0"
     }
 }

@@ -1,5 +1,13 @@
 # Intercom for Cordova/PhoneGap
 
+## 13.0.0 (2022-09-13)
+🚀  Enhancements
+* Added support for iOS 16.
+* Xcode 14 is required to build v13.0.0
+* We have deprecated and removed an number of methods in this release. Please see our [v13.0.0 Migration Guide](https://developers.intercom.com/installing-intercom/docs/cordova-migrating-to-v1300) for further details on how to migrate to this version.
+* Added new callback functionality to our `login`API methods. See our [Installation](https://developers.intercom.com/installing-intercom/docs/cordova-phonegap-installation) guide for usage details.
+* Added new callback functionality to `updateUser` API method. See our [Configuration](https://developers.intercom.com/installing-intercom/docs/cordova-phonegap-configuration) guide for usage details.
+
 ## 12.1.0 (2022-06-01)
 * The Intercom Cordova plugin has been updated to use the latest version of the Intercom's iOS SDK (v12.4.0) and Android SDK (v12.4.1)
 * You can now display a Survey programmatically with `intercom.displaySurvey("12345")` 
