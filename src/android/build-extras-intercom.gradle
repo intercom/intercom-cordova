@@ -4,8 +4,8 @@ import java.util.regex.Matcher
 // INSTALL_FAILED_CONFLICTING_PROVIDER error when installing the app.
 //
 // @link https://issues.apache.org/jira/browse/CB-10014
-def manifest = new XmlSlurper().parse(file("src/main/AndroidManifest.xml"))
-android.defaultConfig.applicationId manifest.@package.text()
+// def manifest = new XmlSlurper().parse(file("src/main/AndroidManifest.xml"))
+// android.defaultConfig.applicationId manifest.@package.text()
 
 // some libraries depend on higher versions of our dependencies than we support
 // we keep track of these dependencies here and override the version to a safe one
