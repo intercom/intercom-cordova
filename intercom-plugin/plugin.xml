@@ -65,6 +65,15 @@
               <pod name="Intercom" spec="~> 13.0.0" />
           </pods>
       </podspec>
+
+      <config-file parent="aps-environment" target="*/Entitlements-Debug.plist">
+          <string>development</string>
+      </config-file>
+
+      <config-file parent="aps-environment" target="*/Entitlements-Release.plist">
+          <string>production</string>
+      </config-file>
+
     </platform>
 
     <platform name="android">
