@@ -74,6 +74,7 @@
       <source-file src="src/android/HelpCenterCollectionSectionModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
 
+      <framework src="com.google.gms:google-services:4.3.3"/>      
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
       <framework src="src/android/build-extras-intercom.gradle" custom="true" type="gradleReference" />
 
