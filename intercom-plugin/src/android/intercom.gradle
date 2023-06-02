@@ -14,7 +14,7 @@ buildscript {
         maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:8.0.2'
         if (pushType == 'fcm') {
             classpath 'com.google.gms:google-services:4.3.3'
         }
