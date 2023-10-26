@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-intercom" version="13.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-intercom" version="14.2.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intercom</name>
-    <author>Intercom</author>
+    <author>Intercom ()</author>
     <license>MIT License</license>
     <description>Cordova plugin for Intercom for mobile</description>
     <repo>https://github.com/intercom/intercom-cordova.git</repo>
