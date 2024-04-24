@@ -1,8 +1,9 @@
 # Intercom for Cordova/PhoneGap
 
-## 13.0.0 (2022-09-13)
+## 13.10.0 (2024-04-25)
 🚀  Enhancements
 * Added support for iOS 16.
+* Added support for Android 13
 * Xcode 14 is required to build v13.0.0
 * We have deprecated and removed an number of methods in this release. Please see our [v13.0.0 Migration Guide](https://developers.intercom.com/installing-intercom/docs/cordova-migrating-to-v1300) for further details on how to migrate to this version.
 * Added new callback functionality to our `login`API methods. See our [Installation](https://developers.intercom.com/installing-intercom/docs/cordova-phonegap-installation) guide for usage details.
