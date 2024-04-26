@@ -1,6 +1,6 @@
 # Intercom for Cordova/PhoneGap
 
-## 13.10.0 (2024-04-25)
+## 13.10.0 (2024-04-26)
 🚀  Enhancements
 * Added support for iOS 16.
 * Added support for Android 13
