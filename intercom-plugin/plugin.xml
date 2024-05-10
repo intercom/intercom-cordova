@@ -8,15 +8,21 @@
     <keywords>intercom,intercom-cordova</keywords>
 
     <engines>
-      <engine name="cordova" version=">=9.0.0" />
+      <engine name="cordova" version=">=12.0.0" />
       <engine name="cordova-android" version=">=10.0.0" />
-      <engine name="cordova-ios" version=">=6.2.0" />
+      <engine name="cordova-ios" version="7.1.0" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">
         <clobbers target="intercom" />
         <clobbers target="cordova.plugins.intercom" />
         <clobbers target="plugin.intercom" />
+    </js-module>
+
+     <js-module name="IntercomContent" src="www/intercomContent.js">
+        <clobbers target="intercomContent" />
+        <clobbers target="cordova.plugins.intercomContent" />
+        <clobbers target="plugin.intercomContent" />
     </js-module>
 
 
@@ -62,7 +68,7 @@
               <source url="https://cdn.cocoapods.org/"/>
           </config>
           <pods use-frameworks="true">
-              <pod name="Intercom" spec="~> 13.0.0" />
+              <pod name="Intercom" spec="~> 17.0.3" />
           </pods>
       </podspec>
     </platform>

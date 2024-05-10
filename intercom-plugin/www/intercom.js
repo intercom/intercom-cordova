@@ -1,26 +1,20 @@
+
+
+const Space = {
+	Home: "HOME",
+	HelpCenter: "HELP_CENTER",
+	Messages: "MESSAGES",
+    Tickets: "TICKETS"
+}
+
 var intercom = {
-    
-    registerIdentifiedUser: function(options, success, error) {
-        cordova.exec(success, error, 'Intercom', 'loginUserWithUserAttributes', [options]);
-        console.warn('registerIdentifiedUser() is deprecated and will be removed in a future release. Please use loginUserWithUserAttributes()');
-    },
     
     loginUserWithUserAttributes: function(options, success, error) {
         cordova.exec(success, error, 'Intercom', 'loginUserWithUserAttributes', [options]);
     },
-
-    registerUnidentifiedUser: function(options, success, error) {
-        cordova.exec(success, error, 'Intercom', 'loginUnidentifiedUser', []);
-        console.warn('registerUnidentifiedUser() is deprecated and will be removed in a future release. Please use loginUnidentifiedUser()');
-    },
     
     loginUnidentifiedUser: function(options, success, error) {
         cordova.exec(success, error, 'Intercom', 'loginUnidentifiedUser', []);
-    },
-    
-    reset: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'logout', []);
-        console.warn('reset() is deprecated and will be removed in a future release. Please use logout()');
     },
     
     logout: function(success, error) {
@@ -39,27 +33,24 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'logEvent', [eventName, metaData]);
     },
 
-    displayMessenger: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessenger', []);
+    present: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'present', []);
     },
     
-    displayMessageComposer: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', []);
-        console.warn('displayMessageComposer() is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+    presentSpace: function(space, success, error) {
+        cordova.exec(success, error, 'Intercom', 'present', [space]);
     },
 
-    displayMessageComposerWithInitialMessage: function(initialMessage, success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', [initialMessage]);
-        console.warn('displayMessageComposerWithInitialMessage(initialMessage) is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+    presentContent: function(content, success, error) {
+        cordova.exec(success, error, 'Intercom', 'presentContent', [content]);
     },
+    
 
     displayMessageComposer: function(initialMessage, success, error) {
         cordova.exec(success, error, 'Intercom', 'displayMessageComposer', [initialMessage]);
     },
 
-    displayHelpCenter: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayHelpCenter', []);
-    },
+    
 
     fetchHelpCenterCollections: function(success, error) {
         cordova.exec(success, error, 'Intercom', 'fetchHelpCenterCollections', []);
@@ -118,7 +109,49 @@ var intercom = {
 
     setBottomPadding: function(bottomPadding, success, error) {
         cordova.exec(success, error, 'Intercom', 'setBottomPadding', [bottomPadding]);
-    }
+    },
+
+
+
+    /**
+     * @deprecated
+     */
+     registerIdentifiedUser: function(options, success, error) {
+        cordova.exec(success, error, 'Intercom', 'loginUserWithUserAttributes', [options]);
+        console.warn('registerIdentifiedUser() is deprecated and will be removed in a future release. Please use loginUserWithUserAttributes()');
+    },
+
+    registerUnidentifiedUser: function(options, success, error) {
+        cordova.exec(success, error, 'Intercom', 'loginUnidentifiedUser', []);
+        console.warn('registerUnidentifiedUser() is deprecated and will be removed in a future release. Please use loginUnidentifiedUser()');
+    },
+
+    reset: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'logout', []);
+        console.warn('reset() is deprecated and will be removed in a future release. Please use logout()');
+    },
+
+    displayMessenger: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayMessenger', []);
+    },
+
+    displayHelpCenter: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayHelpCenter', []);
+    },
+
+    displayMessageComposerWithInitialMessage: function(initialMessage, success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', [initialMessage]);
+        console.warn('displayMessageComposerWithInitialMessage(initialMessage) is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+    },
+
+    displayMessageComposer: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', []);
+        console.warn('displayMessageComposer() is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+    },
+
+    getCarouselWithId: function(carouselId) {
+        return IntercomContent.carouselWithCarouselId(carouselId)
+    },
 }
 
 module.exports = intercom;

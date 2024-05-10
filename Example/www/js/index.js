@@ -55,16 +55,18 @@ var app = {
         }, false);
 
       document.getElementById("open-intercom-btn").addEventListener("click", function(){
-          intercom.displayMessenger();
+          intercom.present();
       }, false);
 
       document.getElementById("open-help-center-btn").addEventListener("click", function(){
-          intercom.displayHelpCenter();
+          // intercom.displayHelpCenter();
+          intercom.presentSpace(intercom.Space.HelpCenter);
       }, false);
 
       document.getElementById("open-help-center-filtered-btn").addEventListener("click", function(){
           // Replace this with your own collections
-          var ids = ["COLLECTION_ID1", "COLLECTION_ID2"];
+          var collectionIds = ["COLLECTION_ID1", "COLLECTION_ID2"];
+        
           intercom.displayHelpCenterCollections({collectionIds: ids});
       }, false);
 
@@ -103,16 +105,24 @@ var app = {
       }, false);
 
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
-          intercom.displayCarousel("carousel-id");
+          var carousel = intercomContent.carouselWithCarouselId('32136001')
+          intercom.presentContent(carousel)
       }, false);
 
       document.getElementById("display-article-btn").addEventListener("click", function(){
-          intercom.displayArticle("article-id");
+          var article = intercomContent.articleWithArticleId('3969758')
+          intercom.presentContent(article);
       }, false);
 
-       document.getElementById("display-survey-btn").addEventListener("click", function(){
-          intercom.displaySurvey("survey-id");
+      document.getElementById("display-survey-btn").addEventListener("click", function(){
+          var survey = intercomContent.surveyWithSurveyId('23727915')
+          intercom.presentContent(survey);
       }, false);
+
+      document.getElementById("display-conversation-btn").addEventListener("click", function(){
+        var conversation = intercomContent.conversationWithConversationId('781200016661')
+        intercom.presentContent(conversation);
+    }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -149,6 +159,7 @@ var app = {
       document.getElementById("display-carousel-btn").style.visibility = 'visible';
       document.getElementById("display-article-btn").style.visibility = 'visible';
       document.getElementById("display-survey-btn").style.visibility = 'visible';
+      document.getElementById("display-conversation-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
   
@@ -159,6 +170,7 @@ var app = {
       document.getElementById("display-carousel-btn").style.visibility = 'hidden';
       document.getElementById("display-article-btn").style.visibility = 'hidden';
       document.getElementById("display-survey-btn").style.visibility = 'hidden';
+      document.getElementById("display-conversation-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
 };

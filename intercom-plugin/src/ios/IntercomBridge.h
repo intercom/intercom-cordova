@@ -15,10 +15,7 @@
 
 - (void)unreadConversationCount:(CDVInvokedUrlCommand*)command;
 
-- (void)displayMessenger:(CDVInvokedUrlCommand*)command;
-- (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
-- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command;
-- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command;
+
 - (void)fetchHelpCenterCollections:(CDVInvokedUrlCommand*)command;
 - (void)fetchHelpCenterCollection:(CDVInvokedUrlCommand*)command;
 - (void)searchHelpCenter:(CDVInvokedUrlCommand*)command;
@@ -30,5 +27,35 @@
     
 
 - (void)registerForPush:(CDVInvokedUrlCommand*)command;
+
+#pragma mark - Deprecated Methods
+/**
+ @deprecated
+ */
+- (void)displayMessenger:(CDVInvokedUrlCommand*)command DEPRECATED_MSG_ATTRIBUTE("'+[Intercom displayMessenger]' is deprecated and will be removed in a future release. 'Use +[Intercom presentIntercom]' instead.");;
+/**
+ @deprecated
+ */
+- (void)displayMessageComposer:(CDVInvokedUrlCommand*)command;
+/**
+ @deprecated
+ */
+- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command;
+/**
+ @deprecated
+ */
+- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command;
+/**
+ @deprecated
+ */
+- (void)displayCarousel:(CDVInvokedUrlCommand*)command;
+/**
+ @deprecated
+ */
+- (void)displayArticle:(CDVInvokedUrlCommand*)command;
+/**
+ @deprecated
+ */
+- (void)displaySurvey:(CDVInvokedUrlCommand*)command;
 
 @end
