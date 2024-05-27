@@ -82,8 +82,6 @@
     [self sendSuccess:command];
 }
 
-
-
 - (void)updateUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* attributesDict = command.arguments[0];
     [Intercom updateUser:[self userAttributesForDictionary:attributesDict] success:^{
@@ -410,48 +408,4 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-
-#pragma mark - Deprecate Methods
-
-- (void)displayMessenger:(CDVInvokedUrlCommand*)command {
-    [Intercom presentIntercom];
-    [self sendSuccess:command];
-}
-
-- (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
-    NSString *initialMessage = command.arguments[0];
-    [Intercom presentMessageComposer:initialMessage];
-    [self sendSuccess:command];
-}
-
-
-- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command {
-    [Intercom presentIntercom:helpCenter];
-    [self sendSuccess:command];
-}
-
-- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command {
-    NSDictionary *args = command.arguments[0];
-    NSArray* collectionIds = args[@"collectionIds"];
-    [Intercom presentContent:[IntercomContent helpCenterCollectionsWithIds:collectionIds]];
-    [self sendSuccess:command];
-}
-
-- (void)displayCarousel:(CDVInvokedUrlCommand*)command {
-    NSString *carouselId = command.arguments[0];
-    [Intercom presentContent:[IntercomContent carouselWithId:carouselId]];
-    [self sendSuccess:command];
-}
-
-- (void)displayArticle:(CDVInvokedUrlCommand*)command {
-    NSString *articleId = command.arguments[0];
-    [Intercom presentContent:[IntercomContent articleWithId:articleId]];
-    [self sendSuccess:command];
-}
-
-- (void)displaySurvey:(CDVInvokedUrlCommand*)command {
-    NSString *surveyId = command.arguments[0];
-    [Intercom presentContent:[IntercomContent surveyWithId:surveyId]];
-    [self sendSuccess:command];
-}
 @end
