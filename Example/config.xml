@@ -47,8 +47,8 @@
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
     </platform>
-    <preference name="intercom-app-id" value="odymwnr8" />
-    <preference name="intercom-ios-api-key" value="ios_sdk-adc9042202780151dc7f61147911b49999539bed" />
+    <preference name="intercom-app-id" value="YOUR_WORKSPACE_ID" />
+    <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
 
     <!-- Uncomment to change region -->

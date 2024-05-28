@@ -59,7 +59,6 @@ var app = {
       }, false);
 
       document.getElementById("open-help-center-btn").addEventListener("click", function(){
-          // intercom.displayHelpCenter();
           intercom.presentSpace(intercom.Space.HelpCenter);
       }, false);
 
@@ -110,17 +109,20 @@ var app = {
       }, false);
 
       document.getElementById("display-article-btn").addEventListener("click", function(){
-          var article = intercomContent.articleWithArticleId('3969758')
+          // Replace this with your own article Id
+          var article = intercomContent.articleWithArticleId('ARTICLE_ID')
           intercom.presentContent(article);
       }, false);
 
       document.getElementById("display-survey-btn").addEventListener("click", function(){
-          var survey = intercomContent.surveyWithSurveyId('23727915')
+        // Replace this with your own survey Id
+          var survey = intercomContent.surveyWithSurveyId('SURVEY_ID')
           intercom.presentContent(survey);
       }, false);
 
       document.getElementById("display-conversation-btn").addEventListener("click", function(){
-        var conversation = intercomContent.conversationWithConversationId('781200016661')
+        // Replace this with your own conversation Id
+        var conversation = intercomContent.conversationWithConversationId('CONVERSATION_ID')
         intercom.presentContent(conversation);
     }, false);
     },
