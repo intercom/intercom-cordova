@@ -104,8 +104,8 @@ var app = {
       }, false);
 
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
-        // Replace this with your own carousel Id  
-        var carousel = intercomContent.carouselWithCarouselId('CAROUSEL_ID')
+          // Replace this with your own carousel Id  
+          var carousel = intercomContent.carouselWithCarouselId('CAROUSEL_ID')
           intercom.presentContent(carousel)
       }, false);
 
@@ -116,15 +116,15 @@ var app = {
       }, false);
 
       document.getElementById("display-survey-btn").addEventListener("click", function(){
-        // Replace this with your own survey Id
+          // Replace this with your own survey Id
           var survey = intercomContent.surveyWithSurveyId('SURVEY_ID')
           intercom.presentContent(survey);
       }, false);
 
       document.getElementById("display-conversation-btn").addEventListener("click", function(){
-        // Replace this with your own conversation Id
-        var conversation = intercomContent.conversationWithConversationId('CONVERSATION_ID')
-        intercom.presentContent(conversation);
+          // Replace this with your own conversation Id
+          var conversation = intercomContent.conversationWithConversationId('CONVERSATION_ID')
+          intercom.presentContent(conversation);
     }, false);
     },
     // Update DOM on a Received Event
