@@ -104,7 +104,8 @@ var app = {
       }, false);
 
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
-          var carousel = intercomContent.carouselWithCarouselId('32136001')
+        // Replace this with your own carousel Id  
+        var carousel = intercomContent.carouselWithCarouselId('CAROUSEL_ID')
           intercom.presentContent(carousel)
       }, false);
 
