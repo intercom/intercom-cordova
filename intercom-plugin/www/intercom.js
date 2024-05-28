@@ -103,8 +103,8 @@ var intercom = {
      *
      * @param initialMessage An optional message that is used to pre-populate the composer with some text.
      */
-    displayMessageComposer: function(initialMessage, success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', [initialMessage]);
+    presentMessageComposer: function(initialMessage, success, error) {
+        cordova.exec(success, error, 'Intercom', 'presentMessageComposer', [initialMessage]);
     },
 
     /**
@@ -249,24 +249,25 @@ var intercom = {
      * @deprecated
      */
     displayMessageComposerWithInitialMessage: function(initialMessage, success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', [initialMessage]);
-        console.warn('displayMessageComposerWithInitialMessage(initialMessage) is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+        cordova.exec(success, error, 'Intercom', 'presentMessageComposer', [initialMessage]);
+        console.warn('displayMessageComposerWithInitialMessage(initialMessage) is deprecated and will be removed in a future release. Please use presentMessageComposer(initialMessage)')
     },
 
     /**
      * @deprecated
      */
     displayMessageComposer: function(success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayMessageComposer', []);
-        console.warn('displayMessageComposer() is deprecated and will be removed in a future release. Please use displayMessageComposer(initialMessage)')
+        cordova.exec(success, error, 'Intercom', 'presentMessageComposer', []);
+        console.warn('displayMessageComposer() is deprecated and will be removed in a future release. Please use presentMessageComposer()')
     },
     
     /**
      * @deprecated
      */
     displayHelpCenterCollections: function(collectionIds, success, error) {
-        cordova.exec(success, error, 'Intercom', 'displayHelpCenterCollections', [collectionIds]);
-        console.warn('displayHelpCenterCollections() is deprecated and will be removed in a future release. Please use intercomContent.helpCenterCollectionsWithIds([ids])')
+        var collections = intercomContent.helpCenterCollectionsWithIds(collectionIds);
+        cordova.exec(success, error, 'Intercom', 'presentContent', [collections]);
+        console.warn('displayHelpCenterCollections() is deprecated and will be removed in a future release. Please use intercom.presentContent(intercomContent.helpCenterCollectionsWithIds([ids]))')
     },
 
     /**
@@ -300,3 +301,4 @@ var intercom = {
 }
 
 module.exports = intercom;
+
