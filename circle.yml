@@ -1,5 +1,10 @@
 version: 2.1
 
+setup_ruby: &setup_ruby
+  run:
+    name: Setup Ruby
+    command: sed -i '' 's/.*chruby ruby.*/chruby ruby-3.2.2/' ~/.bash_profile
+
 jobs:
   ios:
     macos:
@@ -7,6 +12,7 @@ jobs:
     resource_class: macos.m1.large.gen1
     shell: /bin/bash --login -eo pipefail
     steps:
+      - <<: *setup_ruby
       - checkout
       - run:
           name: Install node/npm
