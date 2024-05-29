@@ -26,9 +26,9 @@ jobs:
 
   android:
     docker:
-      - image: circleci/android:api-30
+      - image:  cimg/android:2023.09
     environment:
-      - JVM_OPTS: -Xmx3200m
+      GRADLE_OPTS: -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.daemon=false -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-XX:MaxMetaspaceSize=512m"  -Dorg.gradle.workers.max=2
     working_directory: ~/project/Example
     steps:
       - checkout
@@ -47,10 +47,10 @@ jobs:
           command: sudo apt-get install gradle
       - run:
           name: Install Cordova
-          command: sudo npm install -g cordova@9.0.0
+          command: sudo npm install -g cordova@12.0.0
       - run:
           name: Add Android platform
-          command: cd Example && cordova platform add android@10.0.0
+          command: cd Example && cordova platform add android@13.0.0
       - run:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
