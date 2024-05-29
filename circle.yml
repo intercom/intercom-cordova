@@ -49,7 +49,7 @@ jobs:
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
       - run:
           name: Install Cordova
-          command: sudo npm install -g cordova@12.0.0
+          command: npm install -g cordova@12.0.0
       - run:
           name: Add Android platform
           command: cd Example && cordova platform add android@latest
