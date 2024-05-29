@@ -1,11 +1,11 @@
 
 
 const Space = {
-	Home: "HOME",
-	HelpCenter: "HELP_CENTER",
-	Messages: "MESSAGES",
-    Tickets: "TICKETS"
-}
+  Home: "HOME",
+  HelpCenter: "HELP_CENTER",
+  Messages: "MESSAGES",
+  Tickets: "TICKETS",
+};
 
 var intercom = {
     
