@@ -1,13 +1,10 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.2.0
-
 jobs:
   ios:
     macos:
-      xcode: "13.4.1"
-    resource_class: macos.x86.medium.gen2
+      xcode: "15.4.0"
+    resource_class: macos.m1.large.gen1
     shell: /bin/bash --login -eo pipefail
     steps:
       - checkout
@@ -39,11 +36,9 @@ jobs:
           name: Accept all Android licenses
           command: |
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
-      - run: 
+      - run:
           name: Install node/npm
-          command: sudo npm install -g npm@latest
-      - node/install-packages:
-          cache-path: ~/project/node_modules
+          command: command -v node || brew install node
       - run:
           name: Install gradle
           command: sudo apt-get install gradle
@@ -52,7 +47,7 @@ jobs:
           command: sudo npm install -g cordova@12.0.0
       - run:
           name: Add Android platform
-          command: cd Example && cordova platform add android@13.0.0
+          command: cd Example && cordova platform add android@latest
       - run:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
@@ -78,7 +73,7 @@ jobs:
             cd intercom-plugin && npm publish
 
 workflows:
-  version: 2
+  version: 2.1
   ios_and_android:
     jobs:
       - ios:
