@@ -3,7 +3,7 @@ version: 2.1
 setup_ruby: &setup_ruby
   run:
     name: Setup Ruby
-    command: sed -i '' 's/.*chruby ruby.*/chruby ruby-3.2.2/' ~/.bash_profile
+    command: sed -i '' 's/.*chruby ruby.*/chruby ruby-3.2.3/' ~/.bash_profile
 
 jobs:
   ios:
@@ -28,7 +28,7 @@ jobs:
           command: cd Example && cordova plugin add ../intercom-plugin
       - run:
           name: Build
-          command: cd Example && cordova build ios --buildFlag="-UseModernBuildSystem=0"
+          command: cd Example && cordova build ios
 
   android:
     docker:
