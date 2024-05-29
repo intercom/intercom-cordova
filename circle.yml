@@ -60,11 +60,9 @@ jobs:
       - image:  cimg/android:2023.09
     steps:
       - checkout
-      - run: 
+     - run:
           name: Install node/npm
-          command: sudo npm install -g npm@latest
-      - node/install-packages:
-          cache-path: ~/project/node_modules
+          command: command -v node || brew install node
       - run:
           name: Publish to npm
           command: |
