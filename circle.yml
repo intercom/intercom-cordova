@@ -60,7 +60,7 @@ jobs:
       - image:  cimg/android:2023.09
     steps:
       - checkout
-     - run:
+      - run:
           name: Install node/npm
           command: command -v node || brew install node
       - run:
