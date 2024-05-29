@@ -36,6 +36,8 @@ jobs:
   android:
     executor:
       name: android/android-machine
+      resource-class: large
+      tag: default
     environment:
       GRADLE_OPTS: -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.daemon=false -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-XX:MaxMetaspaceSize=512m"  -Dorg.gradle.workers.max=2
     working_directory: ~/project/Example
@@ -61,6 +63,8 @@ jobs:
   publish:
     executor:
       name: android/android-machine
+      resource-class: large
+      tag: default
     steps:
       - checkout
       - run:
