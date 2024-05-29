@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2.0
 
 jobs:
   ios:
@@ -36,12 +39,11 @@ jobs:
           name: Accept all Android licenses
           command: |
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
-      - run:
+      - run: 
           name: Install node/npm
-          command: |
-            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt install -y nodejs
+          command: sudo npm install -g npm@latest
+      - node/install-packages:
+          cache-path: ~/project/node_modules
       - run:
           name: Install gradle
           command: sudo apt-get install gradle
@@ -60,15 +62,14 @@ jobs:
 
   publish:
     docker:
-      - image: circleci/android:api-28
+      - image:  cimg/android:2023.09
     steps:
       - checkout
-      - run:
+      - run: 
           name: Install node/npm
-          command: |
-            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt install -y nodejs
+          command: sudo npm install -g npm@latest
+      - node/install-packages:
+          cache-path: ~/project/node_modules
       - run:
           name: Publish to npm
           command: |
