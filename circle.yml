@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  android: circleci/android@2.5.0
+
 setup_ruby: &setup_ruby
   run:
     name: Setup Ruby
@@ -31,8 +34,8 @@ jobs:
           command: cd Example && cordova build ios
 
   android:
-    docker:
-      - image:  cimg/android:2023.09
+    executor:
+      name: android/android-machine
     environment:
       GRADLE_OPTS: -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.daemon=false -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-XX:MaxMetaspaceSize=512m"  -Dorg.gradle.workers.max=2
     working_directory: ~/project/Example
@@ -42,12 +45,6 @@ jobs:
           name: Accept all Android licenses
           command: |
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
-      - run:
-          name: Install node/npm
-          command: command -v node || brew install node
-      - run:
-          name: Install gradle
-          command: sudo apt-get install gradle
       - run:
           name: Install Cordova
           command: sudo npm install -g cordova@12.0.0
@@ -62,13 +59,10 @@ jobs:
           command: cd Example && cordova build android --verbose -- --gradleArg=--stacktrace
 
   publish:
-    docker:
-      - image:  cimg/android:2023.09
+    executor:
+      name: android/android-machine
     steps:
       - checkout
-      - run:
-          name: Install node/npm
-          command: command -v node || brew install node
       - run:
           name: Publish to npm
           command: |
