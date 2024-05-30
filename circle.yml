@@ -1,12 +1,21 @@
-version: 2
+version: 2.1
+
+orbs:
+  android: circleci/android@2.5.0
+
+setup_ruby: &setup_ruby
+  run:
+    name: Setup Ruby
+    command: sed -i '' 's/.*chruby ruby.*/chruby ruby-3.3.0/' ~/.bash_profile
 
 jobs:
   ios:
     macos:
-      xcode: "13.4.1"
-    resource_class: macos.x86.medium.gen2
+      xcode: "15.4.0"
+    resource_class: macos.m1.large.gen1
     shell: /bin/bash --login -eo pipefail
     steps:
+      - <<: *setup_ruby
       - checkout
       - run:
           name: Install node/npm
@@ -22,13 +31,15 @@ jobs:
           command: cd Example && cordova plugin add ../intercom-plugin
       - run:
           name: Build
-          command: cd Example && cordova build ios --buildFlag="-UseModernBuildSystem=0"
+          command: cd Example && cordova build ios
 
   android:
-    docker:
-      - image: circleci/android:api-30
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: default
     environment:
-      - JVM_OPTS: -Xmx3200m
+      GRADLE_OPTS: -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.daemon=false -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-XX:MaxMetaspaceSize=512m"  -Dorg.gradle.workers.max=2
     working_directory: ~/project/Example
     steps:
       - checkout
@@ -37,20 +48,11 @@ jobs:
           command: |
             yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
       - run:
-          name: Install node/npm
-          command: |
-            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt install -y nodejs
-      - run:
-          name: Install gradle
-          command: sudo apt-get install gradle
-      - run:
           name: Install Cordova
-          command: sudo npm install -g cordova@9.0.0
+          command: npm install -g cordova@12.0.0
       - run:
           name: Add Android platform
-          command: cd Example && cordova platform add android@10.0.0
+          command: cd Example && cordova platform add android@latest
       - run:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
@@ -59,16 +61,12 @@ jobs:
           command: cd Example && cordova build android --verbose -- --gradleArg=--stacktrace
 
   publish:
-    docker:
-      - image: circleci/android:api-28
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: default
     steps:
       - checkout
-      - run:
-          name: Install node/npm
-          command: |
-            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt install -y nodejs
       - run:
           name: Publish to npm
           command: |
@@ -77,7 +75,7 @@ jobs:
             cd intercom-plugin && npm publish
 
 workflows:
-  version: 2
+  version: 2.1
   ios_and_android:
     jobs:
       - ios:

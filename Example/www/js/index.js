@@ -55,16 +55,17 @@ var app = {
         }, false);
 
       document.getElementById("open-intercom-btn").addEventListener("click", function(){
-          intercom.displayMessenger();
+          intercom.present();
       }, false);
 
       document.getElementById("open-help-center-btn").addEventListener("click", function(){
-          intercom.displayHelpCenter();
+          intercom.presentSpace(intercom.Space.HelpCenter);
       }, false);
 
       document.getElementById("open-help-center-filtered-btn").addEventListener("click", function(){
           // Replace this with your own collections
-          var ids = ["COLLECTION_ID1", "COLLECTION_ID2"];
+          var collectionIds = ["COLLECTION_ID1", "COLLECTION_ID2"];
+        
           intercom.displayHelpCenterCollections({collectionIds: ids});
       }, false);
 
@@ -103,16 +104,28 @@ var app = {
       }, false);
 
       document.getElementById("display-carousel-btn").addEventListener("click", function(){
-          intercom.displayCarousel("carousel-id");
+          // Replace this with your own carousel Id  
+          var carousel = intercomContent.carouselWithCarouselId('CAROUSEL_ID')
+          intercom.presentContent(carousel)
       }, false);
 
       document.getElementById("display-article-btn").addEventListener("click", function(){
-          intercom.displayArticle("article-id");
+          // Replace this with your own article Id
+          var article = intercomContent.articleWithArticleId('ARTICLE_ID')
+          intercom.presentContent(article);
       }, false);
 
-       document.getElementById("display-survey-btn").addEventListener("click", function(){
-          intercom.displaySurvey("survey-id");
+      document.getElementById("display-survey-btn").addEventListener("click", function(){
+          // Replace this with your own survey Id
+          var survey = intercomContent.surveyWithSurveyId('SURVEY_ID')
+          intercom.presentContent(survey);
       }, false);
+
+      document.getElementById("display-conversation-btn").addEventListener("click", function(){
+          // Replace this with your own conversation Id
+          var conversation = intercomContent.conversationWithConversationId('CONVERSATION_ID')
+          intercom.presentContent(conversation);
+    }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -149,6 +162,7 @@ var app = {
       document.getElementById("display-carousel-btn").style.visibility = 'visible';
       document.getElementById("display-article-btn").style.visibility = 'visible';
       document.getElementById("display-survey-btn").style.visibility = 'visible';
+      document.getElementById("display-conversation-btn").style.visibility = 'visible';
       document.getElementById("login-btn").style.visibility = 'hidden';
     },
   
@@ -159,6 +173,7 @@ var app = {
       document.getElementById("display-carousel-btn").style.visibility = 'hidden';
       document.getElementById("display-article-btn").style.visibility = 'hidden';
       document.getElementById("display-survey-btn").style.visibility = 'hidden';
+      document.getElementById("display-conversation-btn").style.visibility = 'hidden';
       document.getElementById("login-btn").style.visibility = 'visible';
     }
 };

@@ -11,8 +11,11 @@
 
 @implementation IntercomBridge : CDVPlugin
 
+
+#pragma mark - Intercom Initialisation
+
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"12.4.0"];
+    [Intercom setCordovaVersion:@"14.0.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -24,10 +27,19 @@
     [Intercom setApiKey:apiKey forAppId:appId];
 }
 
+- (void)setUserHash:(CDVInvokedUrlCommand*)command {
+    NSString *hmac = command.arguments[0];
+    
+    [Intercom setUserHash:hmac];
+    [self sendSuccess:command];
+}
+
+#pragma mark - User Login
+
 - (void)loginUserWithUserAttributes:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = command.arguments[0];
-    NSString* userId      = options[@"userId"];
-    NSString* userEmail   = options[@"email"];
+    NSString* userId = options[@"userId"];
+    NSString* userEmail = options[@"email"];
 
     if ([userId isKindOfClass:[NSNumber class]]) {
         userId = [(NSNumber *)userId stringValue];
@@ -70,13 +82,6 @@
     [self sendSuccess:command];
 }
 
-- (void)setUserHash:(CDVInvokedUrlCommand*)command {
-    NSString *hmac = command.arguments[0];
-
-    [Intercom setUserHash:hmac];
-    [self sendSuccess:command];
-}
-
 - (void)updateUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* attributesDict = command.arguments[0];
     [Intercom updateUser:[self userAttributesForDictionary:attributesDict] success:^{
@@ -86,6 +91,8 @@
     }];
     [self sendSuccess:command];
 }
+
+#pragma mark - Events
 
 - (void)logEvent:(CDVInvokedUrlCommand*)command {
     NSString *eventName = command.arguments[0];
@@ -99,34 +106,59 @@
     [self sendSuccess:command];
 }
 
-- (void)unreadConversationCount:(CDVInvokedUrlCommand*)command {
-    NSUInteger count = [Intercom unreadConversationCount];
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:count];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
 
-- (void)displayMessenger:(CDVInvokedUrlCommand*)command {
-    [Intercom presentMessenger];
+#pragma mark - Present Intercom UI
+
+- (void)present:(CDVInvokedUrlCommand*)command {
+    [Intercom presentIntercom];
     [self sendSuccess:command];
 }
 
-- (void)displayMessageComposer:(CDVInvokedUrlCommand*)command {
+- (void)presentIntercomSpace:(CDVInvokedUrlCommand*)command {
+    NSString *space = command.arguments[0];
+    Space selectedSpace = home;
+    if ([space isEqualToString:@"HOME"]) {
+        selectedSpace = home;
+    } else if ([space isEqualToString:@"HELP_CENTER"]) {
+        selectedSpace = helpCenter;
+    } else if ([space isEqualToString:@"MESSAGES"]) {
+        selectedSpace = messages;
+    } else if ([space isEqualToString:@"TICKETS"]) {
+        selectedSpace = tickets;
+    }
+    [Intercom presentIntercom:selectedSpace];
+    [self sendSuccess:command];
+}
+
+- (void)presentContent:(CDVInvokedUrlCommand*)command {
+    NSDictionary *content = command.arguments[0];
+    IntercomContent *intercomContent;
+    NSString *contentType = content[@"type"];
+    if ([contentType isEqualToString:@"ARTICLE"]) {
+        intercomContent = [IntercomContent articleWithId:content[@"id"]];
+    } else if ([contentType isEqualToString:@"CAROUSEL"]) {
+        intercomContent = [IntercomContent carouselWithId:content[@"id"]];
+    } else if ([contentType isEqualToString:@"SURVEY"]) {
+        intercomContent = [IntercomContent surveyWithId:content[@"id"]];
+    } else if ([contentType isEqualToString:@"HELP_CENTER_COLLECTIONS"]) {
+        NSArray<NSString *> *collectionIds = content[@"ids"];
+        intercomContent = [IntercomContent helpCenterCollectionsWithIds:collectionIds];
+    } else if ([contentType isEqualToString:@"CONVERSATION"]) {
+        intercomContent = [IntercomContent conversationWithId:content[@"id"]];
+    }
+    if (intercomContent) {
+        [Intercom presentContent:intercomContent];
+        [self sendSuccess:command];
+    }
+}
+
+- (void)presentMessageComposer:(CDVInvokedUrlCommand*)command {
     NSString *initialMessage = command.arguments[0];
     [Intercom presentMessageComposer:initialMessage];
     [self sendSuccess:command];
 }
 
-- (void)displayHelpCenter:(CDVInvokedUrlCommand*)command {
-    [Intercom presentHelpCenter];
-    [self sendSuccess:command];
-}
-
-- (void)displayHelpCenterCollections:(CDVInvokedUrlCommand*)command {
-    NSDictionary *args = command.arguments[0];
-    NSArray* collectionIds = args[@"collectionIds"];
-    [Intercom presentHelpCenterCollections:collectionIds];
-    [self sendSuccess:command];
-}
+#pragma mark - Help Center Data API
 
 - (void)fetchHelpCenterCollections:(CDVInvokedUrlCommand*)command {
     [Intercom fetchHelpCenterCollectionsWithCompletion:^(NSArray<ICMHelpCenterCollection *> * _Nullable collections, NSError * _Nullable error) {
@@ -177,6 +209,9 @@
     }];
 }
 
+
+#pragma mark - Intercom UI Visibility
+
 - (void)hideIntercom:(CDVInvokedUrlCommand*)command {
     [Intercom hideIntercom];
     [self sendSuccess:command];
@@ -202,6 +237,23 @@
     [self sendSuccess:command];
 }
 
+- (void)setBottomPadding:(CDVInvokedUrlCommand*)command {
+    double bottomPadding = [[command.arguments objectAtIndex:0] doubleValue];
+    [Intercom setBottomPadding:bottomPadding];
+    [self sendSuccess:command];
+}
+
+#pragma mark - Unread Conversation Count
+
+- (void)unreadConversationCount:(CDVInvokedUrlCommand*)command {
+    NSUInteger count = [Intercom unreadConversationCount];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:count];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+
+#pragma mark - Push Notifications
+
 - (void)registerForPush:(CDVInvokedUrlCommand*)command {
     UIApplication *application = [UIApplication sharedApplication];
     [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionAlert
@@ -216,29 +268,9 @@
   NSLog(@"[Intercom-Cordova] INFO - sendPushTokenToIntercom called");
 }
 
-- (void)displayCarousel:(CDVInvokedUrlCommand*)command {
-  NSString *carouselId = command.arguments[0];
-    [Intercom presentCarousel:carouselId];
-    [self sendSuccess:command];
-}
 
-- (void)displayArticle:(CDVInvokedUrlCommand*)command {
-  NSString *articleId = command.arguments[0];
-    [Intercom presentArticle:articleId];
-    [self sendSuccess:command];
-}
 
-- (void)displaySurvey:(CDVInvokedUrlCommand*)command {
-  NSString *surveyId = command.arguments[0];
-    [Intercom presentSurvey:surveyId];
-    [self sendSuccess:command];
-}
 
-- (void)setBottomPadding:(CDVInvokedUrlCommand*)command {
-    double bottomPadding = [[command.arguments objectAtIndex:0] doubleValue];
-    [Intercom setBottomPadding:bottomPadding];
-    [self sendSuccess:command];
-}
 
 #pragma mark - User attributes
 
@@ -375,4 +407,5 @@
                                                    messageAsNSInteger:error.code];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
+
 @end

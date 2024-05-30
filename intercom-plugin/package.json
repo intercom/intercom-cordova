@@ -23,15 +23,15 @@
   "engines": [
     {
       "name": "cordova",
-      "version": ">=9.0.0"
+      "version": ">=12.0.0"
     },
     {
       "name": "cordova-android",
-      "version": ">=10.0.0"
+      "version": ">=13.0.0"
     },
     {
       "name": "cordova-ios",
-      "version": ">=6.2.0"
+      "version": "7.1.0"
     }
   ],
   "author": "Intercom",

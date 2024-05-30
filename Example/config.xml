@@ -33,7 +33,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <preference name="deployment-target" value="13.0" />
+        <preference name="deployment-target" value="15.0" />
         <preference name="BackupWebStorage" value="local" />
         <icon height="29" src="www/img/icon-29.png" width="29" />
         <icon height="58" src="www/img/icon-29@2x.png" width="58" />
@@ -47,7 +47,7 @@
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
     </platform>
-    <preference name="intercom-app-id" value="YOUR_APP_ID" />
+    <preference name="intercom-app-id" value="YOUR_WORKSPACE_ID" />
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
     <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
 
