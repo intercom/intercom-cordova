@@ -111,7 +111,7 @@ public class IntercomBridge extends CordovaPlugin {
             resourcesSenderId = context.getResources().getString(R.string.intercom_gcm_sender_id);
         }
         catch (Exception e) {
-            Log.d(e, "Failed to get sender ID from resources: ");
+            Log.d("Intercom-Cordova", "Failed to get sender ID from resources: ", e);
             resourcesSenderId = "";
         }
 
@@ -255,11 +255,11 @@ public class IntercomBridge extends CordovaPlugin {
                             content = new IntercomContent.Survey(contentHash.get("id").toString());
                             break;
                         case "HELP_CENTER_COLLECTIONS":
-                            List<String> collectionIds = Arrays.asList(contentHash.get("ids"));
+                            List<String> collectionIds = (List<String>)contentHash.get("ids");
                             content = new IntercomContent.HelpCenterCollections(collectionIds);
                             break;
                         case "CONVERSATION":
-                            content = new IntercomContent.Conversation(contentHash.get("id"));
+                            content = new IntercomContent.Conversation(contentHash.get("id").toString());
                             break;
                     }
                     if (content != null) {

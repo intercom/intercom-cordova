@@ -6,6 +6,7 @@ buildscript {
                 pushType = it.@value.text().toLowerCase()
             }
         }
+        kotlin_version = '1.8.22'
     }
     repositories {
         google()
@@ -18,7 +19,9 @@ buildscript {
         if (pushType == 'fcm') {
             classpath 'com.google.gms:google-services:4.3.3'
         }
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+    
 }
 
 repositories {
@@ -49,6 +52,8 @@ task copyGoogleServices(type: Copy) {
 gradle.taskGraph.whenReady {
     copyGoogleServices
 }
+
+apply plugin: 'kotlin-android'
 
 if (pushType == 'fcm') {
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
