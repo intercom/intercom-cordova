@@ -8,4 +8,4 @@ cordova plugin remove ../intercom-plugin
 cordova plugin add ../intercom-plugin
 cordova platform remove android
 cordova platform add android@13.0.0 --save
-# cordova run android --stacktrace
+cordova run android --stacktrace

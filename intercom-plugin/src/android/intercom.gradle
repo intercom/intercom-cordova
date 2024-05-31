@@ -19,7 +19,8 @@ buildscript {
         if (pushType == 'fcm') {
             classpath 'com.google.gms:google-services:4.3.3'
         }
-         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // Need to add Kotlin classpath here to avoid an issue with accessing Compose from a Java only project
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
     
 }
@@ -53,6 +54,7 @@ gradle.taskGraph.whenReady {
     copyGoogleServices
 }
 
+// Need to add Kotlin plugin here to avoid an issue with accessing Compose from a Java only project
 apply plugin: 'kotlin-android'
 
 if (pushType == 'fcm') {
