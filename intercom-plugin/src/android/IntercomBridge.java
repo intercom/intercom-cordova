@@ -133,12 +133,15 @@ public class IntercomBridge extends CordovaPlugin {
                 JSONObject options = args.optJSONObject(0);
                 String email = options.optString("email");
                 String userId = options.optString("userId");
+                Boolean hasEmail = email != null && email.length() > 0;
+                Boolean hasUserId = userId != null && userId.length() > 0;
 
                 Registration registration = null;
-                if (email != null && email.length() > 0) {
+                if (hasEmail && hasUserId) {
+                    registration = new Registration().withEmail(email).withUserId(userId);
+                } else if (hasEmail) {
                     registration = new Registration().withEmail(email);
-                }
-                if (userId != null && userId.length() > 0) {
+                } else if (hasUserId) {
                     registration = new Registration().withUserId(userId);
                 }
                 if (registration != null) {
