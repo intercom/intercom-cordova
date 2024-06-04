@@ -43,22 +43,12 @@ dependencies {
     }
 }
 
-def googleServicesJsonPath = '../../../google-services.json'
-
-task copyGoogleServices(type: Copy) {
-    from googleServicesJsonPath
-    into '.'
-}
-
-gradle.taskGraph.whenReady {
-    copyGoogleServices
-}
-
 // Need to add Kotlin plugin here to avoid an issue with accessing Compose from a Java only project
 apply plugin: 'kotlin-android'
 
 if (pushType == 'fcm') {
     apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
+    logger.info("Applying GoogleServicesPlugin")
 } else if (pushType == 'fcm-without-build-plugin') {
     logger.info("Not applying GoogleServicesPlugin from Intercom plugin, another plugin should do this")
 }
