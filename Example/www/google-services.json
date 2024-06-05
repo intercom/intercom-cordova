@@ -1,0 +1,243 @@
+{
+  "project_info": {
+    "project_number": "350224474384",
+    "firebase_url": "https://delta-clarity-785.firebaseio.com",
+    "project_id": "delta-clarity-785",
+    "storage_bucket": "delta-clarity-785.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:90016e996dc2269bda0595",
+        "android_client_info": {
+          "package_name": "com.example.intercomreactnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:d012c2278afe443cda0595",
+        "android_client_info": {
+          "package_name": "com.intercom.reactnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:35b4597d700c476c",
+        "android_client_info": {
+          "package_name": "com.intercom.sandbox.live"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:31369dc426384dbe",
+        "android_client_info": {
+          "package_name": "com.intercom.sandbox.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:de7ab859115a271cda0595",
+        "android_client_info": {
+          "package_name": "com.reactnativesandbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:b4d9af07e968fc60",
+        "android_client_info": {
+          "package_name": "io.intercom.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:b021b62f0738e6d0da0595",
+        "android_client_info": {
+          "package_name": "io.intercom.cordova.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350224474384:android:cf55d5c409b55439da0595",
+        "android_client_info": {
+          "package_name": "io.intercom.pushtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFt4AnzIhUJKPe7ewLxycbxzgWdunsPJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350224474384-klihr5dlgde227m1d8kgq1kad8n7qj0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
