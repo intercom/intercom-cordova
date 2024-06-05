@@ -297,7 +297,8 @@ var intercom = {
         console.warn('displaySurvey() is deprecated and will be removed in a future release. Please use intercom.presentContent(intercomContent.surveyWithSurveyId(surveyId));');
     
     },
-
+    // Enable the Space constant to be used by `intercom.space.`
+    space: Space
 }
 
 module.exports = intercom;

@@ -265,7 +265,7 @@
 }
 
 - (void)sendPushTokenToIntercom:(CDVInvokedUrlCommand*)command {
-  NSLog(@"[Intercom-Cordova] INFO - sendPushTokenToIntercom called");
+  NSLog(@"[Intercom-Cordova] INFO - sendPushTokenToIntercom called. Ignored by iOS as we automatically send the token when the app is registered for push.");
 }
 
 

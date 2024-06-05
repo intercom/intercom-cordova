@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 import io.intercom.android.sdk.Intercom.Visibility;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
@@ -31,8 +32,11 @@ import io.intercom.android.sdk.helpcenter.collections.HelpCenterCollection;
 import io.intercom.android.sdk.helpcenter.sections.HelpCenterCollectionContent;
 import io.intercom.android.sdk.helpcenter.sections.HelpCenterSection;
 import io.intercom.android.sdk.identity.Registration;
-import io.intercom.android.sdk.logger.LumberMill;
 import io.intercom.android.sdk.push.IntercomPushClient;
+import io.intercom.android.sdk.IntercomSpace.*;
+import io.intercom.android.sdk.IntercomContent.*;
+import io.intercom.android.sdk.IntercomError;
+import io.intercom.android.sdk.IntercomStatusCallback;
 
 public class IntercomBridge extends CordovaPlugin {
 
@@ -82,7 +86,7 @@ public class IntercomBridge extends CordovaPlugin {
                     String senderId = getSenderId(context);
 
                     if (senderId != null) {
-                        LumberMill.getLogger().d("Using FCM Sender ID: " + senderId);
+                        Log.d("Intercom-Cordova", "Using FCM Sender ID: " + senderId);
                         IntercomPushManager.cacheSenderId(context, senderId);
                     }
                     break;
@@ -107,7 +111,7 @@ public class IntercomBridge extends CordovaPlugin {
             resourcesSenderId = context.getResources().getString(R.string.intercom_gcm_sender_id);
         }
         catch (Exception e) {
-            LumberMill.getLogger().d(e, "Failed to get sender ID from resources: ");
+            Log.d("Intercom-Cordova", "Failed to get sender ID from resources: ", e);
             resourcesSenderId = "";
         }
 
@@ -124,27 +128,52 @@ public class IntercomBridge extends CordovaPlugin {
     }
 
     private enum Action {
-        registerIdentifiedUser {
+        loginUserWithUserAttributes {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 JSONObject options = args.optJSONObject(0);
                 String email = options.optString("email");
                 String userId = options.optString("userId");
+                Boolean hasEmail = email != null && email.length() > 0;
+                Boolean hasUserId = userId != null && userId.length() > 0;
 
-                Registration registration = new Registration();
-                if (email != null && email.length() > 0) {
-                    registration = registration.withEmail(email);
+                Registration registration = null;
+                if (hasEmail && hasUserId) {
+                    registration = new Registration().withEmail(email).withUserId(userId);
+                } else if (hasEmail) {
+                    registration = new Registration().withEmail(email);
+                } else if (hasUserId) {
+                    registration = new Registration().withUserId(userId);
                 }
-                if (userId != null && userId.length() > 0) {
-                    registration = registration.withUserId(userId);
+                if (registration != null) {
+                    Intercom.client().loginIdentifiedUser(registration, new IntercomStatusCallback() {
+                        @Override
+                        public void onSuccess() {
+                            callbackContext.success();
+                        }
+
+                        @Override
+                        public void onFailure(IntercomError intercomError) {
+                            Log.d("Intercom-Cordova", "ERROR: " + intercomError.getErrorMessage());
+                            callbackContext.error(String.valueOf(intercomError.getErrorCode()) + " : " + intercomError.getErrorMessage());
+                        }
+                    });
                 }
-                Intercom.client().registerIdentifiedUser(registration);
-                callbackContext.success();
             }
         },
-        registerUnidentifiedUser {
+        loginUnidentifiedUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().registerUnidentifiedUser();
-                callbackContext.success();
+                Intercom.client().loginUnidentifiedUser(new IntercomStatusCallback() {
+                    @Override
+                    public void onSuccess() {
+                        callbackContext.success();
+                    }
+
+                    @Override
+                    public void onFailure(IntercomError intercomError) {
+                        Log.e("ERROR", intercomError.getErrorMessage());
+                        callbackContext.error(String.valueOf(intercomError.getErrorCode()) + " : " + intercomError.getErrorMessage());
+                    }
+                });
             }
         },
         logout {
@@ -179,54 +208,86 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, count));
             }
         },
-        displayMessenger {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().displayMessenger();
+        present {
+            @Override
+            void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Intercom.client().present();
                 callbackContext.success();
             }
         },
-        displayMessageComposer {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().displayMessageComposer();
+        presentIntercomSpace {
+            @Override
+            void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String space = args.optString(0);
+                IntercomSpace selectedSpace = IntercomSpace.Home;
+                switch (space) {
+                    case "TICKETS":
+                        selectedSpace = IntercomSpace.Tickets;
+                        break;
+                    case "MESSAGES":
+                        selectedSpace = IntercomSpace.Messages;
+                        break;
+                    case "HELP_CENTER":
+                        selectedSpace = IntercomSpace.HelpCenter;
+                        break;
+                    default:
+                        selectedSpace = IntercomSpace.Home;
+                }
+                Intercom.client().present(selectedSpace);
                 callbackContext.success();
             }
         },
-        displayMessageComposerWithInitialMessage {
+
+        presentContent {
+            @Override
+            void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Map<String, Object> contentHash = IntercomBridge.mapFromJSON(args.optJSONObject(0));
+                Boolean hasContentType = contentHash.containsKey("type");
+                if (hasContentType) {
+                    IntercomContent content = null;
+                    String contentType = contentHash.get("type").toString();
+
+                    switch (contentType) {
+                        case "ARTICLE":
+                            content = new IntercomContent.Article(contentHash.get("id").toString());
+                            break;
+                        case "CAROUSEL":
+                            content = new IntercomContent.Carousel(contentHash.get("id").toString());
+                            break;
+                        case "SURVEY":
+                            content = new IntercomContent.Survey(contentHash.get("id").toString());
+                            break;
+                        case "HELP_CENTER_COLLECTIONS":
+                            List<String> collectionIds = (List<String>)contentHash.get("ids");
+                            content = new IntercomContent.HelpCenterCollections(collectionIds);
+                            break;
+                        case "CONVERSATION":
+                            content = new IntercomContent.Conversation(contentHash.get("id").toString());
+                            break;
+                    }
+                    if (content != null) {
+                        Intercom.client().presentContent(content);
+                        callbackContext.success();
+                    } else {
+                        callbackContext.error("Invalid content type");
+                    }
+                } else {
+                    callbackContext.error("Intercom content must have a type");
+                }
+            }
+        },
+
+        presentMessageComposer {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String initialMessage = args.optString(0);
-
-                Intercom.client().displayMessageComposer(initialMessage);
-                callbackContext.success();
-            }
-        },
-        displayConversationsList {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                LumberMill.getLogger().w("displayConversationsList is deprecated. Please use displayMessenger instead.");
-                Intercom.client().displayMessenger();
-                callbackContext.success();
-            }
-        },
-        displayHelpCenter {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().displayHelpCenter();
-                callbackContext.success();
-            }
-        },
-        displayHelpCenterCollections {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                JSONArray jsonArray = args.optJSONObject(0).optJSONArray("collectionIds");
-                ArrayList<String> filterIds = new ArrayList<>();
-                for (int i = 0; jsonArray != null && i < jsonArray.length(); i++) {
-                    try {
-                        if(jsonArray.get(i) instanceof String) {
-                            filterIds.add(jsonArray.get(i).toString());
-                        }
-                    } catch (Exception ignored) {}
+                if (initialMessage != null) {
+                    Intercom.client().displayMessageComposer(initialMessage);
+                } else {
+                    Intercom.client().displayMessageComposer();
                 }
-                Intercom.client().displayHelpCenterCollections(filterIds);
-                callbackContext.success();
             }
         },
+        
         fetchHelpCenterCollections {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().fetchHelpCenterCollections(new CollectionRequestCallback() {
@@ -344,7 +405,7 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
-        hideMessenger {
+        hideIntercom {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().hideIntercom();
                 callbackContext.success();
@@ -375,35 +436,6 @@ public class IntercomBridge extends CordovaPlugin {
                 String token = args.optString(0);
                 IntercomPushClient intercomPushClient = new IntercomPushClient();
                 intercomPushClient.sendTokenToIntercom(cordova.getActivity().getApplication(), token);
-            }
-        },
-        displayCarousel {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String carouselId = args.optString(0);
-                Intercom.client().displayCarousel(carouselId);
-                callbackContext.success();
-            }
-        },
-        displayArticle {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String articleId = args.optString(0);
-                Intercom.client().displayArticle(articleId);
-                callbackContext.success();
-            }
-        },
-        setBottomPadding {
-            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                int bottomPadding = args.optInt(0);
-                Intercom.client().setBottomPadding(bottomPadding);
-                callbackContext.success();
-            }
-        },
-        displaySurvey {
-            @Override
-            void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                String surveyId = args.optString(0);
-                Intercom.client().displaySurvey(surveyId);
-                callbackContext.success();
             }
         },
         unknown {

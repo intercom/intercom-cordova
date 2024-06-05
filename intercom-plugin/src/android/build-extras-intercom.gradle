@@ -1,5 +1,3 @@
-import java.util.regex.Matcher
-
 // Uses the app id as a prefix (instead of com.google.android). This prevents
 // INSTALL_FAILED_CONFLICTING_PROVIDER error when installing the app.
 //
@@ -7,83 +5,16 @@ import java.util.regex.Matcher
 def manifest = new XmlSlurper().parse(file("src/main/AndroidManifest.xml"))
 android.defaultConfig.applicationId manifest.@package.text()
 
-// some libraries depend on higher versions of our dependencies than we support
-// we keep track of these dependencies here and override the version to a safe one
-def safeVersions = [
-        "com.android.support:support-v4": "27.+"
-]
-
-def badVersionIndicators = [
-        'alpha',
-        'beta',
-        'preview',
-        ',)'
-]
-
-configurations.all {
-    resolutionStrategy.eachDependency {
-        DependencyResolveDetails details ->
-            def requested = details.requested
-            def safeVersion = safeVersions[requested.group + ":" + requested.name]
-            if (safeVersion != null && badVersionIndicators.any { requested.version.contains(it) }) {
-                println "Intercom: Overriding dependency ${requested.group}:${requested.name} version ${requested.version} --> $safeVersion"
-                details.useVersion safeVersion
-            }
-    }
-}
-
 afterEvaluate {
     logIfIncorrectCompileSdkVersion()
-    logIfIncorrectBuildToolsVersion()
-    configurations
-            .findAll { it.name == "compile" }
-            .each { logIncompatibleDependencies(it) }
-}
-
-private static String errorPrefix() {
-    "Intercom Android Error:"
-}
-
-private static String guideUrl() {
-    "https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-gradle-properties"
 }
 
 private void logIfIncorrectCompileSdkVersion() {
     // this can be `{number}` or `android-{number}`
     // regex checks that it ends with a number between 16 and 26 inclusive
-    if (cordovaConfig.SDK_VERSION != null && cordovaConfig.SDK_VERSION =~ /.*(1[6-9]|2[0-6])$/) {
-        logger.error("${errorPrefix()} cordovaConfig.SDK_VERSION = ${cordovaConfig.SDK_VERSION}. \n" +
-                "You need to use a cordovaConfig.SDK_VERSION of at least 27.\n" +
-                "See here for more: ${guideUrl()}\n")
-    }
-}
-
-private void logIfIncorrectBuildToolsVersion() {
-    // regex checks for a major version between 16 and 26 inclusive
-    if (cordovaConfig.BUILD_TOOLS_VERSION != null && cordovaConfig.BUILD_TOOLS_VERSION =~ /(1[6-9]|2[0-6])\..+$/) {
-        logger.error("${errorPrefix()}  cordovaConfig.BUILD_TOOLS_VERSION = ${cordovaConfig.BUILD_TOOLS_VERSION}. \n" +
-                "You need to use a cordovaConfig.BUILD_TOOLS_VERSION of at least 27.0.0.\n" +
-                "See here for more: ${guideUrl()}\n")
-    }
-}
-
-private void logIncompatibleDependencies(config) {
-    config.resolvedConfiguration.resolvedArtifacts.each {
-        def artifact = it.moduleVersion.id
-        // check Support Library versions are 27.x
-        // regex checks for a major version between 16 and 26 inclusive
-        if (artifact.group == "com.android.support" && artifact.version =~ /^(1[6-9]|2[0-6])\./) {
-            logger.error("${errorPrefix()}  Build config ${config.name} has dependency: ${artifact}\n" +
-                    "The Intercom SDK requires version 27.x or higher of this dependency.\n" +
-                    "Check your plugins to see if any of them are bringing in this dependency")
-        }
-        // check Play Services/Firebase versions are 11.x
-        // regex checks for a major version between 7 and 10 inclusive
-        if ((artifact.group == "com.google.firebase" || artifact.group == "com.google.android.gms")
-                && artifact.version =~ /^([7-9]|10)\./) {
-            logger.error("${errorPrefix()}  Build config ${config.name} has dependency: ${artifact}\n" +
-                    "The Intercom SDK requires version 11.4.x or higher of this dependency.\n" +
-                    "Check your plugins to see if any of them are bringing in this dependency")
-        }
+    if (cordovaConfig.SDK_VERSION != null && cordovaConfig.SDK_VERSION != 34) {
+        throw new GradleException("Intercom Android Error: Your cordovaConfig.SDK_VERSION is [${cordovaConfig.SDK_VERSION}].\n"+
+                 "You need to use a cordovaConfig.SDK_VERSION of 34\n"+
+                 "See here for more: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-gradle-properties\n")
     }
 }

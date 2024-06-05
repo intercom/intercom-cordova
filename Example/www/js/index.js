@@ -34,7 +34,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-
         intercom.setLauncherVisibility('VISIBLE');
         intercom.setInAppMessageVisibility('VISIBLE');
 
@@ -59,14 +58,14 @@ var app = {
       }, false);
 
       document.getElementById("open-help-center-btn").addEventListener("click", function(){
-          intercom.presentSpace(intercom.Space.HelpCenter);
+          intercom.presentSpace(intercom.space.HelpCenter);
       }, false);
 
       document.getElementById("open-help-center-filtered-btn").addEventListener("click", function(){
           // Replace this with your own collections
-          var collectionIds = ["COLLECTION_ID1", "COLLECTION_ID2"];
-        
-          intercom.displayHelpCenterCollections({collectionIds: ids});
+          var collectionIds = ["COLLECTION_ID1", "COLLECTION_ID2"];                  
+          var helpCenterCollections = intercomContent.helpCenterCollectionsWithIds(collectionIds)
+          intercom.presentContent(helpCenterCollections)
       }, false);
 
       document.getElementById("help-center-data-api-fetch-btn").addEventListener("click", function(){
