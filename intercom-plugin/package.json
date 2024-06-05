@@ -1,7 +1,10 @@
 {
   "name": "cordova-plugin-intercom",
-  "version": "13.1.0",
-  "description": "Official Cordova/PhoneGap plugin for Intercom",
+  "version": "14.0.0",
+  "description": "Official Cordova plugin for Intercom",
+  "author": "Intercom",
+  "license": "MIT License",
+  "homepage": "https://github.com/intercom/intercom-cordova#readme",
   "cordova": {
     "id": "cordova-plugin-intercom",
     "platforms": [
@@ -20,24 +23,16 @@
     "cordova-ios",
     "cordova-android"
   ],
-  "engines": [
-    {
-      "name": "cordova",
-      "version": ">=12.0.0"
-    },
-    {
-      "name": "cordova-android",
-      "version": ">=13.0.0"
-    },
-    {
-      "name": "cordova-ios",
-      "version": "7.1.0"
-    }
-  ],
-  "author": "Intercom",
-  "license": "MIT License",
-  "bugs": {
-    "url": "https://github.com/intercom/intercom-cordova/issues"
+  "dependencies": {
+    "q": "^1.5.1"
   },
-  "homepage": "https://github.com/intercom/intercom-cordova#readme"
+  "engines": {
+    "cordovaDependencies": {
+      "14.0.0": {
+        "cordova": "=>12.0.0",
+        "cordova-android": ">=13.0.0",
+        "cordova-ios": "7.1.0"
+      }
+    }
+  }
 }
