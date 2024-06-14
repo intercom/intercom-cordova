@@ -1,5 +1,17 @@
 # Intercom for Cordova/PhoneGap
 
+## 14.0.1 (2024-06-014)
+
+🚀 Enhancements
+* It is now possible to send push notifications to the Simulator. (iOS)
+
+🐛 Bug Fixes
+* Fixed an issue where it was not possible to close modal view that was opened from a Messenger App. (iOS)
+* The message composer is now always displayed on the conversation screen when appropriate.(iOS)
+* When a conversation is closed, form entry is disabled on the conversation screen. (iOS & Android)
+* Made some minor UI bug fixes. (iOS)
+* Fixed the issue where push open stats weren’t tracked correctly. (Android)
+
 ## 14.0.0 (2024-06-05)
 🚀  Enhancements
 * Updated Intercom Cordova Plugin to support the latest versions of the core iOS and Android SDKs. 

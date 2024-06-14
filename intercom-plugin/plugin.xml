@@ -68,7 +68,7 @@
               <source url="https://cdn.cocoapods.org/"/>
           </config>
           <pods use-frameworks="true">
-              <pod name="Intercom" spec="~> 17.1.1" />
+              <pod name="Intercom" spec="~> 17.1.2" />
           </pods>
       </podspec>
     </platform>
