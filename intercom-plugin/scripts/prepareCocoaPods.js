@@ -5,7 +5,9 @@ module.exports = function() {
   var deferral = new q.defer();
 
   console.log('Updating CocoaPods specs repo');
-  exec('pod repo update', function(error, stdout, stderr) {
+  exec('pwd')
+  exec('ls')
+  exec('pod repo update --verbose', function(error, stdout, stderr) {
     deferral.resolve();
   });
 
