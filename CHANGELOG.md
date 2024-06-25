@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 14.0.2 (2024-06-25)
+
+🐛 Bug Fixes
+* Now sets the minimum deployment target in the `plugin.xml` for iOS to avoid collisions with other plugins.
+
 ## 14.0.1 (2024-06-014)
 
 🚀 Enhancements
