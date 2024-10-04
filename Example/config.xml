@@ -46,6 +46,16 @@
         <icon height="40" src="www/img/icon-40.png" width="40" />
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
+
+        <!-- https://developer.apple.com/documentation/bundleresources/entitlements/aps-environment-->
+        <config-file parent="aps-environment" target="*/Entitlements-Debug.plist">
+            <string>development</string>
+        </config-file>
+
+        <config-file parent="aps-environment" target="*/Entitlements-Release.plist">
+            <string>production</string>
+        </config-file>
+
     </platform>
     <preference name="intercom-app-id" value="YOUR_WORKSPACE_ID" />
     <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
