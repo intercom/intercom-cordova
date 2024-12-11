@@ -124,7 +124,17 @@ var app = {
           // Replace this with your own conversation Id
           var conversation = intercomContent.conversationWithConversationId('CONVERSATION_ID')
           intercom.presentContent(conversation);
-    }, false);
+      }, false);
+
+      document.getElementById("is-user-logged-in-btn").addEventListener("click", function(){
+        var onSuccess = function(data) {
+          console.log('User logged in status: ' + data);
+        }
+        var onError = function(code) {
+          console.log('Failed to fetch logged in status :' + code);
+        }
+        intercom.isUserLoggedIn(onSuccess, onError);
+      }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

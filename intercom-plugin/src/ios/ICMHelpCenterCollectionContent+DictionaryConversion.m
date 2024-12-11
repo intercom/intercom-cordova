@@ -6,7 +6,7 @@
 //  Copyright © 2021 Intercom. All rights reserved.
 //
 
-#import "ICMHelpCenterSection+DictionaryConversion.h"
+#import "ICMHelpCenterCollection+DictionaryConversion.h"
 #import "ICMHelpCenterArticle+DictionaryConversion.h"
 #import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
 
@@ -25,12 +25,12 @@
     }
     [dictionary setValue:arrayOfArticleDictionaries forKey:@"articles"];
 
-    NSMutableArray *arrayOfSectionDictionaries = [@[] mutableCopy];
-    for (ICMHelpCenterSection *section in self.sections) {
-        NSDictionary *sectionDictionary = [section toDictionary];
-        [arrayOfSectionDictionaries addObject:sectionDictionary];
+    NSMutableArray *arrayOfCollectionDictionaries = [@[] mutableCopy];
+    for (ICMHelpCenterCollection *collection in self.collections) {
+        NSDictionary *collectionDictionary = [collection toDictionary];
+        [arrayOfCollectionDictionaries addObject:collectionDictionary];
     }
-    [dictionary setValue:arrayOfSectionDictionaries forKey:@"sections"];
+    [dictionary setValue:arrayOfCollectionDictionaries forKey:@"collections"];
 
     return [dictionary copy];
 }

@@ -10,7 +10,7 @@
     <engines>
       <engine name="cordova" version=">=12.0.0" />
       <engine name="cordova-android" version=">=13.0.0" />
-      <engine name="cordova-ios" version="7.1.0" />
+      <engine name="cordova-ios" version="7.1.1" />
     </engines>
 
     <js-module name="Intercom" src="www/intercom.js">
@@ -40,8 +40,6 @@
       <source-file src="src/ios/ICMHelpCenterArticle+DictionaryConversion.m" />
       <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.h" />
       <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.m" />
-      <source-file src="src/ios/ICMHelpCenterSection+DictionaryConversion.h" />
-      <source-file src="src/ios/ICMHelpCenterSection+DictionaryConversion.m" />
 
       <header-file src="src/ios/AppDelegate+IntercomPush.h" />
       <source-file src="src/ios/AppDelegate+IntercomPush.m" />
@@ -69,7 +67,7 @@
               <source url="https://cdn.cocoapods.org/"/>
           </config>
           <pods use-frameworks="true">
-              <pod name="Intercom" spec="~> 17.1.2" />
+              <pod name="Intercom" spec="~> 18.2.1" />
           </pods>
       </podspec>
     </platform>
