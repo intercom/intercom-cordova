@@ -40,7 +40,8 @@
       <source-file src="src/ios/ICMHelpCenterArticle+DictionaryConversion.m" />
       <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.h" />
       <source-file src="src/ios/ICMHelpCenterCollectionContent+DictionaryConversion.m" />
-
+      <source-file src="src/ios/ICMUserAttributes+DictionaryConversion.h" />
+      <source-file src="src/ios/ICMUserAttributes+DictionaryConversion.m" />
       <header-file src="src/ios/AppDelegate+IntercomPush.h" />
       <source-file src="src/ios/AppDelegate+IntercomPush.m" />
 
@@ -77,6 +78,7 @@
       <source-file src="src/android/HelpCenterCollectionModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/HelpCenterCollectionContentModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/HelpCenterCollectionSectionModel.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/RegistrationModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
 
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />

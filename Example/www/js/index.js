@@ -135,6 +135,16 @@ var app = {
         }
         intercom.isUserLoggedIn(onSuccess, onError);
       }, false);
+
+      document.getElementById("fetch-logged-in-attributes-btn").addEventListener("click", function(){
+        var onSuccess = function(data) {
+          console.log('Successfully fetched logged in attributes: ' + data);
+        }
+        var onError = function(code) {
+          console.log('Failed to fetch logged in attributes: ' + code);
+        }
+        intercom.fetchLoggedInUserAttributes(onSuccess, onError);
+      }, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

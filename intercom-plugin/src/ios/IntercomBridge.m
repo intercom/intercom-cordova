@@ -3,6 +3,7 @@
 #import "ICMHelpCenterCollection+DictionaryConversion.h"
 #import "ICMHelpCenterArticleSearchResult+DictionaryConversion.h"
 #import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
+#import "ICMUserAttributes+DictionaryConversion.h"
 #import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
@@ -88,23 +89,17 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-
-// - (void)fetchHelpCenterCollections:(CDVInvokedUrlCommand*)command {
-//     [Intercom fetchHelpCenterCollectionsWithCompletion:^(NSArray<ICMHelpCenterCollection *> * _Nullable collections, NSError * _Nullable error) {
-//         if (error) {
-//             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:error.code];
-//             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-//         } else {
-//             NSMutableArray *array = [[NSMutableArray alloc] init];
-//             for (ICMHelpCenterCollection *collection in collections) {
-//                 [array addObject:[collection toDictionary]];
-//             }
-//             NSString *jsonString = [self stringValueForDictionaries:(NSArray *)array];
-//             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
-//             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-//         }
-//     }];
-// }
+- (void)fetchLoggedInUserAttributes:(CDVInvokedUrlCommand*)command {
+    ICMUserAttributes *attributes = [Intercom fetchLoggedInUserAttributes];
+    if (attributes) {
+        NSString *jsonString = [self stringValueForDictionary:[attributes toDictionary]];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    } else {
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:command.callbackId];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
 
 - (void)updateUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* attributesDict = command.arguments[0];

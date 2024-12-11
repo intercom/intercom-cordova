@@ -14,7 +14,8 @@
 
 #pragma mark - Logged in status
 
-- (BOOL)isUserLoggedIn;
+- (void)isUserLoggedIn:(CDVInvokedUrlCommand*)command;
+- (void)fetchLoggedInUserAttributes:(CDVInvokedUrlCommand*)command;
 
 #pragma mark - Events
 
