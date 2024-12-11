@@ -182,6 +182,12 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        isUserLoggedIn {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                boolean loggedIn = Intercom.client().isUserLoggedIn();
+                callbackContext.success(loggedIn ? "true" : "false");
+            }
+        },
         setUserHash {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String hmac = args.optString(0);
