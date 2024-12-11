@@ -1,5 +1,15 @@
 # Intercom for Cordova/PhoneGap
 
+## 14.0.3 (2024-12-11)
+
+🐛 Bug Fixes
+* Solves a crash in carousels. (iOS)
+* Addressed issue where video input wasn’t available in a conversation. (iOS)
+* Fixes issue where first part in a conversation would fail to show as failed in the scenario where it didn’t send. (iOS)
+* Resolved some layout issues in the conversation screen for users with large font sizes enabled. (iOS)
+* Fixed the bug where users were unable to add a phone number in the attribute collector. (Android)
+* Fixed a crash caused by `IllegalArgumentException: y must be < bitmap.height()`. (Android)
+
 ## 14.0.2 (2024-06-25)
 
 🐛 Bug Fixes
