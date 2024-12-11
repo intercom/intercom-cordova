@@ -3,6 +3,7 @@
 #import "ICMHelpCenterCollection+DictionaryConversion.h"
 #import "ICMHelpCenterArticleSearchResult+DictionaryConversion.h"
 #import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
+#import "ICMUserAttributes+DictionaryConversion.h"
 #import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
@@ -80,6 +81,24 @@
 - (void)logout:(CDVInvokedUrlCommand*)command {
     [Intercom logout];
     [self sendSuccess:command];
+}
+
+- (void)isUserLoggedIn:(CDVInvokedUrlCommand*)command {
+    BOOL loggedIn = [Intercom isUserLoggedIn];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:loggedIn];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)fetchLoggedInUserAttributes:(CDVInvokedUrlCommand*)command {
+    ICMUserAttributes *attributes = [Intercom fetchLoggedInUserAttributes];
+    if (attributes) {
+        NSString *jsonString = [self stringValueForDictionary:[attributes toDictionary]];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    } else {
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsNSInteger:command.callbackId];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
 }
 
 - (void)updateUser:(CDVInvokedUrlCommand*)command {

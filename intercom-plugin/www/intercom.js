@@ -34,6 +34,22 @@ var intercom = {
         cordova.exec(success, error, 'Intercom', 'logout', []);
     },
 
+    /**
+     * Determines if there is currently a user logged in.
+     */
+    isUserLoggedIn: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'isUserLoggedIn', []);
+    },
+
+    /**
+     * Fetches the user attribtues of the currently logged in user.
+     * 
+     * @return A user registration object.
+     */
+    fetchLoggedInUserAttributes: function(success, error) {
+        cordova.exec(success, error, 'Intercom', 'fetchLoggedInUserAttributes', []);
+    },
+
       /**
      * Set `hash` string if you are using Identity Verification for your Intercom workspace.
      * @note This should be called before any user login takes place.

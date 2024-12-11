@@ -32,14 +32,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.intercom.android:intercom-sdk-base:15.9.1'
+    implementation 'io.intercom.android:intercom-sdk-base:15.11.3'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.intercom:twig:1.3.0'
     implementation 'org.jetbrains:annotations:13.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     if (pushType == 'fcm' || pushType == 'fcm-without-build-plugin') {
         implementation 'com.google.firebase:firebase-messaging:20.+'
-        implementation 'io.intercom.android:intercom-sdk-fcm:15.9.1'
+        implementation 'io.intercom.android:intercom-sdk-fcm:15.11.3'
     }
 }
 

@@ -12,6 +12,11 @@
 - (void)setUserHash:(CDVInvokedUrlCommand*)command;
 - (void)updateUser:(CDVInvokedUrlCommand*)command;
 
+#pragma mark - Logged in status
+
+- (void)isUserLoggedIn:(CDVInvokedUrlCommand*)command;
+- (void)fetchLoggedInUserAttributes:(CDVInvokedUrlCommand*)command;
+
 #pragma mark - Events
 
 - (void)logEvent:(CDVInvokedUrlCommand*)command;

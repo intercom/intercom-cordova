@@ -182,6 +182,24 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        isUserLoggedIn {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                boolean loggedIn = Intercom.client().isUserLoggedIn();
+                callbackContext.success(loggedIn ? "true" : "false");
+            }
+        },
+        fetchLoggedInUserAttributes {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                Registration registration = Intercom.client().fetchLoggedInUserAttributes();
+                if (registration != null) {
+                    RegistrationModel responseModel = new RegistrationModel(registration.getEmail(), registration.getUserId());
+                    String json = new Gson().toJson(responseModel);
+                    callbackContext.success(json);
+                } else {
+                    callbackContext.error("No user is currently logged in");
+                }
+            }
+        },
         setUserHash {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String hmac = args.optString(0);
