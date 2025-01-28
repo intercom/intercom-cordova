@@ -1,5 +1,15 @@
 # Intercom for Cordova/PhoneGap
 
+## 14.1.0 (2025-01-28)
+
+🚀 Enhancements
+* Improved delineation between AI Agents and bots.
+* New handover experience from AI Agents to teammates.
+* Added Privacy Policy in the conversation screen.
+* Special notice now supports multiple languages.
+* Intercom SDK now targets Android 15 (API level 35) (Android)
+* Added edge-to-edge support (Android)
+
 ## 14.0.3 (2024-12-11)
 
 🐛 Bug Fixes
