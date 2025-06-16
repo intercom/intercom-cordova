@@ -2,7 +2,7 @@
 
 ## 14.1.1 (2025-06-16)
 
-🚀 Bug Fixes
+🐛 Bug Fixes
 * Fixed SDK 34 compilation restriction that prevented building with Android 15 (API level 35). (Android)
 
 ## 14.1.0 (2025-01-28)
