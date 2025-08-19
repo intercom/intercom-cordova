@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Link Test Page - MyShop App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .link-group {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .deep-link {
+            display: inline-block;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #007AFF, #0056CC);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .deep-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,122,255,0.3);
+        }
+        
+        .deep-link:active {
+            transform: translateY(0);
+        }
+        
+        .url-display {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            word-break: break-all;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .fallback-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .app-store-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .store-link {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .app-store-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Deep Link Test Page</h1>
+        <p class="subtitle">Test deep links for the MyShop Cordova app with Intercom integration</p>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Make sure the MyShop app is installed on your device</li>
+                <li>Click any link below to test deep linking</li>
+                <li>The app should open and navigate to the appropriate screen</li>
+                <li>If the app doesn't open, check the installation and URL scheme configuration</li>
+            </ol>
+        </div>
+        
+        <div class="warning">
+            <strong>Note:</strong> These links will only work if you have the MyShop app installed with the custom URL scheme "myshop://" configured.
+        </div>
+        
+        <!-- Basic Navigation Links -->
+        <div class="section">
+            <h2>📱 Basic Navigation</h2>
+            <div class="link-group">
+                <a href="myshop://" class="deep-link">
+                    🏠 Open App (Home)
+                    <div class="url-display">myshop://</div>
+                </a>
+                
+                <a href="myshop://profile" class="deep-link">
+                    👤 User Profile
+                    <div class="url-display">myshop://profile</div>
+                </a>
+                
+                <a href="myshop://orders" class="deep-link">
+                    📦 Order History
+                    <div class="url-display">myshop://orders</div>
+                </a>
+                
+                <a href="myshop://cart" class="deep-link">
+                    🛒 Shopping Cart
+                    <div class="url-display">myshop://cart</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Product Links -->
+        <div class="section">
+            <h2>🛍️ Product Pages</h2>
+            <div class="link-group">
+                <a href="myshop://product/123" class="deep-link">
+                    📱 iPhone 15 Pro
+                    <div class="url-display">myshop://product/123</div>
+                </a>
+                
+                <a href="myshop://product/456?highlight=reviews" class="deep-link">
+                    💻 MacBook Air (Show Reviews)
+                    <div class="url-display">myshop://product/456?highlight=reviews</div>
+                </a>
+                
+                <a href="myshop://product/789?source=email" class="deep-link">
+                    ⌚ Apple Watch (From Email)
+                    <div class="url-display">myshop://product/789?source=email</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Category Links -->
+        <div class="section">
+            <h2>📂 Categories</h2>
+            <div class="link-group">
+                <a href="myshop://category/electronics" class="deep-link">
+                    ⚡ Electronics
+                    <div class="url-display">myshop://category/electronics</div>
+                </a>
+                
+                <a href="myshop://category/clothing?filter=sale" class="deep-link">
+                    👕 Clothing (Sale Items)
+                    <div class="url-display">myshop://category/clothing?filter=sale</div>
+                </a>
+                
+                <a href="myshop://category/home-garden" class="deep-link">
+                    🏡 Home & Garden
+                    <div class="url-display">myshop://category/home-garden</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Promotional Links -->
+        <div class="section">
+            <h2>🎉 Promotions</h2>
+            <div class="link-group">
+                <a href="myshop://cart?promo=SAVE20" class="deep-link">
+                    💰 Cart with 20% Off Code
+                    <div class="url-display">myshop://cart?promo=SAVE20</div>
+                </a>
+                
+                <a href="myshop://product/999?promo=FLASH50&source=push" class="deep-link">
+                    ⚡ Flash Sale Product (50% Off)
+                    <div class="url-display">myshop://product/999?promo=FLASH50&source=push</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Support Links (Intercom Integration) -->
+        <div class="section">
+            <h2>🆘 Customer Support</h2>
+            <div class="link-group">
+                <a href="myshop://support" class="deep-link">
+                    💬 Open Support Chat
+                    <div class="url-display">myshop://support</div>
+                </a>
+                
+                <a href="myshop://support/article/101" class="deep-link">
+                    📖 How to Return Items
+                    <div class="url-display">myshop://support/article/101</div>
+                </a>
+                
+                <a href="myshop://support/article/202" class="deep-link">
+                    🚚 Shipping Information
+                    <div class="url-display">myshop://support/article/202</div>
+                </a>
+                
+                <a href="myshop://support/article/303" class="deep-link">
+                    💳 Payment Methods
+                    <div class="url-display">myshop://support/article/303</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Advanced Links -->
+        <div class="section">
+            <h2>🔧 Advanced Examples</h2>
+            <div class="link-group">
+                <a href="myshop://profile?tab=settings" class="deep-link">
+                    ⚙️ Profile Settings Tab
+                    <div class="url-display">myshop://profile?tab=settings</div>
+                </a>
+                
+                <a href="myshop://orders?status=pending" class="deep-link">
+                    ⏳ Pending Orders Only
+                    <div class="url-display">myshop://orders?status=pending</div>
+                </a>
+                
+                <a href="myshop://search?q=iphone&category=electronics" class="deep-link">
+                    🔍 Search Results
+                    <div class="url-display">myshop://search?q=iphone&category=electronics</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Fallback Section -->
+        <div class="fallback-section">
+            <h3>📲 Don't have the app installed?</h3>
+            <p>Download the MyShop app from your device's app store:</p>
+            <div class="app-store-links">
+                <a href="https://apps.apple.com/app/myshop" class="store-link">📱 Download for iOS</a>
+                <a href="https://play.google.com/store/apps/details?id=com.example.myshop" class="store-link">🤖 Download for Android</a>
+            </div>
+        </div>
+        
+        <!-- Testing Information -->
+        <div class="section">
+            <h2>🧪 Testing Information</h2>
+            <p><strong>URL Scheme:</strong> <code>myshop://</code></p>
+            <p><strong>App Package:</strong> <code>com.example.myshop</code></p>
+            <p><strong>Supported Platforms:</strong> iOS 15+, Android API 22+</p>
+            
+            <h3>Manual Testing Commands:</h3>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                <p><strong>iOS Simulator:</strong></p>
+                <code>xcrun simctl openurl booted "myshop://product/123"</code>
+                
+                <p style="margin-top: 15px;"><strong>Android ADB:</strong></p>
+                <code>adb shell am start -W -a android.intent.action.VIEW -d "myshop://product/123" com.example.myshop</code>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add click tracking for analytics
+        document.querySelectorAll('.deep-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const url = this.getAttribute('href');
+                console.log('Deep link clicked:', url);
+                
+                // Optional: Track with analytics
+                // analytics.track('deep_link_clicked', { url: url });
+                
+                // Show a brief loading state
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                }, 500);
+            });
+        });
+        
+        // Detect if we're on mobile for better UX
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (!isMobile) {
+            const warning = document.createElement('div');
+            warning.className = 'warning';
+            warning.innerHTML = '<strong>Desktop Detected:</strong> Deep links work best on mobile devices. For testing on desktop, use the manual commands provided below.';
+            document.querySelector('.container').insertBefore(warning, document.querySelector('.section'));
+        }
+    </script>
+</body>
+</html>

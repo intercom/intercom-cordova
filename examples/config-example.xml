@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.myshop" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MyShop</name>
+    <description>Example e-commerce app with Intercom deep linking</description>
+    <author email="dev@example.com" href="https://example.com">Example Team</author>
+    
+    <content src="index.html" />
+    
+    <!-- Allow access to external resources -->
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    
+    <!-- Intercom Configuration -->
+    <preference name="intercom-app-id" value="your_app_id_here" />
+    <preference name="intercom-ios-api-key" value="ios_sdk-your_ios_api_key_here" />
+    <preference name="intercom-android-api-key" value="android_sdk-your_android_api_key_here" />
+    
+    <!-- Platform-specific configurations -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        
+        <!-- Android SDK and build settings -->
+        <preference name="android-minSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="34" />
+        
+        <!-- Custom URL Scheme Configuration -->
+        <!-- This is automatically handled by cordova-plugin-customurlscheme -->
+        <!-- But you can manually configure if needed: -->
+        <!--
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='MainActivity']">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="myshop" />
+            </intent-filter>
+        </config-file>
+        -->
+        
+        <!-- App Links (Android deep linking) -->
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='MainActivity']">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" 
+                      android:host="myshop.com" 
+                      android:pathPrefix="/app" />
+            </intent-filter>
+        </config-file>
+        
+        <!-- Launch mode for proper deep link handling -->
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="MainActivity" 
+                     android:launchMode="singleTask" 
+                     android:exported="true">
+            </activity>
+        </config-file>
+        
+        <!-- FCM Push Notifications for Intercom -->
+        <preference name="intercom-android-push-type" value="FCM" />
+    </platform>
+    
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        
+        <!-- iOS deployment target -->
+        <preference name="deployment-target" value="15.0" />
+        
+        <!-- Universal Links Configuration for Intercom -->
+        <preference name="IntercomUniversalLinkDomains" value="myshop.com,www.myshop.com" />
+        
+        <!-- Custom URL Scheme (automatically handled by plugin) -->
+        <!-- Manual configuration example: -->
+        <!--
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleURLName</key>
+                    <string>com.example.myshop</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>myshop</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+        -->
+        
+        <!-- Associated Domains for Universal Links -->
+        <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains">
+            <array>
+                <string>applinks:myshop.com</string>
+                <string>applinks:www.myshop.com</string>
+            </array>
+        </config-file>
+        <config-file target="*-Release.plist" parent="com.apple.developer.associated-domains">
+            <array>
+                <string>applinks:myshop.com</string>
+                <string>applinks:www.myshop.com</string>
+            </array>
+        </config-file>
+        
+        <!-- Background modes for push notifications -->
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>remote-notification</string>
+            </array>
+        </config-file>
+        
+        <!-- Photo library usage for Intercom -->
+        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+            <string>This app needs access to your photo library to send images in support messages.</string>
+        </config-file>
+        
+        <!-- Camera usage for Intercom -->
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>This app needs access to your camera to take photos for support messages.</string>
+        </config-file>
+    </platform>
+    
+    <!-- Required Plugins -->
+    
+    <!-- Intercom Plugin -->
+    <plugin name="cordova-plugin-intercom" spec="^14.0.0" />
+    
+    <!-- Custom URL Scheme Plugin for Deep Linking -->
+    <plugin name="cordova-plugin-customurlscheme" spec="^5.0.0">
+        <variable name="URL_SCHEME" value="myshop" />
+    </plugin>
+    
+    <!-- Whitelist Plugin (for security) -->
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.0" />
+    
+    <!-- Device Plugin (for device info) -->
+    <plugin name="cordova-plugin-device" spec="^2.0.0" />
+    
+    <!-- Network Information Plugin (optional, for connectivity checks) -->
+    <plugin name="cordova-plugin-network-information" spec="^3.0.0" />
+    
+    <!-- StatusBar Plugin (optional, for UI) -->
+    <plugin name="cordova-plugin-statusbar" spec="^3.0.0" />
+    
+    <!-- Splashscreen Plugin (optional, for loading screen) -->
+    <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; 
+                   style-src 'self' 'unsafe-inline'; 
+                   media-src *; 
+                   img-src 'self' data: content: https:; 
+                   connect-src 'self' https://api.intercom.io https://nexus-websocket-a.intercom.io wss://nexus-websocket-a.intercom.io https://uploads.intercomcdn.com https://uploads.intercomusercontent.com;" />
+    
+    <!-- Deep Link Whitelist for CSP -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self' data: gap: myshop: 'unsafe-eval' 'unsafe-inline';" />
+    
+    <!-- Preferences -->
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="22" />
+    <preference name="android-targetSdkVersion" value="34" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    
+    <!-- Custom URL Scheme Plugin Settings -->
+    <preference name="CustomURLSchemePluginClearsAndroidIntent" value="true" />
+    
+    <!-- Hook Scripts (optional) -->
+    <!-- <hook type="before_build" src="scripts/beforeBuild.js" /> -->
+    
+</widget>
