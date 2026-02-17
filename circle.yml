@@ -2,11 +2,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@2.5.0
-
-setup_ruby: &setup_ruby
-  run:
-    name: Setup Ruby
-    command: sed -i '' 's/.*chruby ruby.*/chruby ruby-3.3.0/' ~/.bash_profile
+  macos: circleci/macos@2
 
 jobs:
   ios:
@@ -15,8 +11,9 @@ jobs:
     resource_class: m4pro.medium
     shell: /bin/bash --login -eo pipefail
     steps:
-      - <<: *setup_ruby
       - checkout
+      - macos/switch-ruby:
+          version: "3.1"
       - run:
           name: Install node/npm
           command: command -v node || brew install node
