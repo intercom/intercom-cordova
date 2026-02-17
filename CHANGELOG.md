@@ -1,5 +1,15 @@
 # Intercom for Cordova/PhoneGap
 
+## 15.0.0 (2026-02-17)
+
+🚀 Enhancements
+* Updated Intercom Android SDK to 17.4.4
+* Updated Intercom iOS SDK to 19.5.1
+
+👉 Note
+* Minimum cordova-android version is now 14.0.0
+* Android Target SDK is now 35
+
 ## 14.1.1 (2025-06-16)
 
 🐛 Bug Fixes
