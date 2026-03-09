@@ -8,7 +8,12 @@
     </head>
 
     <body>
-        <div class="app">
+        <div id="second-screen" style="display:none; text-align:center; padding:40px;">
+            <h1>Second Screen</h1>
+            <p id="deep-link-url"></p>
+            <p><button id="back-btn">Back</button></p>
+        </div>
+        <div id="home-screen" class="app">
             <img class="logo" src="img/Intercom-logo.png" width="112" height="99"/>
 
             <p><button id="login-btn">Login</button></p>
@@ -26,6 +31,7 @@
             <p><button id="help-center-data-api-search-btn">Search help center</button></p>
             <p><button id="is-user-logged-in-btn">Check if user is logged in</button></p>
             <p><button id="fetch-logged-in-attributes-btn">Fetch logged in user attribtues</button></p>
+        </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
