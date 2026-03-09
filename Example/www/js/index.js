@@ -16,6 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+// Deep link handler for Cordova (called by the system when a URL opens the app)
+function handleOpenURL(url) {
+    app.handleDeepLink(url);
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -145,6 +150,30 @@ var app = {
         }
         intercom.fetchLoggedInUserAttributes(onSuccess, onError);
       }, false);
+
+      document.getElementById("back-btn").addEventListener("click", function(){
+          app.showHomeScreen();
+      }, false);
+    },
+
+    handleDeepLink: function(url) {
+        console.log('Deep link received: ' + url);
+        if (url && url.indexOf('intercom-sample://secondscreen') === 0) {
+            app.showSecondScreen(url);
+        } else {
+            alert('Deep link received: ' + url);
+        }
+    },
+
+    showSecondScreen: function(url) {
+        document.getElementById('home-screen').style.display = 'none';
+        document.getElementById('second-screen').style.display = 'block';
+        document.getElementById('deep-link-url').textContent = 'opened via: ' + url;
+    },
+
+    showHomeScreen: function() {
+        document.getElementById('second-screen').style.display = 'none';
+        document.getElementById('home-screen').style.display = 'block';
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

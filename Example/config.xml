@@ -25,6 +25,14 @@
             <activity android:exported="true" />
         </edit-config>
         <preference name="AndroidXEnabled" value="true" />
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='MainActivity']">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="intercom-sample" android:host="secondscreen" />
+            </intent-filter>
+        </config-file>
         <icon density="hdpi" src="www/img/android/hdpi.png" />
         <icon density="mdpi" src="www/img/android/mdpi.png" />
         <icon density="xhdpi" src="www/img/android/xhdpi.png" />
@@ -34,6 +42,18 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>intercom-sample</string>
+                    </array>
+                    <key>CFBundleURLName</key>
+                    <string>io.intercom.cordova.sample</string>
+                </dict>
+            </array>
+        </config-file>
         <preference name="deployment-target" value="15.0" />
         <preference name="BackupWebStorage" value="local" />
         <icon height="29" src="www/img/icon-29.png" width="29" />
@@ -48,9 +68,9 @@
         <icon height="80" src="www/img/icon-40@2x.png" width="80" />
         <icon height="167" src="www/img/icon-83.5@2x.png" width="167" />
     </platform>
-    <preference name="intercom-app-id" value="YOUR_WORKSPACE_ID" />
-    <preference name="intercom-ios-api-key" value="YOUR_IOS_API_KEY" />
-    <preference name="intercom-android-api-key" value="YOUR_ANDROID_API_KEY" />
+    <preference name="intercom-app-id" value="odymwnr8" />
+    <preference name="intercom-ios-api-key" value="ios_sdk-adc9042202780151dc7f61147911b49999539bed" />
+    <preference name="intercom-android-api-key" value="android_sdk-3d329cc3c0463a2dd5f6cdf40009a0c68831f97c" />
 
     <!-- Uncomment to change region -->
 
