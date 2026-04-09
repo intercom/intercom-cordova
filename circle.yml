@@ -49,7 +49,7 @@ jobs:
           command: npm install -g cordova
       - run:
           name: Add Android platform
-          command: cd Example && cordova platform add android@14.0.1
+          command: cd Example && cordova platform add android@15.0.0
       - run:
           name: Install intercom plugin
           command: cd Example && cordova plugin add ../intercom-plugin
