@@ -65,8 +65,6 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
-
-                Intercom.client().handlePushMessage();
             }
         });
     }
@@ -79,19 +77,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "15.0.2");
-
-            switch (IntercomPushManager.getInstalledModuleType()) {
-                case FCM: {
-                    String senderId = getSenderId(context);
-
-                    if (senderId != null) {
-                        Log.d("Intercom-Cordova", "Using FCM Sender ID: " + senderId);
-                        IntercomPushManager.cacheSenderId(context, senderId);
-                    }
-                    break;
-                }
-            }
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.0.0");
 
             //Get app credentials from config.xml or the app bundle if they can't be found
             String apiKey = preferences.getString("intercom-android-api-key", "");
@@ -101,30 +87,6 @@ public class IntercomBridge extends CordovaPlugin {
         } catch (Exception e) {
             Log.e("Intercom-Cordova", "ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?", e);
         }
-    }
-
-    private String getSenderId(Context context) {
-        String preferencesSenderId = preferences.getString("intercom-android-sender-id", "");
-        String resourcesSenderId;
-        try {
-            // copied from `google-services.json` in our Gradle script
-            resourcesSenderId = context.getResources().getString(R.string.intercom_gcm_sender_id);
-        }
-        catch (Exception e) {
-            Log.d("Intercom-Cordova", "Failed to get sender ID from resources: ", e);
-            resourcesSenderId = "";
-        }
-
-        if (preferencesSenderId.isEmpty()) {
-            return resourcesSenderId;
-        }
-
-        // sometimes the XML parser Cordova uses formats numbers with scientific notation, giving an incorrect sender ID
-        // if this is the case, fall back to the ID from the `google-services.json` file
-        if (preferencesSenderId.contains(".") && !resourcesSenderId.isEmpty()) {
-            return resourcesSenderId;
-        }
-        return preferencesSenderId;
     }
 
     private enum Action {

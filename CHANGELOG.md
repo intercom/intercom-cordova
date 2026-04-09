@@ -1,5 +1,15 @@
 # Intercom for Cordova/PhoneGap
 
+## 16.0.0 (2026-04-09)
+
+🚀 Enhancements
+* Updated Intercom Android SDK to 18.0.0
+
+⚡ Important Changes
+* Minimum cordova-android version is now 15.0.0
+* Minimum Android compileSdk is now 36
+* Internal storage migrated from SharedPreferences to AndroidX DataStore. Existing data is automatically migrated on first launch. This migration is one-way — downgrading to a previous SDK version will result in loss of local SDK state.
+
 ## 15.0.2 (2026-04-09)
 
 🐛 Bug Fixes
