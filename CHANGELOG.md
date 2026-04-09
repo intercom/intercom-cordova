@@ -1,5 +1,10 @@
 # Intercom for Cordova/PhoneGap
 
+## 15.0.2 (2026-04-09)
+
+🐛 Bug Fixes
+* Fixed Android crash in cordova-plugin-intercom 15.0.0+ by initializing Intercom via ContentProvider before Activity lifecycle. This resolves the `IntercomIntegrationException` when Intercom Activities launch directly from push notifications.
+
 ## 15.0.1 (2026-03-12)
 
 🚀 Enhancements
