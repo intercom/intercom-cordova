@@ -80,6 +80,7 @@
       <source-file src="src/android/HelpCenterCollectionSectionModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/RegistrationModel.java" target-dir="src/io/intercom/android/sdk" />
       <source-file src="src/android/CordovaHeaderInterceptor.java" target-dir="src/io/intercom/android/sdk" />
+      <source-file src="src/android/IntercomInitProvider.java" target-dir="src/io/intercom/android/sdk" />
 
       <framework src="src/android/intercom.gradle" custom="true" type="gradleReference" />
       <framework src="src/android/build-extras-intercom.gradle" custom="true" type="gradleReference" />
@@ -89,6 +90,13 @@
           <param name="android-package" value="io.intercom.android.sdk.IntercomBridge" />
           <param name="onload" value="true" />
         </feature>
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <provider
+            android:name="io.intercom.android.sdk.IntercomInitProvider"
+            android:authorities="${applicationId}.intercom-cordova.initprovider"
+            android:exported="false" />
       </config-file>
     </platform>
 
