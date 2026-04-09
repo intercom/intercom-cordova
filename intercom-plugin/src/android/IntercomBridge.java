@@ -79,18 +79,6 @@ public class IntercomBridge extends CordovaPlugin {
 
             CordovaHeaderInterceptor.setCordovaVersion(context, "16.0.0");
 
-            switch (IntercomPushManager.getInstalledModuleType()) {
-                case FCM: {
-                    String senderId = getSenderId(context);
-
-                    if (senderId != null) {
-                        Log.d("Intercom-Cordova", "Using FCM Sender ID: " + senderId);
-                        IntercomPushManager.cacheSenderId(context, senderId);
-                    }
-                    break;
-                }
-            }
-
             //Get app credentials from config.xml or the app bundle if they can't be found
             String apiKey = preferences.getString("intercom-android-api-key", "");
             String appId = preferences.getString("intercom-app-id", "");
@@ -99,30 +87,6 @@ public class IntercomBridge extends CordovaPlugin {
         } catch (Exception e) {
             Log.e("Intercom-Cordova", "ERROR: Something went wrong when initializing Intercom. Have you set your APP_ID and ANDROID_API_KEY?", e);
         }
-    }
-
-    private String getSenderId(Context context) {
-        String preferencesSenderId = preferences.getString("intercom-android-sender-id", "");
-        String resourcesSenderId;
-        try {
-            // copied from `google-services.json` in our Gradle script
-            resourcesSenderId = context.getResources().getString(R.string.intercom_gcm_sender_id);
-        }
-        catch (Exception e) {
-            Log.d("Intercom-Cordova", "Failed to get sender ID from resources: ", e);
-            resourcesSenderId = "";
-        }
-
-        if (preferencesSenderId.isEmpty()) {
-            return resourcesSenderId;
-        }
-
-        // sometimes the XML parser Cordova uses formats numbers with scientific notation, giving an incorrect sender ID
-        // if this is the case, fall back to the ID from the `google-services.json` file
-        if (preferencesSenderId.contains(".") && !resourcesSenderId.isEmpty()) {
-            return resourcesSenderId;
-        }
-        return preferencesSenderId;
     }
 
     private enum Action {
