@@ -77,7 +77,7 @@ public class IntercomInitProvider extends ContentProvider {
                 return;
             }
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "15.0.2");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.0.0");
 
             Intercom.initialize((Application) context.getApplicationContext(), apiKey, appId);
             Log.d(TAG, "IntercomInitProvider: Intercom initialized successfully");

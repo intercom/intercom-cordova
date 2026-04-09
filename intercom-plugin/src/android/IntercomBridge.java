@@ -65,8 +65,6 @@ public class IntercomBridge extends CordovaPlugin {
             @Override public void run() {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
-
-                Intercom.client().handlePushMessage();
             }
         });
     }
@@ -79,7 +77,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "15.0.2");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.0.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case FCM: {

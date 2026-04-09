@@ -10,9 +10,9 @@ afterEvaluate {
 }
 
 private void logIfIncorrectCompileSdkVersion() {
-    if (cordovaConfig.SDK_VERSION != null && cordovaConfig.SDK_VERSION < 34) {
+    if (cordovaConfig.SDK_VERSION != null && cordovaConfig.SDK_VERSION < 36) {
         throw new GradleException("Intercom Android Error: Your cordovaConfig.SDK_VERSION is [${cordovaConfig.SDK_VERSION}].\n"+
-                 "You need to use a cordovaConfig.SDK_VERSION of 34 or higher.\n"+
+                 "You need to use a cordovaConfig.SDK_VERSION of 36 or higher.\n"+
                  "See here for more: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-gradle-properties\n")
     }
 }
