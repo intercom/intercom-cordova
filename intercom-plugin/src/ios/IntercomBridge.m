@@ -172,7 +172,10 @@
 }
 
 - (void)presentMessageComposer:(CDVInvokedUrlCommand*)command {
-    NSString *initialMessage = command.arguments[0];
+    NSString *initialMessage = nil;
+    if (command.arguments.count > 0 && command.arguments[0] != [NSNull null]) {
+       initialMessage = command.arguments[0];
+    }
     [Intercom presentMessageComposer:initialMessage];
     [self sendSuccess:command];
 }
