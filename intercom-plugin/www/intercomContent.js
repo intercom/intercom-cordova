@@ -4,6 +4,7 @@ const ContentType = {
   Survey: "SURVEY",
   HelpCenterCollections: "HELP_CENTER_COLLECTIONS",
   Conversation: "CONVERSATION",
+  Ticket: "TICKET",
 };
 
 var IntercomContent = {
@@ -40,6 +41,13 @@ var IntercomContent = {
     conversationContent.type = ContentType.Conversation;
     conversationContent.id = conversationId;
     return conversationContent;
+  },
+
+  ticketWithTicketId(ticketId) {
+    let ticketContent = {};
+    ticketContent.type = ContentType.Ticket;
+    ticketContent.id = ticketId;
+    return ticketContent;
   },
 };
 

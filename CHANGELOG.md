@@ -1,5 +1,18 @@
 # Intercom for Cordova/PhoneGap
 
+## 16.1.0 (2026-05-05)
+
+🚀 Enhancements
+* Updated Intercom iOS SDK to 19.5.7
+* Added `setUserJwt(jwt)` for JWT-based identity verification of the Messenger.
+* Added `setThemeMode(mode)` to override the Messenger theme between `Light`, `Dark`, and `System`.
+* Added a `Ticket` content type — present a specific ticket via `intercomContent.ticketWithTicketId(ticketId)` and `intercom.presentContent(...)`.
+* `setBottomPadding(padding)` is now also implemented on Android (previously iOS-only).
+
+🐛 Bug Fixes
+* Fixed an iOS issue where `loginUserWithUserAttributes` and `updateUser` would invoke the success callback before the underlying SDK call had completed.
+* Fixed an Android issue where `presentMessageComposer` would never invoke its success callback.
+
 ## 16.0.0 (2026-04-09)
 
 🚀 Enhancements

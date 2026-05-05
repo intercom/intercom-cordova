@@ -37,6 +37,7 @@ import io.intercom.android.sdk.IntercomSpace.*;
 import io.intercom.android.sdk.IntercomContent.*;
 import io.intercom.android.sdk.IntercomError;
 import io.intercom.android.sdk.IntercomStatusCallback;
+import io.intercom.android.sdk.ui.theme.ThemeMode;
 
 public class IntercomBridge extends CordovaPlugin {
 
@@ -77,7 +78,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "16.0.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.1.0");
 
             //Get app credentials from config.xml or the app bundle if they can't be found
             String apiKey = preferences.getString("intercom-android-api-key", "");
@@ -169,6 +170,13 @@ public class IntercomBridge extends CordovaPlugin {
                 callbackContext.success();
             }
         },
+        setUserJwt {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String jwt = args.optString(0);
+                Intercom.client().setUserJwt(jwt);
+                callbackContext.success();
+            }
+        },
         logEvent {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 String eventName = args.optString(0);
@@ -244,6 +252,9 @@ public class IntercomBridge extends CordovaPlugin {
                         case "CONVERSATION":
                             content = new IntercomContent.Conversation(contentHash.get("id").toString());
                             break;
+                        case "TICKET":
+                            content = new IntercomContent.Ticket(contentHash.get("id").toString());
+                            break;
                     }
                     if (content != null) {
                         Intercom.client().presentContent(content);
@@ -265,6 +276,7 @@ public class IntercomBridge extends CordovaPlugin {
                 } else {
                     Intercom.client().displayMessageComposer();
                 }
+                callbackContext.success();
             }
         },
         
@@ -388,6 +400,32 @@ public class IntercomBridge extends CordovaPlugin {
         hideIntercom {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 Intercom.client().hideIntercom();
+                callbackContext.success();
+            }
+        },
+        setBottomPadding {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                int bottomPadding = args.optInt(0);
+                Intercom.client().setBottomPadding(bottomPadding);
+                callbackContext.success();
+            }
+        },
+        setThemeMode {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String themeModeString = args.optString(0);
+                ThemeMode themeMode;
+                switch (themeModeString) {
+                    case "LIGHT":
+                        themeMode = ThemeMode.LIGHT;
+                        break;
+                    case "DARK":
+                        themeMode = ThemeMode.DARK;
+                        break;
+                    default:
+                        themeMode = ThemeMode.SYSTEM;
+                        break;
+                }
+                Intercom.client().setThemeMode(themeMode);
                 callbackContext.success();
             }
         },

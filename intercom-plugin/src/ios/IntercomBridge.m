@@ -16,7 +16,7 @@
 #pragma mark - Intercom Initialisation
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"16.0.0"];
+    [Intercom setCordovaVersion:@"16.1.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -30,8 +30,15 @@
 
 - (void)setUserHash:(CDVInvokedUrlCommand*)command {
     NSString *hmac = command.arguments[0];
-    
+
     [Intercom setUserHash:hmac];
+    [self sendSuccess:command];
+}
+
+- (void)setUserJwt:(CDVInvokedUrlCommand*)command {
+    NSString *jwt = command.arguments[0];
+
+    [Intercom setUserJwt:jwt];
     [self sendSuccess:command];
 }
 
@@ -67,7 +74,6 @@
     } failure:^(NSError * _Nonnull error) {
         [self sendFailure:command withError:error];
     }];
-    [self sendSuccess:command];
 }
 
 - (void)loginUnidentifiedUser:(CDVInvokedUrlCommand*)command {
@@ -108,7 +114,6 @@
     } failure:^(NSError * _Nonnull error) {
         [self sendFailure:command withError:error];
     }];
-    [self sendSuccess:command];
 }
 
 #pragma mark - Events
@@ -164,10 +169,16 @@
         intercomContent = [IntercomContent helpCenterCollectionsWithIds:collectionIds];
     } else if ([contentType isEqualToString:@"CONVERSATION"]) {
         intercomContent = [IntercomContent conversationWithId:content[@"id"]];
+    } else if ([contentType isEqualToString:@"TICKET"]) {
+        intercomContent = [IntercomContent ticketWithId:content[@"id"]];
     }
     if (intercomContent) {
         [Intercom presentContent:intercomContent];
         [self sendSuccess:command];
+    } else {
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                         messageAsString:@"Invalid content type"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
 }
 
@@ -259,6 +270,18 @@
 - (void)setBottomPadding:(CDVInvokedUrlCommand*)command {
     double bottomPadding = [[command.arguments objectAtIndex:0] doubleValue];
     [Intercom setBottomPadding:bottomPadding];
+    [self sendSuccess:command];
+}
+
+- (void)setThemeMode:(CDVInvokedUrlCommand*)command {
+    NSString *themeModeString = command.arguments[0];
+    ICMThemeOverride themeOverride = ICMThemeOverrideSystem;
+    if ([themeModeString isEqualToString:@"LIGHT"]) {
+        themeOverride = ICMThemeOverrideLight;
+    } else if ([themeModeString isEqualToString:@"DARK"]) {
+        themeOverride = ICMThemeOverrideDark;
+    }
+    [Intercom setThemeOverride:themeOverride];
     [self sendSuccess:command];
 }
 

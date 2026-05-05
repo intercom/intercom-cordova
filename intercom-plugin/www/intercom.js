@@ -7,6 +7,12 @@ const Space = {
   Tickets: "TICKETS",
 };
 
+const ThemeMode = {
+  Light: "LIGHT",
+  Dark: "DARK",
+  System: "SYSTEM",
+};
+
 var intercom = {
     
     /**
@@ -64,6 +70,16 @@ var intercom = {
      */
     setUserHash: function(secureHash, success, error) {
         cordova.exec(success, error, 'Intercom', 'setUserHash', [secureHash]);
+    },
+
+    /**
+     * Set a JWT used to authenticate the current user with the Intercom Messenger.
+     * @note This should be called before any user login takes place.
+     *
+     * @param jwt A JWT signed with your Intercom workspace's identity verification secret.
+     */
+    setUserJwt: function(jwt, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setUserJwt', [jwt]);
     },
 
     /**
@@ -203,6 +219,16 @@ var intercom = {
     },
 
     /**
+     * Override the theme used by the Intercom Messenger.
+     * @see {@link ThemeMode} for valid values.
+     *
+     * @param themeMode One of `intercom.ThemeMode.Light`, `intercom.ThemeMode.Dark`, or `intercom.ThemeMode.System`.
+     */
+    setThemeMode: function(themeMode, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setThemeMode', [themeMode]);
+    },
+
+    /**
      * Register for push notifications
      * @note This function is only available for iOS.
      */
@@ -313,8 +339,9 @@ var intercom = {
         console.warn('displaySurvey() is deprecated and will be removed in a future release. Please use intercom.presentContent(intercomContent.surveyWithSurveyId(surveyId));');
     
     },
-    // Enable the Space constant to be used by `intercom.space.`
-    space: Space
+    Space: Space,
+    space: Space,
+    ThemeMode: ThemeMode,
 }
 
 module.exports = intercom;
