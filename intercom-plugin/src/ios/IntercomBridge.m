@@ -16,7 +16,7 @@
 #pragma mark - Intercom Initialisation
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"16.0.0"];
+    [Intercom setCordovaVersion:@"16.1.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
