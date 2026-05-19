@@ -68,7 +68,6 @@ jobs:
           name: Publish to npm
           command: |
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > intercom-plugin/.npmrc
-            npm config set scope $ORG_NAME
             cd intercom-plugin && npm publish
 
 workflows:
