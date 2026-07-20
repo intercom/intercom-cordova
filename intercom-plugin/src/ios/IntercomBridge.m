@@ -16,7 +16,7 @@
 #pragma mark - Intercom Initialisation
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"16.3.1"];
+    [Intercom setCordovaVersion:@"16.4.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -253,6 +253,20 @@
         visible = YES;
     }
     [Intercom setInAppMessagesVisible:visible];
+    [self sendSuccess:command];
+}
+
+- (void)suppressProactiveContent:(CDVInvokedUrlCommand*)command {
+    NSArray<NSString *> *typeStrings = command.arguments[0];
+    NSMutableArray<NSNumber *> *types = [NSMutableArray array];
+    for (NSString *typeString in typeStrings) {
+        if ([typeString isEqualToString:@"CAROUSEL"]) {
+            [types addObject:@(IntercomProactiveContentTypeCarousel)];
+        } else if ([typeString isEqualToString:@"SURVEY"]) {
+            [types addObject:@(IntercomProactiveContentTypeSurvey)];
+        }
+    }
+    [Intercom suppressProactiveContent:types];
     [self sendSuccess:command];
 }
 

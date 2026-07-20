@@ -1,5 +1,14 @@
 # Intercom for Cordova/PhoneGap
 
+## 16.4.0 (2026-07-20)
+
+✨ New Features
+* Added `suppressProactiveContent` to let host apps suppress carousel and survey content independently of in-app messages
+
+🚀 Enhancements
+* Updated Intercom Android SDK to 18.5.0
+* Updated Intercom iOS SDK to 19.7.0
+
 ## 16.3.1 (2026-07-01)
 
 🚀 Enhancements

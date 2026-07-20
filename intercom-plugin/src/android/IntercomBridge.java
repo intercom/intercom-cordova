@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Arrays;
 
 import io.intercom.android.sdk.Intercom.Visibility;
+import io.intercom.android.sdk.Intercom.ContentType;
 import io.intercom.android.sdk.api.CordovaHeaderInterceptor;
 import io.intercom.android.sdk.api.UserUpdateRequest;
 import io.intercom.android.sdk.helpcenter.api.CollectionContentRequestCallback;
@@ -77,7 +78,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "16.3.1");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.4.0");
 
             //Get app credentials from config.xml or the app bundle if they can't be found
             String apiKey = preferences.getString("intercom-android-api-key", "");
@@ -382,6 +383,24 @@ public class IntercomBridge extends CordovaPlugin {
                     visibility = Intercom.GONE;
                 }
                 Intercom.client().setInAppMessageVisibility(visibility);
+                callbackContext.success();
+            }
+        },
+        suppressProactiveContent {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                JSONArray typesArray = args.optJSONArray(0);
+                List<ContentType> types = new ArrayList<>();
+                if (typesArray != null) {
+                    for (int i = 0; i < typesArray.length(); i++) {
+                        String type = typesArray.optString(i);
+                        if ("CAROUSEL".equals(type)) {
+                            types.add(ContentType.CAROUSEL);
+                        } else if ("SURVEY".equals(type)) {
+                            types.add(ContentType.SURVEY);
+                        }
+                    }
+                }
+                Intercom.client().suppressProactiveContent(types);
                 callbackContext.success();
             }
         },

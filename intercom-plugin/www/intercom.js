@@ -187,6 +187,16 @@ var intercom = {
     },
 
     /**
+     * Suppress the given proactive content types, independently of setInAppMessageVisibility.
+     * @note All proactive content is visible by default; pass an empty array to unsuppress all.
+     *
+     * @param types An array of content type strings to suppress, e.g. ["CAROUSEL", "SURVEY"].
+     */
+    suppressProactiveContent: function(types, success, error) {
+        cordova.exec(success, error, 'Intercom', 'suppressProactiveContent', [types]);
+    },
+
+    /**
      * Hide all Intercom windows that are currently displayed.
      * This will hide the Messenger, Help Center, Articles, and in-product messages (eg. Mobile Carousels, chats, and posts).
      */

@@ -39,6 +39,7 @@
 - (void)setLauncherVisibility:(CDVInvokedUrlCommand*)command;
 - (void)setBottomPadding:(CDVInvokedUrlCommand*)command;
 - (void)setInAppMessageVisibility:(CDVInvokedUrlCommand*)command;
+- (void)suppressProactiveContent:(CDVInvokedUrlCommand*)command;
 - (void)hideIntercom:(CDVInvokedUrlCommand*)command;
     
 #pragma mark - Unread Conversation Count
