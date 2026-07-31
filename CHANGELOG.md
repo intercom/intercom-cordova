@@ -1,5 +1,11 @@
 # Intercom for Cordova/PhoneGap
 
+## 16.5.0 (2026-07-31)
+
+🚀 Enhancements
+* Updated Intercom Android SDK to 18.6.0
+* Updated Intercom iOS SDK to 19.7.1
+
 ## 16.4.0 (2026-07-20)
 
 ✨ New Features
