@@ -51,11 +51,17 @@ The Intercom iOS SDK is no longer published to the CocoaPods trunk. When the plu
 `Intercom.xcframework.zip` for the exact iOS SDK version this release was built against from the
 [intercom-ios GitHub release](https://github.com/intercom/intercom-ios/releases), verifies its SHA-256 checksum and embeds it
 in your app. The download is cached in `~/Library/Caches/cordova-plugin-intercom`; set `INTERCOM_IOS_SDK_CACHE_DIR` to use
-another directory, for example one your CI caches or one you pre-fill for offline builds.
+another directory, for example one your CI caches or one you pre-fill for offline builds. The download comes from `github.com`,
+which redirects to `release-assets.githubusercontent.com`, so allow both hosts if your network only allows the CocoaPods CDN.
 
 If you are upgrading from a version that installed the `Intercom` pod, remove and re-add the plugin
 (`cordova plugin rm cordova-plugin-intercom`, then `cordova plugin add cordova-plugin-intercom`) so the pod is removed from
-`platforms/ios/Podfile`, and remove `pod 'Intercom'` if you added it yourself.
+`platforms/ios/Podfile`, and remove `pod 'Intercom'` if you added it yourself. If the app still links the old pod afterwards,
+remove and re-add the platform (`cordova platform rm ios`, then `cordova platform add ios`).
+
+The pod-based plugin also added `use_frameworks!` to the generated Podfile. Pods from your other plugins are now built as
+static libraries unless another plugin asks for frameworks, so duplicate symbol errors or missing resource bundles from those
+pods after upgrading come from this change.
 
 ### PhoneGap
 

@@ -45,7 +45,10 @@ function cachedZip() {
 
 module.exports = function (context) {
   var frameworkPath = path.join(context.opts.plugin.dir, 'src', 'ios', 'Intercom.xcframework');
-  if (fs.existsSync(path.join(frameworkPath, 'Info.plist'))) {
+  var stampPath = path.join(path.dirname(frameworkPath), '.intercom-ios-sdk');
+  var stamp = VERSION + ' ' + SHA256;
+  if (fs.existsSync(path.join(frameworkPath, 'Info.plist')) && fs.existsSync(stampPath) &&
+      fs.readFileSync(stampPath, 'utf8') === stamp) {
     return;
   }
 
@@ -58,4 +61,5 @@ module.exports = function (context) {
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
+  fs.writeFileSync(stampPath, stamp);
 };

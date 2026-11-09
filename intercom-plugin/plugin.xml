@@ -62,6 +62,7 @@
         </array>
       </config-file>
 
+      <!-- The iOS SDK version and checksum are pinned in scripts/installIntercomIosSdk.js. -->
       <framework src="src/ios/Intercom.xcframework" custom="true" embed="true" link="true" />
     </platform>
 
