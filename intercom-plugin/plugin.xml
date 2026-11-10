@@ -27,8 +27,7 @@
 
 
     <platform name="ios">
-      <hook type="before_plugin_install" src="scripts/prepareCocoaPods.js" />
-      <hook type="after_prepare" src="scripts/checkForUpdate.js" />
+      <hook type="before_plugin_install" src="scripts/installIntercomIosSdk.js" />
 
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
@@ -63,14 +62,8 @@
         </array>
       </config-file>
 
-      <podspec>
-          <config>
-              <source url="https://cdn.cocoapods.org/"/>
-          </config>
-          <pods use-frameworks="true">
-              <pod name="Intercom" spec="~> 19.9.2" />
-          </pods>
-      </podspec>
+      <!-- The iOS SDK version and checksum are pinned in scripts/installIntercomIosSdk.js. -->
+      <framework src="src/ios/Intercom.xcframework" custom="true" embed="true" link="true" />
     </platform>
 
     <platform name="android">

@@ -23,9 +23,6 @@
     "cordova-ios",
     "cordova-android"
   ],
-  "dependencies": {
-    "q": "^1.5.1"
-  },
   "engines": {
     "cordovaDependencies": {
       "14.1.1": {
