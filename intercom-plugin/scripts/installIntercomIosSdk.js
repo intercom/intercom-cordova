@@ -5,8 +5,8 @@ var os = require('os');
 var path = require('path');
 
 // The Intercom pod is no longer published to the CocoaPods trunk; fetch the GitHub release instead.
-var VERSION = '19.9.2';
-var SHA256 = '6af284508f58de833313b263f3d82eaebc255c4d9a56ad9adf2fc6af4228c0f4';
+var VERSION = '19.12.0';
+var SHA256 = '0a036c5f85f644bdcb69972a284c1b9e21b58141c70f2016c1c7aa48bca7072f';
 var RELEASE_URL = 'https://github.com/intercom/intercom-ios/releases/download/' + VERSION + '/Intercom.xcframework.zip';
 
 function cacheDir() {

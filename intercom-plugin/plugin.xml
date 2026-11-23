@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-intercom" version="16.7.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-intercom" version="16.8.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Intercom</name>
     <author>Intercom</author>
     <license>MIT License</license>
@@ -27,7 +27,10 @@
 
 
     <platform name="ios">
+      <preference name="IOS_LOCATION_PERMISSION" default="false" />
+
       <hook type="before_plugin_install" src="scripts/installIntercomIosSdk.js" />
+      <hook type="after_prepare" src="scripts/configureIosLocationPermission.js" />
 
       <header-file src="src/ios/IntercomBridge.h" />
       <source-file src="src/ios/IntercomBridge.m" />
@@ -43,6 +46,9 @@
       <source-file src="src/ios/ICMUserAttributes+DictionaryConversion.m" />
       <header-file src="src/ios/AppDelegate+IntercomPush.h" />
       <source-file src="src/ios/AppDelegate+IntercomPush.m" />
+      <header-file src="src/ios/IntercomLocationPermissionConfig.h" />
+      <header-file src="src/ios/IntercomLocationPermissionProvider.h" />
+      <source-file src="src/ios/IntercomLocationPermissionProvider.m" />
 
       <config-file target="config.xml" parent="/*">
         <preference name="deployment-target" value="15.0"/>

@@ -4,6 +4,7 @@
 #import "ICMHelpCenterArticleSearchResult+DictionaryConversion.h"
 #import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
 #import "ICMUserAttributes+DictionaryConversion.h"
+#import "IntercomLocationPermissionProvider.h"
 #import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
@@ -16,7 +17,7 @@
 #pragma mark - Intercom Initialisation
 
 - (void)pluginInitialize {
-    [Intercom setCordovaVersion:@"16.7.0"];
+    [Intercom setCordovaVersion:@"16.8.0"];
     #ifdef DEBUG
         [Intercom enableLogging];
     #endif
@@ -26,6 +27,7 @@
     NSString* appId = self.commandDelegate.settings[@"intercom-app-id"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
 
     [Intercom setApiKey:apiKey forAppId:appId];
+    IntercomSetUpLocationPermissionProvider();
 }
 
 - (void)setUserHash:(CDVInvokedUrlCommand*)command {

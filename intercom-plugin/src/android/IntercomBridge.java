@@ -78,7 +78,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "16.7.0");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "16.8.0");
 
             //Get app credentials from config.xml or the app bundle if they can't be found
             String apiKey = preferences.getString("intercom-android-api-key", "");
