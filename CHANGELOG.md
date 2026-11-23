@@ -1,5 +1,12 @@
 # Intercom for Cordova/PhoneGap
 
+## 16.8.0 (2026-11-23)
+
+🚀 Enhancements
+* Updated Intercom Android SDK to 18.14.0
+* Updated Intercom iOS SDK to 19.12.0
+* The Intercom iOS SDK is now downloaded from its GitHub release and embedded as `Intercom.xcframework` instead of being installed with CocoaPods, as the `Intercom` pod is no longer published. If you are upgrading, see the README for the steps to remove the old pod.
+
 ## 16.7.0 (2026-10-29)
 
 🚀 Enhancements

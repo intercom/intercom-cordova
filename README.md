@@ -67,7 +67,7 @@ pods after upgrading come from this change.
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:
 ```xml
-<plugin name="cordova-plugin-intercom" version="16.7.0" />
+<plugin name="cordova-plugin-intercom" version="16.8.0" />
 ```
 
 ### Requirements
