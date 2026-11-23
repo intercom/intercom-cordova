@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "cordova-android": "15.0.0",
-        "cordova-ios": "7.1.1"
+        "cordova-ios": "8.2.0"
     },
     "devDependencies": {
         "cordova-plugin-intercom": "file:../intercom-plugin"
