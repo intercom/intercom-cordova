@@ -63,6 +63,32 @@ The pod-based plugin also added `use_frameworks!` to the generated Podfile. Pods
 static libraries unless another plugin asks for frameworks, so duplicate symbol errors or missing resource bundles from those
 pods after upgrading come from this change.
 
+#### iOS: Location permission in Mobile Carousels
+
+Intercom doesn't use CoreLocation itself, so your app doesn't need a location purpose string just because it includes Intercom.
+Mobile Carousel screens that ask for location permission are only shown on iOS once the app gives Intercom a location
+permission provider. Android needs no extra setup.
+
+To show those screens, install the plugin with the `IOS_LOCATION_PERMISSION` variable. The plugin then adds a provider that
+uses CoreLocation and registers it at launch:
+```script
+cordova plugin add cordova-plugin-intercom --variable IOS_LOCATION_PERMISSION=true
+```
+
+To turn it on for an app that already has the plugin, remove and re-add the plugin with the variable. Add the location
+purpose strings to your `config.xml` too. `NSLocationAlwaysAndWhenInUseUsageDescription` is only needed if a carousel asks
+for "Always" access:
+```xml
+<platform name="ios">
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>Share your location when a message asks for it</string>
+    </edit-config>
+    <edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>Share your location when a message asks for it</string>
+    </edit-config>
+</platform>
+```
+
 ### PhoneGap
 
 To add the plugin to your PhoneGap app, add the following to your `config.xml`:

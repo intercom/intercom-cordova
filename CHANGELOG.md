@@ -6,6 +6,10 @@
 * Updated Intercom Android SDK to 18.14.0
 * Updated Intercom iOS SDK to 19.12.0
 * The Intercom iOS SDK is now downloaded from its GitHub release and embedded as `Intercom.xcframework` instead of being installed with CocoaPods, as the `Intercom` pod is no longer published. If you are upgrading, see the README for the steps to remove the old pod.
+* Added the `IOS_LOCATION_PERMISSION` plugin variable, which adds an iOS location permission provider so that Mobile Carousel screens that ask for location permission can be shown.
+
+👉 Note
+* From iOS SDK 19.11.0, Intercom no longer links CoreLocation, and Mobile Carousel screens that ask for location permission are hidden on iOS unless the app sets a location permission provider. Install the plugin with `--variable IOS_LOCATION_PERMISSION=true` and add the location purpose strings to show them. See the README for details.
 
 ## 16.7.0 (2026-10-29)
 

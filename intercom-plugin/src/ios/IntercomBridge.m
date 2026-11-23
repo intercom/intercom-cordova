@@ -4,6 +4,7 @@
 #import "ICMHelpCenterArticleSearchResult+DictionaryConversion.h"
 #import "ICMHelpCenterCollectionContent+DictionaryConversion.h"
 #import "ICMUserAttributes+DictionaryConversion.h"
+#import "IntercomLocationPermissionProvider.h"
 #import <Intercom/Intercom.h>
 
 @interface Intercom (Cordoava)
@@ -26,6 +27,7 @@
     NSString* appId = self.commandDelegate.settings[@"intercom-app-id"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IntercomAppId"];
 
     [Intercom setApiKey:apiKey forAppId:appId];
+    IntercomSetUpLocationPermissionProvider();
 }
 
 - (void)setUserHash:(CDVInvokedUrlCommand*)command {
